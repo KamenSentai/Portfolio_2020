@@ -1,0 +1,7 @@
+$easing: cubic-bezier(.5, 0, 0, 1);
+
+$smooth-quicker: .125s $easing;
+$smooth-quick: .25s $easing;
+$smooth: .5s $easing;
+$smooth-slow: .75s $easing;
+$smooth-slower: 1s $easing;

@@ -1,9 +1,0 @@
-$colors: (
-  dark: hsl(0, 0%, 10%),
-  light: hsl(0, 0%, 100%),
-  primary: hsl(45, 100%, 50%),
-);
-
-$dark: map-get($colors, dark);
-$light: map-get($colors, light);
-$primary: map-get($colors, primary);

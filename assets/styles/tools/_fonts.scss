@@ -1,0 +1,26 @@
+$path: "~assets/fonts";
+$font: "Teko", sans-serif;
+
+@font-face {
+  font-weight: lighter;
+  font-family: "Teko";
+  src: url("#{$path}/Teko-Light.woff") format("woff"),
+    url("#{$path}/Teko-Light.woff2") format("woff2")
+  ;
+}
+
+@font-face {
+  font-weight: normal;
+  font-family: "Teko";
+  src: url("#{$path}/Teko-Regular.woff") format("woff"),
+    url("#{$path}/Teko-Regular.woff2") format("woff2")
+  ;
+}
+
+@font-face {
+  font-weight: bolder;
+  font-family: "Teko";
+  src: url("#{$path}/Teko-Bold.woff") format("woff"),
+    url("#{$path}/Teko-Bold.woff2") format("woff2")
+  ;
+}

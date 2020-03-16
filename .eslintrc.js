@@ -1,3 +1,5 @@
+const { resolve } = require('path')
+
 module.exports = {
   root: true,
   env: {
@@ -35,4 +37,26 @@ module.exports = {
   parserOptions: {
     parser: 'babel-eslint',
   },
+  settings: {
+    'import/resolver': {
+      webpack: {
+        config: {
+          resolve: {
+            alias: {
+              '~': __dirname,
+              'assets': resolve(__dirname, 'assets'),
+              '~assets': resolve(__dirname, 'assets'),
+              '~components': resolve(__dirname, 'components'),
+              '~plugins': resolve(__dirname, 'plugins'),
+              '~pages': resolve(__dirname, 'pages'),
+              '~router': resolve(__dirname, '.nuxt/router'),
+              'static': resolve(__dirname, 'static'),
+              '~static': resolve(__dirname, 'static'),
+              '~store': resolve(__dirname, '.nuxt/store'),
+            }
+          }
+        }
+      }
+    }
+  }
 }
