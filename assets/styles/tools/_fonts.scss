@@ -2,7 +2,7 @@ $path: "~assets/fonts";
 $font: "Teko", sans-serif;
 
 @font-face {
-  font-weight: lighter;
+  font-weight: 300;
   font-family: "Teko";
   src: url("#{$path}/Teko-Light.woff") format("woff"),
     url("#{$path}/Teko-Light.woff2") format("woff2")
@@ -18,7 +18,7 @@ $font: "Teko", sans-serif;
 }
 
 @font-face {
-  font-weight: bolder;
+  font-weight: 700;
   font-family: "Teko";
   src: url("#{$path}/Teko-Bold.woff") format("woff"),
     url("#{$path}/Teko-Bold.woff2") format("woff2")

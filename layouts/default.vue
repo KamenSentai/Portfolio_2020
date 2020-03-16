@@ -1,17 +1,22 @@
 <template>
   <div :class="$style.container">
     <ACVTLoading v-if="!isCompleted" />
-    <nuxt v-else />
+    <template v-else>
+      <ACVTHeader />
+      <nuxt />
+    </template>
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
+import ACVTHeader from '~/components/Header.vue'
 import ACVTLoading from '~/components/Loading.vue'
 
 export default {
   name: 'Default',
   components: {
+    ACVTHeader,
     ACVTLoading,
   },
   computed: mapGetters('loading', ['isCompleted']),
