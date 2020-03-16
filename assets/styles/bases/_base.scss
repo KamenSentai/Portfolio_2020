@@ -9,7 +9,9 @@ body {
 }
 
 body {
+  color: color(light);
   font-weight: normal;
   font-size: 1.6rem;
   font-family: $font;
+  background-color: color(dark);
 }

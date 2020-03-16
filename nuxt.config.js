@@ -67,5 +67,12 @@ export default {
     ],
   },
   build: {
+    loaders: {
+      cssModules: {
+        modules: {
+          localIdentName: '[name]__[local]--[hash:base64:5]',
+        },
+      },
+    },
   },
 }
