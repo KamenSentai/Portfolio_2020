@@ -3,7 +3,7 @@
     :class="[
       $style.container,
       {
-        [$style.isMounted]: isMounted,
+        [$style.isInactive]: !isMounted,
       }
     ]"
   >
@@ -78,11 +78,11 @@ export default {
   grid-template-rows: 1fr auto;
   padding-bottom: space(md);
 
-  &.isMounted {
+  &.isInactive {
 
     .icon {
-      transform: scale(1);
-      transition-delay: time(longer);
+      transform: scale(0);
+      transition-delay: 0s;
     }
   }
 }
@@ -143,7 +143,6 @@ export default {
 }
 
 .icon {
-  transform: scale(0);
-  transition: transform $smooth;
+  transition: transform $smooth time(longest);
 }
 </style>

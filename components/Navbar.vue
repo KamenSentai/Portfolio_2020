@@ -3,7 +3,7 @@
     :class="[
       $style.container,
       {
-        [$style.isActive]: isActive,
+        [$style.isInactive]: !isActive,
       }
     ]"
   >
@@ -64,16 +64,16 @@ export default {
 .container {
   @include centralizer;
 
-  &.isActive {
+  &.isInactive {
 
     .wrapper::before {
-      transform: scaleX(1);
+      transform: scaleY(0);
       transition-delay: time(longer);
     }
 
     .dot {
-      transform: scale(1);
-      opacity: 1;
+      transform: translateY(-50%) scale(0);
+      opacity: 0;
       transition-delay: time(normal);
     }
   }
@@ -87,9 +87,8 @@ export default {
 
   &::before {
     background-color: color(light, .25);
-    transform: scaleX(0);
     transform-origin: top;
-    transition: transform $smooth-slower time(normal);
+    transition: transform $smooth-slowest time(normal);
     content: "";
     @include overlay;
   }
@@ -109,11 +108,9 @@ export default {
   height: size(xs);
   background-color: color(dark);
   border-radius: 100%;
-  transform: translateY(-50%);
-  transform: scale(0);
+  transform: translateY(-50%) scale(1);
   cursor: pointer;
-  opacity: 0;
-  transition: transform $smooth-slower, opacity $smooth-slower;
+  transition: transform $smooth-slowest, opacity $smooth-slowest;
   transition-delay: time(longer);
   @include centralizer;
 

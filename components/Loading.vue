@@ -3,7 +3,7 @@
     :class="[
       $style.container,
       {
-        [$style.isMounted]: isMounted,
+        [$style.isInactive]: !isMounted,
       }
     ]"
     :style="{ transitionDuration: `${duration}ms` }"
@@ -26,7 +26,7 @@ export default {
   data() {
     return {
       delay: 500,
-      duration: 500,
+      duration: 1000,
       isMounted: false,
     }
   },
@@ -60,13 +60,12 @@ export default {
   position: relative;
   width: 100%;
   height: 100%;
-  transform: scaleX(0);
   transition-timing-function: $easing;
   transition-property: transform;
   @include centralizer;
 
-  &.isMounted {
-    transform: scaleX(1);
+  &.isInactive {
+    transform: scaleX(0);
   }
 }
 

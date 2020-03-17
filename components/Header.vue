@@ -4,7 +4,7 @@
       :class="[
         $style.header,
         {
-          [$style.isMounted]: isMounted,
+          [$style.isInactive]: !isMounted,
         }
       ]"
     >
@@ -88,16 +88,16 @@ export default {
 
   &::after {
     background-color: color(dark);
-    transform: scaleY(1);
+    transform: scaleY(0);
     transform-origin: top;
-    transition: transform $smooth-slower time(longer);
+    transition: transform $smooth-slower time(longest);
     content: "";
     pointer-events: none;
     @include overlay;
   }
 
-  &.isMounted::after {
-    transform: scaleY(0);
+  &.isInactive::after {
+    transform: scaleY(1);
   }
 }
 </style>

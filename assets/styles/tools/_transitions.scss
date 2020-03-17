@@ -6,6 +6,7 @@ $times: (
   normal: .5s,
   long: .75s,
   longer: 1s,
+  longest: 1.5s,
 );
 
 @function time($name) {
@@ -16,4 +17,5 @@ $smooth-quicker: time(shorter) $easing;
 $smooth-quick: time(short) $easing;
 $smooth: time(normal) $easing;
 $smooth-slow: time(long) $easing;
-$smooth-slower:time(longer) $easing;
+$smooth-slower: time(longer) $easing;
+$smooth-slowest: time(longest) $easing;

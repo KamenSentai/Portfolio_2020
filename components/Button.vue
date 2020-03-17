@@ -3,7 +3,7 @@
     :class="[
       $style.container,
       {
-        [$style.isActive]: isActive,
+        [$style.isInactive]: !isActive,
       }
     ]"
     v-bind="$attrs"
@@ -36,7 +36,6 @@ export default {
   padding-right: space(sm);
   font-size: size(sm);
   text-transform: uppercase;
-  pointer-events: none;
   @include centralizer;
 
   @include bp(md) {
@@ -51,9 +50,9 @@ export default {
   &::after {
     z-index: 1;
     background-color: color(dark);
-    transform: scaleX(1);
+    transform: scaleX(0);
     transform-origin: left;
-    transition: transform $smooth-slower time(normal);
+    transition: transform $smooth-slower;
     content: "";
     @include overlay;
   }
@@ -69,20 +68,20 @@ export default {
     }
   }
 
-  &.isActive {
-    pointer-events: auto;
+  &.isInactive {
+    pointer-events: none;
 
     &::after,
     .circle::after {
-      transform: scaleX(0);
+      transform: scaleX(1);
     }
 
     &::after {
-      transition-delay: 0s;
+      transition-delay: time(normal);
     }
 
     .circle::after {
-      transition-delay: time(normal);
+      transition-delay: 0s;
     }
   }
 }
@@ -115,9 +114,9 @@ export default {
   &::after {
     left: 0;
     background-color: color(dark);
-    transform: scaleX(1);
+    transform: scaleX(0);
     transform-origin: left;
-    transition-delay: 0s;
+    transition-delay: time(normal);
   }
 }
 
