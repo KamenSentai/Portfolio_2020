@@ -1,42 +1,59 @@
 <template>
-  <div :class="$style.container">
+  <div
+    :class="[
+      $style.container,
+      {
+        [$style.isActive]: isActive,
+      }
+    ]"
+  >
     <div :class="$style.wrapper">
       <div
         :class="$style.fillbar"
-        :style="{ transform: `scaleY(${currentIndex / (total - 1)})` }"
+        :style="{ transform: `scaleY(${currentIndex / (totalProjects - 1)})` }"
       />
       <div
-        v-for="i in total"
-        :key="i"
+        v-for="i in totalProjects"
+        :key="`dot-${i}`"
         :class="[
           $style.dot,
           {
-            [$style.isCurrent]: currentIndex === i - 1,
-            [$style.isReached]: currentIndex >= i - 1,
+            [$style.isCurrent]: isCurrent(i),
+            [$style.isReached]: isReached(i),
           }
         ]"
-        :style="{ top: `${(i - 1) / (total - 1) * 100}%` }"
+        :style="{ top: `${(i - 1) / (totalProjects - 1) * 100}%` }"
+        @click="!isCurrent(i) && $emit('click', i - 1)"
       >
-        <span :class="$style.number">{{ numberFormatted(i) }}</span>
+        <span :class="$style.number">{{ formattedNumber(i) }}</span>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   name: 'Navbar',
-  data() {
-    return {
-      currentIndex: 0,
-      total: 6,
-    }
+  props: {
+    isActive: {
+      type: Boolean,
+      default: true,
+    },
   },
   computed: {
+    ...mapGetters('site', ['currentIndex', 'totalProjects']),
     digitsLength() {
-      return this.total.toString().length + 1
+      return this.totalProjects.toString().length + 1
     },
-    numberFormatted() {
+    isCurrent() {
+      return (index) => this.isActive && this.currentIndex === index - 1
+    },
+    isReached() {
+      return (index) => this.isActive && this.currentIndex >= index - 1
+    },
+    formattedNumber() {
       return (index) => '0'.repeat(this.digitsLength - index.toString().length) + index
     },
   },
@@ -46,14 +63,36 @@ export default {
 <style lang="scss" module>
 .container {
   @include centralizer;
+
+  &.isActive {
+
+    .wrapper::before {
+      transform: scaleX(1);
+      transition-delay: time(longer);
+    }
+
+    .dot {
+      transform: scale(1);
+      opacity: 1;
+      transition-delay: time(normal);
+    }
+  }
 }
 
 .wrapper {
   position: relative;
   width: .2rem;
   height: 100%;
-  background-color: color(light, .25);
   @include centralizer;
+
+  &::before {
+    background-color: color(light, .25);
+    transform: scaleX(0);
+    transform-origin: top;
+    transition: transform $smooth-slower time(normal);
+    content: "";
+    @include overlay;
+  }
 }
 
 .fillbar {
@@ -71,7 +110,11 @@ export default {
   background-color: color(dark);
   border-radius: 100%;
   transform: translateY(-50%);
+  transform: scale(0);
   cursor: pointer;
+  opacity: 0;
+  transition: transform $smooth-slower, opacity $smooth-slower;
+  transition-delay: time(longer);
   @include centralizer;
 
   &::before,

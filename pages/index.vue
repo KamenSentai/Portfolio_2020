@@ -1,16 +1,28 @@
 <template>
-  <ACVTJumbotron :class="$style.container">
-    <ACVTNavbar v-if="!$isMobile" />
+  <ACVTJumbotron
+    :class="[
+      $style.container,
+      {
+        [$style.isMounted]: isMounted,
+      }
+    ]"
+  >
+    <ACVTNavbar
+      v-if="!$isMobile"
+      :is-active="isMounted"
+      @click="updateProject($event)"
+    />
     <div :class="$style.wrapper">
       <div :class="$style.hero">
-        <span :class="$style.tag">Project 01</span>
+        <span :class="$style.tag">Project {{ currentProject.formattedIndex }}</span>
         <h2 :class="$style.title">
-          Assoïe Louvart's portfolio
+          {{ currentProject.name }}
         </h2>
-        <span :class="$style.text">2020</span>
       </div>
       <nav :class="$style.nav">
+        <!-- Raw text -->
         <ACVTButton
+          :is-active="isMounted"
           :to="{ name: 'about' }"
           text="Discover"
         />
@@ -18,6 +30,7 @@
     </div>
     <div :class="$style.scroll">
       <ACVTIcon
+        :class="$style.icon"
         name="Mouse"
         width="20px"
       />
@@ -26,6 +39,7 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex'
 import ACVTButton from '~/components/Button.vue'
 import ACVTIcon from '~/components/Icon.vue'
 import ACVTJumbotron from '~/components/Jumbotron.vue'
@@ -39,6 +53,23 @@ export default {
     ACVTJumbotron,
     ACVTNavbar,
   },
+  data() {
+    return {
+      isMounted: false,
+    }
+  },
+  computed: mapGetters('site', ['currentProject']),
+  mounted() {
+    this.$nextTick(() => {
+      this.isMounted = true
+    })
+  },
+  methods: {
+    ...mapActions('site', ['updateIndex']),
+    updateProject(index) {
+      this.updateIndex(index)
+    },
+  },
 }
 </script>
 
@@ -46,6 +77,14 @@ export default {
 .container {
   grid-template-rows: 1fr auto;
   padding-bottom: space(md);
+
+  &.isMounted {
+
+    .icon {
+      transform: scale(1);
+      transition-delay: time(longer);
+    }
+  }
 }
 
 .wrapper {
@@ -91,14 +130,6 @@ export default {
   }
 }
 
-.text {
-  font-size: size(xs);
-
-  @include bp(sm) {
-    font-size: size(regular);
-  }
-}
-
 .nav {
   display: grid;
   grid-auto-flow: column;
@@ -109,5 +140,10 @@ export default {
 .scroll {
   grid-column: 1 / -1;
   @include centralizer;
+}
+
+.icon {
+  transform: scale(0);
+  transition: transform $smooth;
 }
 </style>

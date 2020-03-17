@@ -1,7 +1,19 @@
 $easing: cubic-bezier(.5, 0, 0, 1);
 
-$smooth-quicker: .125s $easing;
-$smooth-quick: .25s $easing;
-$smooth: .5s $easing;
-$smooth-slow: .75s $easing;
-$smooth-slower: 1s $easing;
+$times: (
+  shorter: .125s,
+  short: .25s,
+  normal: .5s,
+  long: .75s,
+  longer: 1s,
+);
+
+@function time($name) {
+  @return map-get($times, $name);
+}
+
+$smooth-quicker: time(shorter) $easing;
+$smooth-quick: time(short) $easing;
+$smooth: time(normal) $easing;
+$smooth-slow: time(long) $easing;
+$smooth-slower:time(longer) $easing;

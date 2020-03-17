@@ -1,6 +1,11 @@
 <template>
   <nuxt-link
-    :class="$style.container"
+    :class="[
+      $style.container,
+      {
+        [$style.isActive]: isActive,
+      }
+    ]"
     v-bind="$attrs"
   >
     <div :class="$style.circle" />
@@ -12,6 +17,10 @@
 export default {
   name: 'Button',
   props: {
+    isActive: {
+      type: Boolean,
+      default: true,
+    },
     text: {
       type: String,
       required: true,
@@ -27,6 +36,7 @@ export default {
   padding-right: space(sm);
   font-size: size(sm);
   text-transform: uppercase;
+  pointer-events: none;
   @include centralizer;
 
   @include bp(md) {
@@ -39,10 +49,11 @@ export default {
   }
 
   &::after {
-    background-color: color(dark, .5);
-    transform: scaleX(0);
+    z-index: 1;
+    background-color: color(dark);
+    transform: scaleX(1);
     transform-origin: left;
-    transition: transform $smooth;
+    transition: transform $smooth-slower time(normal);
     content: "";
     @include overlay;
   }
@@ -55,6 +66,23 @@ export default {
 
     .text::after {
       transform: translateX(50%);
+    }
+  }
+
+  &.isActive {
+    pointer-events: auto;
+
+    &::after,
+    .circle::after {
+      transform: scaleX(0);
+    }
+
+    &::after {
+      transition-delay: 0s;
+    }
+
+    .circle::after {
+      transition-delay: time(normal);
     }
   }
 }
@@ -73,6 +101,7 @@ export default {
     top: 0;
     right: 0;
     bottom: 0;
+    transition: transform $smooth-slower;
     content: "";
   }
 
@@ -80,20 +109,21 @@ export default {
     width: 10rem;
     border: .2rem solid color(primary);
     border-radius: 100%;
-    transition: transform $smooth;
     content: "";
   }
 
   &::after {
     left: 0;
     background-color: color(dark);
-    transform: scaleX(0);
+    transform: scaleX(1);
     transform-origin: left;
+    transition-delay: 0s;
   }
 }
 
 .text {
   position: relative;
+  z-index: 1;
   display: grid;
   grid-auto-flow: column;
   grid-gap: space(xs);
@@ -122,7 +152,7 @@ export default {
     border-right: 4px solid transparent;
     border-bottom: 4px solid transparent;
     border-left: 4px solid color(light);
-    transition: transform $smooth;
+    transition: transform $smooth-slower;
   }
 }
 </style>
