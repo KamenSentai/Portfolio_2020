@@ -2,7 +2,7 @@
   <ACVTContainer :class="$style.container">
     <header :class="$style.header">
       <component
-        :is="link.isCurrentRoute ? 'span' : 'nuxt-link'"
+        :is="link.isCurrentRoute ? link.tag : 'nuxt-link'"
         v-for="(link, index) in links"
         :key="`link-${index}`"
         :to="!link.isCurrentRoute && { name: link.name }"
@@ -42,7 +42,10 @@ export default {
           title: 'Back to projects',
         },
       ]
-        .map((link) => ({ ...link, isCurrentRoute: this.isCurrentRoute(link.name) }))
+        .map((link) => {
+          const isCurrentRoute = this.isCurrentRoute(link.name)
+          return { ...link, isCurrentRoute, tag: link.isMain ? 'h1' : 'span' }
+        })
         .filter((link) => link.isMain || !link.isCurrentRoute)
     },
   },

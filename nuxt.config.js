@@ -50,9 +50,11 @@ export default {
     background: '#1A1A1A',
   },
   css: [
-    '~assets/styles/index.scss',
+    '~/assets/styles/index.scss',
   ],
   plugins: [
+    '~/plugins/vue-mixin.js',
+    '~/plugins/vue-mq.js',
   ],
   buildModules: [
     '@nuxtjs/eslint-module',
@@ -63,7 +65,7 @@ export default {
   ],
   styleResources: {
     scss: [
-      '~assets/styles/index.scss',
+      '~/assets/styles/index.scss',
     ],
   },
   build: {

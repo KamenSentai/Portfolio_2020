@@ -10,7 +10,7 @@
   >
     <div :class="$style.wrapper">
       <div
-        :class="$style.bar"
+        :class="$style.fillbar"
         :style="{ transform: `scaleX(${progression / 100})` }"
       />
     </div>
@@ -78,7 +78,7 @@ export default {
   background-color: color(light, .25);
 }
 
-.bar {
+.fillbar {
   background-color: color(primary);
   transform: scaleX(0);
   @include overlay;
