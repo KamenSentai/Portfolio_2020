@@ -60,9 +60,9 @@ export default {
   },
   computed: mapGetters('site', ['currentProject']),
   mounted() {
-    this.$nextTick(() => {
+    setTimeout(() => {
       this.isMounted = true
-    })
+    }, 500)
   },
   methods: {
     ...mapActions('site', ['updateIndex']),

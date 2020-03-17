@@ -45,11 +45,13 @@ export default {
     },
   },
   mounted() {
-    this.isMounted = true
-
     setTimeout(() => {
-      this.load(Object.values(resources))
-    }, this.duration)
+      this.isMounted = true
+
+      setTimeout(() => {
+        this.load(Object.values(resources))
+      }, this.duration)
+    }, 500)
   },
   methods: mapActions('loading', ['complete', 'load']),
 }
