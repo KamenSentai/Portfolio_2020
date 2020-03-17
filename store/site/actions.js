@@ -1,5 +1,13 @@
 export default {
-  updateIndex({ commit }, index) {
-    commit('updateIndex', index)
+  loadIndex({ commit }, index) {
+    commit('loadIndex', index)
+  },
+  updateIndex({ commit }, { duration, index, callback }) {
+    commit('loadIndex', index)
+
+    setTimeout(() => {
+      commit('updateIndex', index)
+      callback()
+    }, duration)
   },
 }

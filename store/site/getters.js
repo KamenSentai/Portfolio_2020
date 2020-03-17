@@ -16,6 +16,9 @@ export default {
   projects(state) {
     return state.projects
   },
+  temporaryIndex(state) {
+    return state.temporaryIndex
+  },
   totalProjects(state) {
     return state.projects.length
   },

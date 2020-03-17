@@ -10,7 +10,7 @@
     <div :class="$style.wrapper">
       <div
         :class="$style.fillbar"
-        :style="{ transform: `scaleY(${currentIndex / (totalProjects - 1)})` }"
+        :style="{ transform: `scaleY(${isActive ? temporaryIndex / (totalProjects - 1) : 0})` }"
       />
       <div
         v-for="i in totalProjects"
@@ -23,7 +23,7 @@
           }
         ]"
         :style="{ top: `${(i - 1) / (totalProjects - 1) * 100}%` }"
-        @click="!isCurrent(i) && $emit('click', i - 1)"
+        @click="isClickable && !isCurrent(i) && $emit('click', i - 1)"
       >
         <span :class="$style.number">{{ formattedNumber(i) }}</span>
       </div>
@@ -41,17 +41,21 @@ export default {
       type: Boolean,
       default: true,
     },
+    isClickable: {
+      type: Boolean,
+      default: true,
+    },
   },
   computed: {
-    ...mapGetters('site', ['currentIndex', 'totalProjects']),
+    ...mapGetters('site', ['temporaryIndex', 'totalProjects']),
     digitsLength() {
       return this.totalProjects.toString().length + 1
     },
     isCurrent() {
-      return (index) => this.isActive && this.currentIndex === index - 1
+      return (index) => this.isActive && this.temporaryIndex === index - 1
     },
     isReached() {
-      return (index) => this.isActive && this.currentIndex >= index - 1
+      return (index) => this.isActive && this.temporaryIndex >= index - 1
     },
     formattedNumber() {
       return (index) => '0'.repeat(this.digitsLength - index.toString().length) + index
@@ -72,7 +76,6 @@ export default {
     }
 
     .dot {
-      transform: translateY(-50%) scale(0);
       opacity: 0;
       transition-delay: time(normal);
     }
@@ -108,10 +111,9 @@ export default {
   height: size(xs);
   background-color: color(dark);
   border-radius: 100%;
-  transform: translateY(-50%) scale(1);
+  transform: translateY(-50%);
   cursor: pointer;
-  transition: transform $smooth-slowest, opacity $smooth-slowest;
-  transition-delay: time(longer);
+  transition: opacity $smooth-slowest time(longer);
   @include centralizer;
 
   &::before,

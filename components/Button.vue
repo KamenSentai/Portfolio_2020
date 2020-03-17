@@ -4,6 +4,7 @@
       $style.container,
       {
         [$style.isInactive]: !isActive,
+        [$style.isUnlickable]: !isClickable,
       }
     ]"
     v-bind="$attrs"
@@ -18,6 +19,10 @@ export default {
   name: 'Button',
   props: {
     isActive: {
+      type: Boolean,
+      default: true,
+    },
+    isClickable: {
       type: Boolean,
       default: true,
     },
@@ -83,6 +88,10 @@ export default {
     .circle::after {
       transition-delay: 0s;
     }
+  }
+
+  &.isUnlickable {
+    pointer-events: none;
   }
 }
 

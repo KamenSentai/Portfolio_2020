@@ -3,6 +3,7 @@
     :class="[
       $style.container,
       {
+        [$style.isChanging]: isChanging,
         [$style.isInactive]: !isMounted,
       }
     ]"
@@ -10,10 +11,12 @@
     <ACVTNavbar
       v-if="!$isMobile"
       :is-active="isMounted"
+      :is-clickable="!isChanging"
       @click="updateProject($event)"
     />
     <div :class="$style.wrapper">
       <div :class="$style.hero">
+        <!-- Raw text -->
         <span :class="$style.tag">Project {{ currentProject.formattedIndex }}</span>
         <h2 :class="$style.title">
           {{ currentProject.name }}
@@ -23,6 +26,7 @@
         <!-- Raw text -->
         <ACVTButton
           :is-active="isMounted"
+          :is-clickable="!isChanging"
           :to="{ name: 'about' }"
           text="Discover"
         />
@@ -55,6 +59,8 @@ export default {
   },
   data() {
     return {
+      duration: 1500,
+      isChanging: false,
       isMounted: false,
     }
   },
@@ -65,9 +71,18 @@ export default {
     }, 500)
   },
   methods: {
-    ...mapActions('site', ['updateIndex']),
+    ...mapActions('site', ['loadIndex', 'updateIndex']),
     updateProject(index) {
-      this.updateIndex(index)
+      const { duration } = this
+      this.isChanging = true
+
+      this.updateIndex({
+        duration,
+        index,
+        callback: () => {
+          this.isChanging = false
+        },
+      })
     },
   },
 }
@@ -78,12 +93,60 @@ export default {
   grid-template-rows: 1fr auto;
   padding-bottom: space(md);
 
-  &.isInactive {
+  &:not(isInactive):not(.isChanging) {
 
-    .icon {
-      transform: scale(0);
-      transition-delay: 0s;
+    .tag,
+    .title {
+
+      &::before {
+        transform: scaleX(0);
+        opacity: 0;
+      }
+
+      &::after {
+        transform: scaleX(0);
+        opacity: 1;
+      }
     }
+  }
+
+  &.isChanging:not(.isInactive) {
+
+    .tag,
+    .title {
+
+      &::before {
+        transform: scaleX(1);
+        opacity: 1;
+      }
+
+      &::after {
+        transform: scaleX(1);
+        opacity: 0;
+      }
+    }
+  }
+
+  &.isInactive:not(.isChanging) {
+
+    .tag,
+    .title {
+
+      &::before {
+        transform: scaleX(1);
+        opacity: 1;
+      }
+
+      &::after {
+        transform: scaleX(1);
+        opacity: 0;
+      }
+    }
+  }
+
+  &.isInactive .icon {
+    transform: scale(0);
+    transition-delay: 0s;
   }
 }
 
@@ -105,6 +168,30 @@ export default {
 .hero {
   display: grid;
   grid-gap: space(xs);
+  justify-items: flex-start;
+}
+
+.tag,
+.title {
+  position: relative;
+
+  &::before,
+  &::after {
+    background-color: color(dark);
+    transform: scaleX(0);
+    transition: transform $smooth;
+    content: "";
+    @include overlay;
+  }
+
+  &::before {
+    transform-origin: left;
+    opacity: 0;
+  }
+
+  &::after {
+    transform-origin: right;
+  }
 }
 
 .tag {
@@ -115,6 +202,11 @@ export default {
 
   @include bp(sm) {
     font-size: size(sm);
+  }
+
+  &::before,
+  &::after {
+    transition-delay: time(shorter);
   }
 }
 

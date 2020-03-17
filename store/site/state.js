@@ -104,4 +104,5 @@ export default () => ({
       gallery: [],
     },
   ],
+  temporaryIndex: 0,
 })
