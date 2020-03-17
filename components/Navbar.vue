@@ -66,6 +66,7 @@ export default {
 
 <style lang="scss" module>
 .container {
+  user-select: none;
   @include centralizer;
 
   &.isInactive {

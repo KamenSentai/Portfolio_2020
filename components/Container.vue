@@ -28,5 +28,9 @@ export default {
   @include bp(sm) {
     grid-template-columns: repeat(4, 80px);
   }
+
+  @include bp(xs) {
+    grid-template-columns: repeat(4, 60px);
+  }
 }
 </style>

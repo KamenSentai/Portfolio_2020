@@ -11,7 +11,7 @@
     <ACVTNavbar
       v-if="!$isMobile"
       :is-active="isMounted"
-      :is-clickable="!isChanging"
+      :is-clickable="!isAnimating"
       @click="updateProject($event)"
     />
     <div :class="$style.wrapper">
@@ -26,7 +26,7 @@
         <!-- Raw text -->
         <ACVTButton
           :is-active="isMounted"
-          :is-clickable="!isChanging"
+          :is-clickable="!isAnimating"
           :to="{ name: 'about' }"
           text="Discover"
         />
@@ -59,30 +59,66 @@ export default {
   },
   data() {
     return {
-      duration: 1500,
+      duration: 750,
+      isAnimating: false,
       isChanging: false,
       isMounted: false,
+      touchPosition: 0,
     }
   },
-  computed: mapGetters('site', ['currentProject']),
+  computed: mapGetters('site', ['currentIndex', 'currentProject', 'totalProjects']),
   mounted() {
     setTimeout(() => {
       this.isMounted = true
+      window.addEventListener('touchstart', this.touchstart)
+      window.addEventListener('touchmove', this.touchmove)
+      window.addEventListener('wheel', this.wheel)
     }, 500)
+  },
+  destroyed() {
+    window.removeEventListener('touchstart', this.touchstart)
+    window.removeEventListener('touchmove', this.touchmove)
+    window.removeEventListener('wheel', this.wheel)
   },
   methods: {
     ...mapActions('site', ['loadIndex', 'updateIndex']),
     updateProject(index) {
-      const { duration } = this
-      this.isChanging = true
+      if (index >= 0 && index < this.totalProjects) {
+        const { duration } = this
+        this.isAnimating = true
+        this.isChanging = true
 
-      this.updateIndex({
-        duration,
-        index,
-        callback: () => {
-          this.isChanging = false
-        },
-      })
+        this.updateIndex({
+          duration,
+          index,
+          callback: () => {
+            this.isChanging = false
+
+            setTimeout(() => {
+              this.isAnimating = false
+            }, this.duration)
+          },
+        })
+      }
+    },
+    touchmove({ touches }) {
+      const [{ clientY: y }] = touches
+      const movementY = y - this.touchPosition
+      this.touchPosition = y
+      this.wheel({ deltaY: -movementY })
+    },
+    touchstart({ touches }) {
+      const [{ clientY: y }] = touches
+      this.touchPosition = y
+    },
+    wheel({ deltaY }) {
+      if (!this.isAnimating) {
+        if (deltaY > 0) {
+          this.updateProject(this.currentIndex + 1)
+        } else if (deltaY < 0) {
+          this.updateProject(this.currentIndex - 1)
+        }
+      }
     },
   },
 }
@@ -200,8 +236,12 @@ export default {
   font-size: size(md);
   text-transform: uppercase;
 
-  @include bp(sm) {
+  @include bp(md) {
     font-size: size(sm);
+  }
+
+  @include bp(sm) {
+    font-size: size(xs);
   }
 
   &::before,
@@ -217,7 +257,8 @@ export default {
     font-size: size(lg);
   }
 
-  @include bp(sm) {
+  @include bp(md) {
+    min-height: 2em;
     font-size: size(md);
   }
 }
