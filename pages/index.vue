@@ -34,10 +34,44 @@
     </div>
     <div :class="$style.scroll">
       <ACVTIcon
+        v-if="!$isMobile"
         :class="$style.icon"
         name="Mouse"
         width="20px"
       />
+      <template v-else>
+        <div :class="$style.navigator">
+          <div
+            :class="[
+              $style.arrow,
+              {
+                [$style.isUnavailable]: currentIndex === 0,
+              }
+            ]"
+            @click="wheel({ deltaY: -1 })"
+          >
+            <ACVTIcon
+              name="ArrowUp"
+              width="32px"
+            />
+          </div>
+          <div
+            :class="[
+              $style.arrow,
+              {
+                [$style.isUnavailable]: currentIndex === totalProjects - 1,
+              }
+            ]"
+            @click="wheel({ deltaY: 1 })"
+          >
+            <ACVTIcon
+              name="ArrowDown"
+              width="32px"
+            />
+          </div>
+        </div>
+        <template />
+      </template>
     </div>
   </ACVTJumbotron>
 </template>
@@ -180,9 +214,13 @@ export default {
     }
   }
 
-  &.isInactive .icon {
-    transform: scale(0);
-    transition-delay: 0s;
+  &.isInactive {
+
+    .icon,
+    .navigator {
+      transform: scale(0);
+      transition-delay: 0s;
+    }
   }
 }
 
@@ -272,10 +310,27 @@ export default {
 
 .scroll {
   grid-column: 1 / -1;
+  font-size: 0;
   @include centralizer;
 }
 
-.icon {
+.icon,
+.navigator {
   transition: transform $smooth time(longest);
+}
+
+.navigator {
+  display: grid;
+  grid-gap: space(md);
+}
+
+.arrow {
+  cursor: pointer;
+  transition: opacity $smooth;;
+
+  &.isUnavailable {
+    opacity: .25;
+    pointer-events: none;
+  }
 }
 </style>
