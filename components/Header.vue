@@ -12,8 +12,9 @@
         :is="link.isCurrentRoute ? link.tag : 'nuxt-link'"
         v-for="(link, index) in links"
         :key="`link-${index}`"
-        :to="!link.isCurrentRoute && { name: link.name }"
+        :class="$style.link"
         :title="!link.isCurrentRoute && link.title"
+        :to="!link.isCurrentRoute && { name: link.name }"
       >
         {{ link.title }}
       </component>
@@ -43,7 +44,7 @@ export default {
       return [
         {
           name: 'index',
-          title: 'Alain CAO VAN TRUONG',
+          title: 'ACVT',
           isMain: true,
         },
         {
@@ -52,7 +53,7 @@ export default {
         },
         {
           name: 'index',
-          title: 'Back to projects',
+          title: 'Return',
         },
       ]
         .map((link) => {
@@ -98,6 +99,30 @@ export default {
 
   &.isInactive::after {
     transform: scaleY(1);
+  }
+}
+
+.link {
+  position: relative;
+  @include centralizer;
+
+  &::before {
+    position: absolute;
+    right: - space(xs);
+    left: - space(xs);
+    z-index: -1;
+    padding: calc(50% + #{space(xs)}) 0;
+    border: .2rem solid color(primary);
+    border-radius: 100%;
+    transform: scale(.5);
+    opacity: 0;
+    transition: transform $smooth, opacity $smooth;
+    content: "";
+  }
+
+  &:hover::before {
+    transform: scale(1);
+    opacity: 1;
   }
 }
 </style>
