@@ -8,6 +8,9 @@ export default () => ({
       'I am looking for a 6-month internship near Paris as full-stack or back-end web developer from june 2020 to december 2020. Feel free to get in touch if you are interested !',
     ],
   },
+  credit: {
+    text: 'Alain CAO VAN TRUONG © 2020',
+  },
   index: {
     button: 'Discover',
     tag: 'Project',

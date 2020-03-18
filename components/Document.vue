@@ -20,7 +20,7 @@
 
 <script>
 export default {
-  name: 'Text',
+  name: 'Document',
   props: {
     isInactive: {
       type: Boolean,

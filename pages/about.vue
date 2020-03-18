@@ -39,7 +39,7 @@
               :is-inactive="!isMounted"
               is-lighten
             />
-            <ACVTText
+            <ACVTDocument
               v-if="!$isMobile"
               :is-inactive="!isMounted"
               :is-lighten="isLighten"
@@ -49,6 +49,7 @@
         </ACVTWrapper>
       </template>
     </ACVTJumbotron>
+    <ACVTCredit />
   </div>
 </template>
 
@@ -56,11 +57,12 @@
 import { mapGetters, mapActions } from 'vuex'
 import ACVTBreaker from '~/components/Breaker.vue'
 import ACVTButton from '~/components/Button.vue'
+import ACVTCredit from '~/components/Credit.vue'
+import ACVTDocument from '~/components/Document.vue'
 import ACVTHero from '~/components/Hero.vue'
 import ACVTJumbotron from '~/components/Jumbotron.vue'
 import ACVTPush from '~/components/Push.vue'
 import ACVTScroll from '~/components/Scroll.vue'
-import ACVTText from '~/components/Text.vue'
 import ACVTWrapper from '~/components/Wrapper.vue'
 
 export default {
@@ -68,11 +70,12 @@ export default {
   components: {
     ACVTBreaker,
     ACVTButton,
+    ACVTCredit,
+    ACVTDocument,
     ACVTHero,
     ACVTJumbotron,
     ACVTPush,
     ACVTScroll,
-    ACVTText,
     ACVTWrapper,
   },
   data() {
