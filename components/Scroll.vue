@@ -45,14 +45,14 @@ export default {
 
   &::after {
     width: .2rem;
-    height: size(exeption);
+    height: size(xl);
     background-color: color(light);
     transform-origin: bottom;
     transition: transform $smooth-slower time(normal);
     content: "";
 
     @include bp(sm) {
-      height: size(lg);
+      height: size(md);
     }
   }
 
@@ -84,6 +84,8 @@ export default {
 
 .text {
   color: color(light);
+  font-size: size(regular);
+  text-transform: uppercase;
   transition: transform $smooth time(longer), opacity $smooth time(longer);
 }
 </style>
