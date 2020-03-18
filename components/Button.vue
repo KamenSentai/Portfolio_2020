@@ -4,6 +4,7 @@
       $style.container,
       {
         [$style.isInactive]: !isActive,
+        [$style.isLighten]: isLighten,
         [$style.isUnlickable]: !isClickable,
       }
     ]"
@@ -25,6 +26,10 @@ export default {
     isClickable: {
       type: Boolean,
       default: true,
+    },
+    isLighten: {
+      type: Boolean,
+      default: false,
     },
     text: {
       type: String,
@@ -90,6 +95,19 @@ export default {
     }
   }
 
+  &.isLighten {
+    color: color(dark);
+
+    .circle::after,
+    .text::before {
+      background-color: color(light);
+    }
+
+    .text::after {
+      border-left-color: color(dark);
+    }
+  }
+
   &.isUnlickable {
     pointer-events: none;
   }
@@ -150,7 +168,7 @@ export default {
     right: 0;
     bottom: 0;
     left: 0;
-    background: color(dark);
+    background-color: color(dark);
   }
 
   &::after {

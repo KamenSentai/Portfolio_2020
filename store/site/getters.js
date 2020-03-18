@@ -13,6 +13,9 @@ export default {
       formattedIndex: '0'.repeat(length) + (currentIndex + 1),
     }
   },
+  isPageChanging(state) {
+    return state.isPageChanging
+  },
   projects(state) {
     return state.projects
   },

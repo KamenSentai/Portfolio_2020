@@ -1,5 +1,6 @@
 export default () => ({
   currentIndex: 0,
+  isPageChanging: false,
   projects: [
     {
       name: 'Assoïe Louvart\'s portfolio',

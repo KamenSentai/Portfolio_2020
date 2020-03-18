@@ -5,6 +5,7 @@
         $style.header,
         {
           [$style.isInactive]: !isMounted,
+          [$style.isUnavailable]: isPageChanging,
         }
       ]"
     >
@@ -23,6 +24,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import ACVTContainer from '~/components/Container.vue'
 
 export default {
@@ -36,6 +38,7 @@ export default {
     }
   },
   computed: {
+    ...mapGetters('site', ['isPageChanging']),
     isCurrentRoute() {
       return (name) => name === this.$route.name
     },
@@ -77,6 +80,7 @@ export default {
   top: space(md);
   right: 0;
   left: 0;
+  z-index: 1;
 }
 
 .header {
@@ -97,8 +101,16 @@ export default {
     @include overlay;
   }
 
-  &.isInactive::after {
-    transform: scaleY(1);
+  &.isInactive {
+    pointer-events: none;
+
+    &::after {
+      transform: scaleY(1);
+    }
+  }
+
+  &.isUnavailable {
+    pointer-events: none;
   }
 }
 

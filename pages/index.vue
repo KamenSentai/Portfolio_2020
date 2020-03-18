@@ -3,99 +3,70 @@
     :class="[
       $style.container,
       {
-        [$style.isChanging]: isChanging,
         [$style.isInactive]: !isMounted,
+        [$style.isLighten]: isLighten,
       }
     ]"
+    :is-lighten="isLighten"
   >
-    <ACVTNavbar
-      v-if="!$isMobile"
-      :is-active="isMounted"
-      :is-clickable="!isAnimating"
-      @click="updateProject($event)"
-    />
-    <div :class="$style.wrapper">
-      <div :class="$style.hero">
-        <!-- Raw text -->
-        <span :class="$style.tag">Project {{ currentProject.formattedIndex }}</span>
-        <h2 :class="$style.title">
-          {{ currentProject.name }}
-        </h2>
-      </div>
-      <nav :class="$style.nav">
-        <!-- Raw text -->
-        <ACVTButton
-          :is-active="isMounted"
-          :is-clickable="!isAnimating"
-          :to="{ name: 'about' }"
-          text="Discover"
-        />
-      </nav>
-    </div>
-    <div :class="$style.scroll">
-      <ACVTIcon
+    <template v-if="!isLighten">
+      <ACVTNavbar
         v-if="!$isMobile"
-        :class="$style.icon"
-        name="Mouse"
-        width="20px"
+        :is-active="isMounted"
+        :is-clickable="!isAnimating"
+        @click="updateProject($event)"
       />
-      <template v-else>
-        <div :class="$style.navigator">
-          <div
-            :class="[
-              $style.arrow,
-              {
-                [$style.isUnavailable]: currentIndex === 0,
-              }
-            ]"
-            @click="wheel({ deltaY: -1 })"
-          >
-            <ACVTIcon
-              name="ArrowUp"
-              width="32px"
-            />
-          </div>
-          <div
-            :class="[
-              $style.arrow,
-              {
-                [$style.isUnavailable]: currentIndex === totalProjects - 1,
-              }
-            ]"
-            @click="wheel({ deltaY: 1 })"
-          >
-            <ACVTIcon
-              name="ArrowDown"
-              width="32px"
-            />
-          </div>
-        </div>
-        <template />
-      </template>
-    </div>
+      <div :class="$style.wrapper">
+        <!-- Raw text -->
+        <ACVTHero
+          :is-changing="isChanging"
+          :is-inactive="!isMounted"
+          :tag="`Project ${currentProject.formattedIndex}`"
+          :title="currentProject.name"
+        />
+        <nav :class="$style.nav">
+          <!-- Raw text -->
+          <ACVTButton
+            :is-active="isMounted"
+            :is-clickable="!isAnimating"
+            :to="{ name: 'about' }"
+            text="Discover"
+          />
+        </nav>
+      </div>
+      <ACVTScroll
+        :is-inactive="!isMounted"
+        @up="wheel({ deltaY: -1 })"
+        @down="wheel({ deltaY: 1 })"
+      />
+    </template>
   </ACVTJumbotron>
 </template>
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
 import ACVTButton from '~/components/Button.vue'
-import ACVTIcon from '~/components/Icon.vue'
+import ACVTHero from '~/components/Hero.vue'
 import ACVTJumbotron from '~/components/Jumbotron.vue'
 import ACVTNavbar from '~/components/Navbar.vue'
+import ACVTScroll from '~/components/Scroll.vue'
 
 export default {
   name: 'Index',
   components: {
     ACVTButton,
-    ACVTIcon,
+    ACVTHero,
     ACVTJumbotron,
     ACVTNavbar,
+    ACVTScroll,
   },
   data() {
     return {
+      aboutDelay: 2500,
       duration: 750,
       isAnimating: false,
       isChanging: false,
+      isLighten: false,
       isMounted: false,
       touchPosition: 0,
     }
@@ -114,8 +85,25 @@ export default {
     window.removeEventListener('touchmove', this.touchmove)
     window.removeEventListener('wheel', this.wheel)
   },
+  beforeRouteLeave(to, _, next) {
+    if (to.name === 'about') {
+      this.pageChange()
+      this.isMounted = false
+
+      setTimeout(() => {
+        this.isLighten = true
+
+        setTimeout(() => {
+          this.pageChange()
+          next()
+        }, this.duration)
+      }, this.aboutDelay)
+    } else {
+      next()
+    }
+  },
   methods: {
-    ...mapActions('site', ['loadIndex', 'updateIndex']),
+    ...mapActions('site', ['loadIndex', 'pageChange', 'updateIndex']),
     updateProject(index) {
       if (index >= 0 && index < this.totalProjects) {
         const { duration } = this
@@ -160,68 +148,7 @@ export default {
 
 <style lang="scss" module>
 .container {
-  grid-template-rows: 1fr auto;
   padding-bottom: space(md);
-
-  &:not(isInactive):not(.isChanging) {
-
-    .tag,
-    .title {
-
-      &::before {
-        transform: scaleX(0);
-        opacity: 0;
-      }
-
-      &::after {
-        transform: scaleX(0);
-        opacity: 1;
-      }
-    }
-  }
-
-  &.isChanging:not(.isInactive) {
-
-    .tag,
-    .title {
-
-      &::before {
-        transform: scaleX(1);
-        opacity: 1;
-      }
-
-      &::after {
-        transform: scaleX(1);
-        opacity: 0;
-      }
-    }
-  }
-
-  &.isInactive:not(.isChanging) {
-
-    .tag,
-    .title {
-
-      &::before {
-        transform: scaleX(1);
-        opacity: 1;
-      }
-
-      &::after {
-        transform: scaleX(1);
-        opacity: 0;
-      }
-    }
-  }
-
-  &.isInactive {
-
-    .icon,
-    .navigator {
-      transform: scale(0);
-      transition-delay: 0s;
-    }
-  }
 }
 
 .wrapper {
@@ -239,98 +166,10 @@ export default {
   }
 }
 
-.hero {
-  display: grid;
-  grid-gap: space(xs);
-  justify-items: flex-start;
-}
-
-.tag,
-.title {
-  position: relative;
-
-  &::before,
-  &::after {
-    background-color: color(dark);
-    transform: scaleX(0);
-    transition: transform $smooth;
-    content: "";
-    @include overlay;
-  }
-
-  &::before {
-    transform-origin: left;
-    opacity: 0;
-  }
-
-  &::after {
-    transform-origin: right;
-  }
-}
-
-.tag {
-  color: color(primary);
-  font-weight: 300;
-  font-size: size(md);
-  text-transform: uppercase;
-
-  @include bp(md) {
-    font-size: size(sm);
-  }
-
-  @include bp(sm) {
-    font-size: size(xs);
-  }
-
-  &::before,
-  &::after {
-    transition-delay: time(shorter);
-  }
-}
-
-.title {
-  font-size: size(xl);
-
-  @include bp(lg) {
-    font-size: size(lg);
-  }
-
-  @include bp(md) {
-    min-height: 2em;
-    font-size: size(md);
-  }
-}
-
 .nav {
   display: grid;
   grid-auto-flow: column;
   grid-gap: space(md);
   justify-content: flex-start;
-}
-
-.scroll {
-  grid-column: 1 / -1;
-  font-size: 0;
-  @include centralizer;
-}
-
-.icon,
-.navigator {
-  transition: transform $smooth time(longest);
-}
-
-.navigator {
-  display: grid;
-  grid-gap: space(md);
-}
-
-.arrow {
-  cursor: pointer;
-  transition: opacity $smooth;;
-
-  &.isUnavailable {
-    opacity: .25;
-    pointer-events: none;
-  }
 }
 </style>
