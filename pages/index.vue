@@ -34,7 +34,7 @@
           />
         </ACVTBreaker>
       </ACVTWrapper>
-      <ACVTScroll
+      <ACVTIndicator
         :is-inactive="!isMounted"
         @up="wheel({ deltaY: -1 })"
         @down="wheel({ deltaY: 1 })"
@@ -48,9 +48,9 @@ import { mapGetters, mapActions } from 'vuex'
 import ACVTBreaker from '~/components/Breaker.vue'
 import ACVTButton from '~/components/Button.vue'
 import ACVTHero from '~/components/Hero.vue'
+import ACVTIndicator from '~/components/Indicator.vue'
 import ACVTJumbotron from '~/components/Jumbotron.vue'
 import ACVTNavbar from '~/components/Navbar.vue'
-import ACVTScroll from '~/components/Scroll.vue'
 import ACVTWrapper from '~/components/Wrapper.vue'
 
 export default {
@@ -59,9 +59,9 @@ export default {
     ACVTBreaker,
     ACVTButton,
     ACVTHero,
+    ACVTIndicator,
     ACVTJumbotron,
     ACVTNavbar,
-    ACVTScroll,
     ACVTWrapper,
   },
   data() {
