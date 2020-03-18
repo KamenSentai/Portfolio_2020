@@ -16,7 +16,7 @@
         :is-clickable="!isAnimating"
         @click="updateProject($event)"
       />
-      <div :class="$style.wrapper">
+      <ACVTWrapper>
         <!-- Raw text -->
         <ACVTHero
           :is-changing="isChanging"
@@ -33,7 +33,7 @@
             text="Discover"
           />
         </nav>
-      </div>
+      </ACVTWrapper>
       <ACVTScroll
         :is-inactive="!isMounted"
         @up="wheel({ deltaY: -1 })"
@@ -50,6 +50,7 @@ import ACVTHero from '~/components/Hero.vue'
 import ACVTJumbotron from '~/components/Jumbotron.vue'
 import ACVTNavbar from '~/components/Navbar.vue'
 import ACVTScroll from '~/components/Scroll.vue'
+import ACVTWrapper from '~/components/Wrapper.vue'
 
 export default {
   name: 'Index',
@@ -59,6 +60,7 @@ export default {
     ACVTJumbotron,
     ACVTNavbar,
     ACVTScroll,
+    ACVTWrapper,
   },
   data() {
     return {
@@ -149,21 +151,6 @@ export default {
 <style lang="scss" module>
 .container {
   padding-bottom: space(md);
-}
-
-.wrapper {
-  display: grid;
-  grid-gap: space(lg);
-  grid-column: 3 / -3;
-  align-content: flex-start;
-
-  @include bp(lg) {
-    grid-column: 2 / -2;
-  }
-
-  @include bp(sm) {
-    grid-column: 1 / -1;
-  }
 }
 
 .nav {
