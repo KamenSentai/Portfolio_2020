@@ -61,7 +61,7 @@ export default {
   props: {
     isInactive: {
       type: Boolean,
-      required: true,
+      default: false,
     },
   },
   computed: mapGetters('site', ['currentIndex', 'totalProjects']),

@@ -26,7 +26,7 @@ export default {
     },
     isInactive: {
       type: Boolean,
-      required: true,
+      default: false,
     },
     isLighten: {
       type: Boolean,

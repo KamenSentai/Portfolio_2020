@@ -41,6 +41,8 @@
             />
             <ACVTText
               v-if="!$isMobile"
+              :is-inactive="!isMounted"
+              :is-lighten="isLighten"
               :text="about.text"
             />
           </ACVTBreaker>
