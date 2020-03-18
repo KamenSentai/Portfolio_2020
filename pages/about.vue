@@ -1,55 +1,57 @@
 <template>
   <div>
-    <ACVTJumbotron is-lighten>
-      <ACVTWrapper>
-        <ACVTHero
-          :is-inactive="!isMounted"
-          is-lighten
-          :tag="about.tag"
-          :title="about.title"
-        />
-        <ACVTBreaker
-          auto-flow="row"
-          :template-rows="!$isMobile ? 'auto 1fr' : 'auto auto 1fr'"
-          :template-columns="!$isMobile ? '1fr 1fr': '1fr'"
-        >
-          <ACVTBreaker justify-content="flex-start">
-            <ACVTButton
-              :is-active="isMounted"
-              is-lighten
-              :to="{ name: 'about' }"
-              :text="about.button"
-            />
-          </ACVTBreaker>
-          <ACVTBreaker
-            align-content="center"
-            justify-content="flex-start"
-          >
-            <ACVTPush
-              v-for="(socialNetwork, i) in socialNetworks"
-              :key="socialNetwork.name"
-              :index="i"
-              :is-inactive="!isMounted"
-              :link="socialNetwork.link"
-              :name="socialNetwork.name"
-            />
-          </ACVTBreaker>
-          <ACVTScroll
+    <ACVTJumbotron :is-lighten="isLighten">
+      <template v-if="isLighten">
+        <ACVTWrapper>
+          <ACVTHero
             :is-inactive="!isMounted"
             is-lighten
+            :tag="about.tag"
+            :title="about.title"
           />
-          <ACVTText
-            v-if="!$isMobile"
-            :text="about.text"
-          />
-        </ACVTBreaker>
-      </ACVTWrapper>
+          <ACVTBreaker
+            auto-flow="row"
+            :template-rows="!$isMobile ? 'auto 1fr' : 'auto auto 1fr'"
+            :template-columns="!$isMobile ? '1fr 1fr': '1fr'"
+          >
+            <ACVTBreaker justify-content="flex-start">
+              <ACVTButton
+                :is-active="isMounted"
+                is-lighten
+                :to="{ name: 'about' }"
+                :text="about.button"
+              />
+            </ACVTBreaker>
+            <ACVTBreaker
+              align-content="center"
+              justify-content="flex-start"
+            >
+              <ACVTPush
+                v-for="(socialNetwork, i) in socialNetworks"
+                :key="socialNetwork.name"
+                :index="i"
+                :is-inactive="!isMounted"
+                :link="socialNetwork.link"
+                :name="socialNetwork.name"
+              />
+            </ACVTBreaker>
+            <ACVTScroll
+              :is-inactive="!isMounted"
+              is-lighten
+            />
+            <ACVTText
+              v-if="!$isMobile"
+              :text="about.text"
+            />
+          </ACVTBreaker>
+        </ACVTWrapper>
+      </template>
     </ACVTJumbotron>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 import ACVTBreaker from '~/components/Breaker.vue'
 import ACVTButton from '~/components/Button.vue'
 import ACVTHero from '~/components/Hero.vue'
@@ -73,6 +75,8 @@ export default {
   },
   data() {
     return {
+      pageDelay: 1500,
+      isLighten: true,
       isMounted: false,
       // Raw text
       socialNetworks: [
@@ -96,11 +100,25 @@ export default {
     }
   },
   computed: mapGetters('text', ['about']),
+  beforeRouteLeave(to, _, next) {
+    this.pageChange()
+    this.isMounted = false
+
+    setTimeout(() => {
+      this.isLighten = false
+
+      setTimeout(() => {
+        this.pageChange()
+        next()
+      }, this.$fadeDuration)
+    }, this.pageDelay)
+  },
   mounted() {
     setTimeout(() => {
       this.isMounted = true
     }, 500)
   },
+  methods: mapActions('site', ['pageChange']),
 }
 </script>
 
