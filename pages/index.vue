@@ -1,17 +1,11 @@
 <template>
   <ACVTJumbotron
-    :class="[
-      $style.container,
-      {
-        [$style.isInactive]: !isMounted,
-        [$style.isLighten]: isLighten,
-      }
-    ]"
     :is-lighten="isLighten"
+    is-limited
   >
     <template v-if="!isLighten">
       <ACVTNavbar
-        v-if="!$isMobile"
+        v-if="!$isTablet"
         :is-active="isMounted"
         :is-clickable="!isAnimating"
         @click="updateProject($event)"
@@ -66,8 +60,7 @@ export default {
   },
   data() {
     return {
-      aboutDelay: 2500,
-      duration: 750,
+      aboutDelay: 2250,
       isAnimating: false,
       isChanging: false,
       isLighten: false,
@@ -100,7 +93,7 @@ export default {
         setTimeout(() => {
           this.pageChange()
           next()
-        }, this.duration)
+        }, this.$fadeDuration)
       }, this.aboutDelay)
     } else {
       next()
@@ -110,7 +103,7 @@ export default {
     ...mapActions('site', ['loadIndex', 'pageChange', 'updateIndex']),
     updateProject(index) {
       if (index >= 0 && index < this.totalProjects) {
-        const { duration } = this
+        const { $fadeDuration: duration } = this
         this.isAnimating = true
         this.isChanging = true
 
@@ -122,7 +115,7 @@ export default {
 
             setTimeout(() => {
               this.isAnimating = false
-            }, this.duration)
+            }, duration)
           },
         })
       }
@@ -151,7 +144,4 @@ export default {
 </script>
 
 <style lang="scss" module>
-.container {
-  padding-bottom: space(md);
-}
 </style>

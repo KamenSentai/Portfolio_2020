@@ -2,6 +2,9 @@ import Vue from 'vue'
 
 Vue.mixin({
   computed: {
+    $fadeDuration() {
+      return 750
+    },
     $isHome() {
       return this.$route.name === 'home'
     },
@@ -13,6 +16,9 @@ Vue.mixin({
     },
     $isMobile() {
       return this.$mq === 'xs'
+    },
+    $isTablet() {
+      return ['xs', 'sm'].includes(this.$mq)
     },
   },
 })

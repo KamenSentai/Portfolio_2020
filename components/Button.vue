@@ -61,7 +61,7 @@ export default {
     z-index: 1;
     background-color: color(dark);
     transform: scaleX(0);
-    transform-origin: left;
+    transform-origin: right;
     transition: transform $smooth-slower;
     content: "";
     @include overlay;
@@ -143,7 +143,7 @@ export default {
     left: 0;
     background-color: color(dark);
     transform: scaleX(0);
-    transform-origin: left;
+    transform-origin: right;
     transition-delay: time(normal);
   }
 }

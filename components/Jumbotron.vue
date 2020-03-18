@@ -4,6 +4,7 @@
       $style.container,
       {
         [$style.isLighten]: isLighten,
+        [$style.isLimited]: isLimited,
       }
     ]"
   >
@@ -24,6 +25,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    isLimited: {
+      type: Boolean,
+      default: false,
+    },
   },
 }
 </script>
@@ -31,8 +36,7 @@ export default {
 <style lang="scss" module>
 .container {
   position: relative;
-  grid-template-rows: 1fr auto;
-  height: 100vh;
+  min-height: 100vh;
   padding-top: calc(#{space(md)} + #{space(lg)} + 1em);
 
   &::before {
@@ -45,8 +49,17 @@ export default {
     @include overlay;
   }
 
-  &.isLighten::before {
-    opacity: 1;
+  &.isLighten {
+    color: color(dark);
+
+    &::before {
+      opacity: 1;
+    }
+  }
+
+  &.isLimited {
+    grid-template-rows: 1fr auto;
+    padding-bottom: space(md);
   }
 }
 </style>

@@ -13,7 +13,7 @@ export default {
 <style lang="scss" module>
 .container {
   display: grid;
-  grid-gap: 20px;
+  grid-gap: space(sm);
   grid-template-columns: repeat(12, 80px);
   justify-content: center;
 

@@ -4,7 +4,6 @@
       $style.container,
       {
         [$style.inline]: inline,
-        [$style.repeatable]: repeatable,
       }
     ]"
     :style="style"
@@ -41,7 +40,6 @@ const style = (props) => SHORTCUTS.reduce((accu, { id, attr }) => {
 
 const props = {
   inline: Boolean,
-  repeatable: Boolean,
 }
 
 SHORTCUTS.map((shortcut) => shortcut.id).forEach((id) => {
@@ -63,14 +61,10 @@ export default {
 .container {
   display: grid;
   grid-auto-flow: column;
-  grid-gap: space(sm);
+  grid-gap: space(md) space(sm);
 }
 
 .inline {
   display: inline-grid;
-}
-
-.repeatable {
-  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));;
 }
 </style>
