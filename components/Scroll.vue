@@ -4,103 +4,86 @@
       $style.container,
       {
         [$style.isInactive]: isInactive,
+        [$style.isLighten]: isLighten,
       }
     ]"
   >
-    <ACVTIcon
-      v-if="!$isMobile"
-      :class="$style.icon"
-      name="Mouse"
-      width="20px"
-    />
-    <template v-else>
-      <div :class="$style.navigator">
-        <div
-          :class="[
-            $style.arrow,
-            {
-              [$style.isUnavailable]: currentIndex === 0,
-            }
-          ]"
-          @click="$emit('up')"
-        >
-          <ACVTIcon
-            name="ArrowUp"
-            width="32px"
-          />
-        </div>
-        <div
-          :class="[
-            $style.arrow,
-            {
-              [$style.isUnavailable]: currentIndex === totalProjects - 1,
-            }
-          ]"
-          @click="$emit('down')"
-        >
-          <ACVTIcon
-            name="ArrowDown"
-            width="32px"
-          />
-        </div>
-      </div>
-      <template />
-    </template>
+    <!-- Raw text -->
+    <span :class="$style.text">Scroll</span>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-import ACVTIcon from '~/components/Icon.vue'
-
 export default {
   name: 'Scroll',
-  components: {
-    ACVTIcon,
-  },
   props: {
     isInactive: {
       type: Boolean,
       required: true,
     },
+    isLighten: {
+      type: Boolean,
+      default: false,
+    },
   },
-  computed: mapGetters('site', ['currentIndex', 'totalProjects']),
 }
 </script>
 
 <style lang="scss" module>
 .container {
-  grid-column: 1 / -1;
-  font-size: 0;
-  @include centralizer;
+  display: grid;
+  grid-gap: space(sm);
+  align-content: flex-end;
+  align-items: flex-end;
+  justify-content: center;
+  justify-items: center;
+  width: 80px;
+
+  @include bp(sm) {
+    width: 100%;
+  }
+
+  &::after {
+    width: .2rem;
+    height: size(exeption);
+    background-color: color(light);
+    transform-origin: bottom;
+    transition: transform $smooth-slower time(normal);
+    content: "";
+
+    @include bp(sm) {
+      height: size(lg);
+    }
+  }
 
   &.isInactive {
 
-    .icon,
-    .navigator {
+    &::after {
       transform: scale(0);
       transition-delay: 0s;
+    }
+
+    .text {
+      transform: translateY(25%);
+      opacity: 0;
+      transition-delay: time(normal);
+    }
+  }
+
+  &.isLighten {
+
+    &::after {
+      background-color: color(dark);
+    }
+
+    .text {
+      color: color(dark);
     }
   }
 }
 
-.icon,
-.navigator {
-  transition: transform $smooth time(longest);
-}
-
-.navigator {
-  display: grid;
-  grid-gap: space(md);
-}
-
-.arrow {
-  cursor: pointer;
-  transition: opacity $smooth;;
-
-  &.isUnavailable {
-    opacity: .25;
-    pointer-events: none;
-  }
+.text {
+  color: color(light);
+  transition: transform $smooth time(longer), opacity $smooth time(longer);
 }
 </style>
