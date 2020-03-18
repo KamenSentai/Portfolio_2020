@@ -11,20 +11,18 @@
         @click="updateProject($event)"
       />
       <ACVTWrapper>
-        <!-- Raw text -->
         <ACVTHero
           :is-changing="isChanging"
           :is-inactive="!isMounted"
-          :tag="`Project ${currentProject.formattedIndex}`"
+          :tag="`${index.tag} ${currentProject.formattedIndex}`"
           :title="currentProject.name"
         />
         <ACVTBreaker justify-content="flex-start">
-          <!-- Raw text -->
           <ACVTButton
             :is-active="isMounted"
             :is-clickable="!isAnimating"
             :to="{ name: 'about' }"
-            text="Discover"
+            :text="index.button"
           />
         </ACVTBreaker>
       </ACVTWrapper>
@@ -68,7 +66,10 @@ export default {
       touchPosition: 0,
     }
   },
-  computed: mapGetters('site', ['currentIndex', 'currentProject', 'totalProjects']),
+  computed: {
+    ...mapGetters('site', ['currentIndex', 'currentProject', 'totalProjects']),
+    ...mapGetters('text', ['index']),
+  },
   mounted() {
     setTimeout(() => {
       this.isMounted = true

@@ -39,27 +39,12 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('site', ['isPageChanging']),
+    ...mapGetters('site', ['header', 'isPageChanging']),
     isCurrentRoute() {
       return (name) => name === this.$route.name
     },
     links() {
-      // Raw text
-      return [
-        {
-          name: 'index',
-          title: 'ACVT',
-          isMain: true,
-        },
-        {
-          name: 'about',
-          title: 'About',
-        },
-        {
-          name: 'index',
-          title: 'Return',
-        },
-      ]
+      return this.header
         .map((link) => {
           const isCurrentRoute = this.isCurrentRoute(link.name)
           return { ...link, isCurrentRoute, tag: link.isMain ? 'h1' : 'span' }

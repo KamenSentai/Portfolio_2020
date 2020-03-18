@@ -16,6 +16,9 @@ export default {
   isPageChanging(state) {
     return state.isPageChanging
   },
+  header(state) {
+    return state.header
+  },
   projects(state) {
     return state.projects
   },

@@ -1,6 +1,21 @@
 export default () => ({
   currentIndex: 0,
   isPageChanging: false,
+  header: [
+    {
+      name: 'index',
+      title: 'ACVT',
+      isMain: true,
+    },
+    {
+      name: 'about',
+      title: 'About',
+    },
+    {
+      name: 'index',
+      title: 'Return',
+    },
+  ],
   projects: [
     {
       name: 'Assoïe Louvart\'s portfolio',

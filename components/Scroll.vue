@@ -8,12 +8,13 @@
       }
     ]"
   >
-    <!-- Raw text -->
-    <span :class="$style.text">Scroll</span>
+    <span :class="$style.text">{{ scroll.text }}</span>
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   name: 'Scroll',
   props: {
@@ -26,6 +27,7 @@ export default {
       default: false,
     },
   },
+  computed: mapGetters('text', ['scroll']),
 }
 </script>
 
