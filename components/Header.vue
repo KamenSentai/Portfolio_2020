@@ -5,6 +5,7 @@
         $style.header,
         {
           [$style.isInactive]: !isMounted,
+          [$style.isLighten]: $isAbout,
           [$style.isUnavailable]: isPageChanging,
         }
       ]"
@@ -90,6 +91,7 @@ export default {
   grid-gap: space(sm);
   grid-column: 1 / -1;
   justify-content: space-between;
+  transition: color $smooth;
 
   &::after {
     background-color: color(dark);
@@ -106,6 +108,14 @@ export default {
 
     &::after {
       transform: scaleY(1);
+    }
+  }
+
+  &.isLighten {
+    color: color(dark);
+
+    &::after {
+      background-color: color(light);
     }
   }
 

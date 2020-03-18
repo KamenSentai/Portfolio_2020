@@ -22,7 +22,7 @@ export default {
   props: {
     isChanging: {
       type: Boolean,
-      required: true,
+      default: false,
     },
     isInactive: {
       type: Boolean,

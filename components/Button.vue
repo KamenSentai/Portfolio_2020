@@ -98,6 +98,7 @@ export default {
   &.isLighten {
     color: color(dark);
 
+    &::after,
     .circle::after,
     .text::before {
       background-color: color(light);
