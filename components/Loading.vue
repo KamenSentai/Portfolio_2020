@@ -4,11 +4,14 @@
       $style.container,
       {
         [$style.isInactive]: !isMounted,
+        [$style.isLighten]: $isAbout,
       }
     ]"
-    :style="{ transitionDuration: `${duration}ms` }"
   >
-    <div :class="$style.wrapper">
+    <div
+      :class="$style.wrapper"
+      :style="{ transitionDuration: `${duration}ms` }"
+    >
       <div
         :class="$style.fillbar"
         :style="{ transform: `scaleX(${progression / 100})` }"
@@ -62,12 +65,19 @@ export default {
   position: relative;
   width: 100%;
   height: 100%;
-  transition-timing-function: $easing;
-  transition-property: transform;
+  background-color: color(dark);
   @include centralizer;
 
-  &.isInactive {
+  &.isInactive .wrapper {
     transform: scaleX(0);
+  }
+
+  &.isLighten {
+    background-color: color(light);
+
+    .wrapper {
+      background-color: color(dark, .25);
+    }
   }
 }
 
@@ -77,6 +87,8 @@ export default {
   left: 0;
   height: .2rem;
   background-color: color(light, .25);
+  transition-timing-function: $easing;
+  transition-property: transform;
 }
 
 .fillbar {

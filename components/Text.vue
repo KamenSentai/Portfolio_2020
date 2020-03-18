@@ -45,7 +45,8 @@ export default {
   align-content: flex-start;
   color: color(light);
   font-weight: 300;
-  line-height: 1.25;
+  line-height: 1.125;
+  letter-spacing: .03125em;
 
   &:not(.isInactive) {
 
