@@ -24,7 +24,7 @@
           :tag="`Project ${currentProject.formattedIndex}`"
           :title="currentProject.name"
         />
-        <nav :class="$style.nav">
+        <ACVTBreaker justify-content="flex-start">
           <!-- Raw text -->
           <ACVTButton
             :is-active="isMounted"
@@ -32,7 +32,7 @@
             :to="{ name: 'about' }"
             text="Discover"
           />
-        </nav>
+        </ACVTBreaker>
       </ACVTWrapper>
       <ACVTScroll
         :is-inactive="!isMounted"
@@ -45,6 +45,7 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
+import ACVTBreaker from '~/components/Breaker.vue'
 import ACVTButton from '~/components/Button.vue'
 import ACVTHero from '~/components/Hero.vue'
 import ACVTJumbotron from '~/components/Jumbotron.vue'
@@ -55,6 +56,7 @@ import ACVTWrapper from '~/components/Wrapper.vue'
 export default {
   name: 'Index',
   components: {
+    ACVTBreaker,
     ACVTButton,
     ACVTHero,
     ACVTJumbotron,
@@ -151,12 +153,5 @@ export default {
 <style lang="scss" module>
 .container {
   padding-bottom: space(md);
-}
-
-.nav {
-  display: grid;
-  grid-auto-flow: column;
-  grid-gap: space(md);
-  justify-content: flex-start;
 }
 </style>
