@@ -2,9 +2,6 @@ import Vue from 'vue'
 
 Vue.mixin({
   computed: {
-    $fadeDuration() {
-      return 750
-    },
     $isHome() {
       return this.$route.name === 'home'
     },

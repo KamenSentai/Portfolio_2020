@@ -1,5 +1,4 @@
 export default () => ({
-  currentIndex: 0,
   about: {
     button: 'Resume',
     description: [
@@ -191,6 +190,8 @@ export default () => ({
     tag: 'I am a',
     title: 'Junior full-stack developer',
   },
+  currentIndex: 0,
+  duration: 750,
   isPageChanging: false,
   header: [
     {

@@ -43,7 +43,6 @@ export default {
   display: grid;
   grid-gap: space(sx);
   align-content: flex-start;
-  color: color(light);
   font-weight: 300;
   line-height: 1.125;
   letter-spacing: .03125em;
@@ -64,31 +63,24 @@ export default {
     }
   }
 
-  &.isInactive {
+  &.isInactive .paragraph {
 
-    .paragraph {
+    &::before {
+      transform: scaleX(1);
+      opacity: 1;
+    }
 
-      &::before {
-        transform: scaleX(1);
-        opacity: 1;
-      }
-
-      &::after {
-        transform: scaleX(1);
-        opacity: 0;
-      }
+    &::after {
+      transform: scaleX(1);
+      opacity: 0;
     }
   }
 
-  &.isLighten {
-    color: color(dark);
+  &.isLighten .paragraph {
 
-    .paragraph {
-
-      &::before,
-      &::after {
-        background-color: color(light);
-      }
+    &::before,
+    &::after {
+      background-color: color(light);
     }
   }
 }
@@ -114,5 +106,4 @@ export default {
     transform-origin: right;
   }
 }
-
 </style>

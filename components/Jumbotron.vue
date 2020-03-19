@@ -3,7 +3,6 @@
     :class="[
       $style.container,
       {
-        [$style.isLighten]: isLighten,
         [$style.isLimited]: isLimited,
       }
     ]"
@@ -21,10 +20,6 @@ export default {
     ACVTContainer,
   },
   props: {
-    isLighten: {
-      type: Boolean,
-      default: false,
-    },
     isLimited: {
       type: Boolean,
       default: false,
@@ -38,24 +33,6 @@ export default {
   position: relative;
   min-height: 100vh;
   padding-top: calc(#{space(md)} + #{space(lg)} + 1em);
-
-  &::before {
-    z-index: -1;
-    background-color: color(light);
-    opacity: 0;
-    transition: opacity $smooth;
-    content: "";
-    pointer-events: none;
-    @include overlay;
-  }
-
-  &.isLighten {
-    color: color(dark);
-
-    &::before {
-      opacity: 1;
-    }
-  }
 
   &.isLimited {
     grid-template-rows: 1fr auto;

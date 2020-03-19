@@ -4,6 +4,7 @@
       $style.container,
       {
         [$style.isInactive]: isInactive,
+        [$style.isLighten]: isLighten,
       }
     ]"
   >
@@ -25,6 +26,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    isLighten: {
+      type: Boolean,
+      default: false,
+    },
   },
   computed: mapGetters('text', ['credit']),
 }
@@ -35,13 +40,13 @@ export default {
   position: relative;
   height: 100px;
   overflow: hidden;
-  color: color(light);
+  color: color(dark);
   background-color: color(primary);
   @include centralizer;
 
   &::before,
   &::after {
-    background-color: color(light);
+    background-color: color(dark);
     transform: scaleY(0);
     transition: transform $smooth;
     content: "";
@@ -60,7 +65,7 @@ export default {
 
   &::selection {
     color: color(primary);
-    background-color: color(light);
+    background-color: color(dark);
   }
 
   &.isInactive {
@@ -76,6 +81,19 @@ export default {
 
     &::after {
       opacity: 0;
+    }
+  }
+
+  &.isLighten {
+    color: color(light);
+
+    &::before,
+    &::after {
+      background-color: color(light);
+    }
+
+    &::selection {
+      background-color: color(light);
     }
   }
 }

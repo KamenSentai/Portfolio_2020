@@ -1,39 +1,38 @@
 <template>
-  <ACVTJumbotron
-    :is-lighten="isLighten"
+  <ACVTPage
+    :component="ACVTJumbotron"
+    :is-fading="isFading"
     is-limited
   >
-    <template v-if="!isLighten">
-      <ACVTNavbar
-        v-if="!$isTablet"
+    <ACVTNavbar
+      v-if="!$isTablet"
+      :is-active="isMounted"
+      :is-clickable="!isAnimating"
+      @click="updateProject($event)"
+    />
+    <ACVTWrapper
+      template-rows="auto 1fr"
+      justify-items="flex-start"
+    >
+      <ACVTHero
+        :is-changing="isChanging"
+        :is-inactive="!isMounted"
+        :tag="`${index.tag} ${currentProject.formattedIndex}`"
+        :title="currentProject.name"
+      />
+      <ACVTButton
         :is-active="isMounted"
         :is-clickable="!isAnimating"
-        @click="updateProject($event)"
+        :to="{ name: 'about' }"
+        :text="index.button"
       />
-      <ACVTWrapper
-        template-rows="auto 1fr"
-        justify-items="flex-start"
-      >
-        <ACVTHero
-          :is-changing="isChanging"
-          :is-inactive="!isMounted"
-          :tag="`${index.tag} ${currentProject.formattedIndex}`"
-          :title="currentProject.name"
-        />
-        <ACVTButton
-          :is-active="isMounted"
-          :is-clickable="!isAnimating"
-          :to="{ name: 'about' }"
-          :text="index.button"
-        />
-      </ACVTWrapper>
-      <ACVTIndicator
-        :is-inactive="!isMounted"
-        @up="wheel({ deltaY: -1 })"
-        @down="wheel({ deltaY: 1 })"
-      />
-    </template>
-  </ACVTJumbotron>
+    </ACVTWrapper>
+    <ACVTIndicator
+      :is-inactive="!isMounted"
+      @up="wheel({ deltaY: -1 })"
+      @down="wheel({ deltaY: 1 })"
+    />
+  </ACVTPage>
 </template>
 
 <script>
@@ -43,6 +42,7 @@ import ACVTHero from '~/components/Hero.vue'
 import ACVTIndicator from '~/components/Indicator.vue'
 import ACVTJumbotron from '~/components/Jumbotron.vue'
 import ACVTNavbar from '~/components/Navbar.vue'
+import ACVTPage from '~/components/Page.vue'
 import ACVTWrapper from '~/components/Wrapper.vue'
 
 export default {
@@ -51,16 +51,17 @@ export default {
     ACVTButton,
     ACVTHero,
     ACVTIndicator,
-    ACVTJumbotron,
     ACVTNavbar,
+    ACVTPage,
     ACVTWrapper,
   },
   data() {
     return {
+      ACVTJumbotron,
       aboutDelay: 2250,
       isAnimating: false,
       isChanging: false,
-      isLighten: false,
+      isFading: false,
       isMounted: false,
       touchPosition: 0,
     }
@@ -88,12 +89,8 @@ export default {
       this.isMounted = false
 
       setTimeout(() => {
-        this.isLighten = true
-
-        setTimeout(() => {
-          this.pageChange()
-          next()
-        }, this.$fadeDuration)
+        this.isFading = true
+        this.pageChange(next)
       }, this.aboutDelay)
     } else {
       next()
@@ -103,19 +100,16 @@ export default {
     ...mapActions('site', ['loadIndex', 'pageChange', 'updateIndex']),
     updateProject(index) {
       if (index >= 0 && index < this.totalProjects) {
-        const { $fadeDuration: duration } = this
         this.isAnimating = true
         this.isChanging = true
 
         this.updateIndex({
-          duration,
           index,
-          callback: () => {
+          stropAnimating: () => {
+            this.isAnimating = false
+          },
+          stropChanging: () => {
             this.isChanging = false
-
-            setTimeout(() => {
-              this.isAnimating = false
-            }, duration)
           },
         })
       }

@@ -1,58 +1,59 @@
 <template>
-  <div>
-    <ACVTJumbotron :is-lighten="isLighten">
-      <template v-if="isLighten">
-        <ACVTWrapper template-rows="auto 1fr">
-          <ACVTHero
-            :is-inactive="!isMounted"
+  <ACVTPage
+    :is-fading="isFading"
+    is-lighten
+  >
+    <ACVTJumbotron>
+      <ACVTWrapper template-rows="auto 1fr">
+        <ACVTHero
+          :is-inactive="!isMounted"
+          is-lighten
+          :tag="about.tag"
+          :title="about.title"
+        />
+        <ACVTBreaker
+          auto-flow="row"
+          :template-rows="!$isMobile ? 'auto 1fr' : 'auto auto 1fr'"
+          :template-columns="!$isMobile ? '1fr 1fr': '1fr'"
+          justify-items="flex-start"
+        >
+          <ACVTButton
+            :is-active="isMounted"
             is-lighten
-            :tag="about.tag"
-            :title="about.title"
+            :to="{ name: 'about' }"
+            :text="about.button"
           />
           <ACVTBreaker
-            auto-flow="row"
-            :template-rows="!$isMobile ? 'auto 1fr' : 'auto auto 1fr'"
-            :template-columns="!$isMobile ? '1fr 1fr': '1fr'"
-            justify-items="flex-start"
+            align-content="center"
+            justify-content="flex-start"
           >
-            <ACVTButton
-              :is-active="isMounted"
-              is-lighten
-              :to="{ name: 'about' }"
-              :text="about.button"
-            />
-            <ACVTBreaker
-              align-content="center"
-              justify-content="flex-start"
-            >
-              <ACVTPush
-                v-for="(socialNetwork, i) in about.social"
-                :key="socialNetwork.name"
-                :index="i"
-                :is-inactive="!isMounted"
-                :link="socialNetwork.link"
-                :name="socialNetwork.name"
-              />
-            </ACVTBreaker>
-            <ACVTScroll
+            <ACVTPush
+              v-for="(socialNetwork, i) in about.social"
+              :key="socialNetwork.name"
+              :index="i"
               :is-inactive="!isMounted"
-              is-lighten
-            />
-            <ACVTDocument
-              v-if="!$isMobile"
-              :is-inactive="!isMounted"
-              :is-lighten="isLighten"
-              :text="about.description"
+              :link="socialNetwork.link"
+              :name="socialNetwork.name"
             />
           </ACVTBreaker>
-        </ACVTWrapper>
-      </template>
+          <ACVTScroll
+            :is-inactive="!isMounted"
+            is-lighten
+          />
+          <ACVTDocument
+            v-if="!$isMobile"
+            :is-inactive="!isMounted"
+            is-lighten
+            :text="about.description"
+          />
+        </ACVTBreaker>
+      </ACVTWrapper>
     </ACVTJumbotron>
     <ACVTContainer :class="$style.container">
       <ACVTWrapper v-if="$isMobile">
         <ACVTDocument
           :is-inactive="!isMounted"
-          :is-lighten="isLighten"
+          is-lighten
           :text="about.description"
         />
       </ACVTWrapper>
@@ -71,8 +72,11 @@
         </div>
       </ACVTWrapper>
     </ACVTContainer>
-    <ACVTCredit :is-inactive="!isMounted" />
-  </div>
+    <ACVTCredit
+      :is-inactive="!isMounted"
+      is-lighten
+    />
+  </ACVTPage>
 </template>
 
 <script>
@@ -84,6 +88,7 @@ import ACVTCredit from '~/components/Credit.vue'
 import ACVTDocument from '~/components/Document.vue'
 import ACVTHero from '~/components/Hero.vue'
 import ACVTJumbotron from '~/components/Jumbotron.vue'
+import ACVTPage from '~/components/Page.vue'
 import ACVTPush from '~/components/Push.vue'
 import ACVTScroll from '~/components/Scroll.vue'
 import ACVTTitle from '~/components/Title.vue'
@@ -99,6 +104,7 @@ export default {
     ACVTDocument,
     ACVTHero,
     ACVTJumbotron,
+    ACVTPage,
     ACVTPush,
     ACVTScroll,
     ACVTTitle,
@@ -107,7 +113,7 @@ export default {
   data() {
     return {
       pageDelay: 1500,
-      isLighten: true,
+      isFading: false,
       isMounted: false,
     }
   },
@@ -117,12 +123,8 @@ export default {
     this.isMounted = false
 
     setTimeout(() => {
-      this.isLighten = false
-
-      setTimeout(() => {
-        this.pageChange()
-        next()
-      }, this.$fadeDuration)
+      this.isFading = true
+      this.pageChange(next)
     }, this.pageDelay)
   },
   mounted() {
@@ -138,7 +140,5 @@ export default {
 .container {
   grid-row-gap: space(xl);
   padding: space(xl) 0;
-  color: color(dark);
-  background-color: color(light);
 }
 </style>
