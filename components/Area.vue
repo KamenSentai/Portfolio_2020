@@ -12,7 +12,7 @@
 import ACVTGrid from '~/components/Grid.vue'
 
 export default {
-  name: 'Wrapper',
+  name: 'Area',
   components: {
     ACVTGrid,
   },
@@ -21,16 +21,16 @@ export default {
 
 <style lang="scss" module>
 .container {
-  grid-gap: space(md);
-  grid-column: 3 / -3;
-  align-content: flex-start;
+  grid-gap: space(md) space(sm);
+  grid-template-rows: auto 1fr;
+  grid-template-columns: 1fr 1fr;
+  align-content: center;
+  justify-content: flex-start;
+  justify-items: flex-start;
 
-  @include bp(lg) {
-    grid-column: 2 / -2;
-  }
-
-  @include bp(md) {
-    grid-column: 1 / -1;
+  @include bp(sm) {
+    grid-template-rows: auto auto 1fr;
+    grid-template-columns: 1fr;
   }
 }
 </style>

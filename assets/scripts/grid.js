@@ -19,6 +19,10 @@ const SHORTCUTS = [
 ]
 
 export const props = {
+  component: {
+    type: [Object, String],
+    default: 'div',
+  },
   inline: Boolean,
 }
 

@@ -11,22 +11,14 @@
           :tag="about.tag"
           :title="about.title"
         />
-        <ACVTBreaker
-          auto-flow="row"
-          :template-rows="!$isMobile ? 'auto 1fr' : 'auto auto 1fr'"
-          :template-columns="!$isMobile ? '1fr 1fr': '1fr'"
-          justify-items="flex-start"
-        >
+        <ACVTArea>
           <ACVTButton
             :is-active="isMounted"
             is-lighten
             :to="{ name: 'about' }"
             :text="about.button"
           />
-          <ACVTBreaker
-            align-content="center"
-            justify-content="flex-start"
-          >
+          <ACVTBreaker>
             <ACVTPush
               v-for="(socialNetwork, i) in about.social"
               :key="socialNetwork.name"
@@ -46,7 +38,7 @@
             is-lighten
             :text="about.description"
           />
-        </ACVTBreaker>
+        </ACVTArea>
       </ACVTWrapper>
     </ACVTJumbotron>
     <ACVTContainer :class="$style.container">
@@ -81,6 +73,7 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
+import ACVTArea from '~/components/Area.vue'
 import ACVTBreaker from '~/components/Breaker.vue'
 import ACVTButton from '~/components/Button.vue'
 import ACVTContainer from '~/components/Container.vue'
@@ -97,6 +90,7 @@ import ACVTWrapper from '~/components/Wrapper.vue'
 export default {
   name: 'About',
   components: {
+    ACVTArea,
     ACVTBreaker,
     ACVTButton,
     ACVTContainer,

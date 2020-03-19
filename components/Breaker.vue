@@ -1,39 +1,29 @@
 <template>
-  <div
-    :class="[
-      $style.container,
-      {
-        [$style.inline]: inline,
-      }
-    ]"
-    :style="style"
+  <ACVTGrid
+    :class="$style.container"
+    v-bind="$attrs"
+    v-on="$listeners"
   >
     <slot />
-  </div>
+  </ACVTGrid>
 </template>
 
 <script>
-import { props, style } from '~/assets/scripts/grid'
+import ACVTGrid from '~/components/Grid.vue'
 
 export default {
   name: 'Breaker',
-  props,
-  computed: {
-    style() {
-      return style(this.$props)
-    },
+  components: {
+    ACVTGrid,
   },
 }
 </script>
 
 <style lang="scss" module>
 .container {
-  display: grid;
   grid-auto-flow: column;
-  grid-gap: space(md) space(sm);
-}
-
-.inline {
-  display: inline-grid;
+  grid-gap: space(sm);
+  align-content: center;
+  justify-content: flex-start;
 }
 </style>
