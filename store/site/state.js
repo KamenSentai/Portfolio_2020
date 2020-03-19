@@ -2,8 +2,8 @@ export default () => ({
   about: {
     button: 'Resume',
     description: [
-      'My name is Alain CAO VAN TRUONG. I currently study at HÉTIC, a web school based in Montreuil.',
-      'I am looking for a 6-month internship near Paris as full-stack or back-end web developer from jun. 2020 to december 2020. Feel free to get in touch if you are interested !',
+      'My name is Alain CAO VAN TRUONG. I currently study at [HÉTIC](https://www.hetic.net/), a web school based in Montreuil.',
+      'I am looking for a 6-month internship near Paris as full-stack or back-end web developer from june 2020 to december 2020. Feel free to get in touch if you are interested !',
     ],
     main: [
       {
