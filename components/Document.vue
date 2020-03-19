@@ -11,7 +11,6 @@
     <p
       v-for="(paragraph, i) in text"
       :key="`paragraph-${i}`"
-      :class="$style.paragraph"
     >
       <template v-for="(part, j) of extracted(paragraph)">
         <template v-if="typeof part === 'string'">
@@ -86,52 +85,12 @@ export default {
 
 <style lang="scss" module>
 .container {
+  position: relative;
   display: grid;
   grid-gap: space(sm);
   align-content: flex-start;
   font-weight: 300;
   line-height: 1.25;
-
-  &:not(.isInactive) {
-
-    .paragraph {
-
-      &::before {
-        transform: scaleX(0);
-        opacity: 0;
-      }
-
-      &::after {
-        transform: scaleX(0);
-        opacity: 1;
-      }
-    }
-  }
-
-  &.isInactive .paragraph {
-
-    &::before {
-      transform: scaleX(1);
-      opacity: 1;
-    }
-
-    &::after {
-      transform: scaleX(1);
-      opacity: 0;
-    }
-  }
-
-  &.isLighten .paragraph {
-
-    &::before,
-    &::after {
-      background-color: color(light);
-    }
-  }
-}
-
-.paragraph {
-  position: relative;
 
   &::before,
   &::after {
@@ -149,6 +108,28 @@ export default {
 
   &::after {
     transform-origin: right;
+    opacity: 1;
+  }
+
+  &.isInactive {
+
+    &::before {
+      transform: scaleX(1);
+      opacity: 1;
+    }
+
+    &::after {
+      transform: scaleX(1);
+      opacity: 0;
+    }
+  }
+
+  &.isLighten {
+
+    &::before,
+    &::after {
+      background-color: color(light);
+    }
   }
 }
 
