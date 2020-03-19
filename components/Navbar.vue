@@ -92,7 +92,7 @@ export default {
   &::before {
     background-color: color(light, .25);
     transform-origin: top;
-    transition: transform $smooth-slowest time(normal);
+    transition: transform $smooth-slower time(normal);
     content: "";
     @include overlay;
   }
@@ -114,7 +114,7 @@ export default {
   border-radius: 100%;
   transform: translateY(-50%);
   cursor: pointer;
-  transition: opacity $smooth-slowest time(longer);
+  transition: opacity $smooth-slower time(longer);
   @include centralizer;
 
   &::before,

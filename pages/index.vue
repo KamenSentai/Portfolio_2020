@@ -59,7 +59,7 @@ export default {
   data() {
     return {
       ACVTJumbotron,
-      aboutDelay: 2250,
+      aboutDelay: 1750,
       isAnimating: false,
       isChanging: false,
       isFading: false,
