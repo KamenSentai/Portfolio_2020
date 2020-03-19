@@ -62,7 +62,7 @@ export default {
     background-color: color(dark);
     transform: scaleX(0);
     transform-origin: right;
-    transition: transform $smooth-slower;
+    transition: transform $smooth;
     content: "";
     @include overlay;
   }
@@ -128,7 +128,7 @@ export default {
     top: 0;
     right: 0;
     bottom: 0;
-    transition: transform $smooth-slower;
+    transition: transform $smooth;
     content: "";
   }
 
@@ -179,7 +179,7 @@ export default {
     border-right: 4px solid transparent;
     border-bottom: 4px solid transparent;
     border-left: 4px solid color(light);
-    transition: transform $smooth-slower;
+    transition: transform $smooth;
   }
 }
 </style>

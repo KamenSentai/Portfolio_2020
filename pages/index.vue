@@ -10,21 +10,22 @@
         :is-clickable="!isAnimating"
         @click="updateProject($event)"
       />
-      <ACVTWrapper>
+      <ACVTWrapper
+        template-rows="auto 1fr"
+        justify-items="flex-start"
+      >
         <ACVTHero
           :is-changing="isChanging"
           :is-inactive="!isMounted"
           :tag="`${index.tag} ${currentProject.formattedIndex}`"
           :title="currentProject.name"
         />
-        <ACVTBreaker justify-content="flex-start">
-          <ACVTButton
-            :is-active="isMounted"
-            :is-clickable="!isAnimating"
-            :to="{ name: 'about' }"
-            :text="index.button"
-          />
-        </ACVTBreaker>
+        <ACVTButton
+          :is-active="isMounted"
+          :is-clickable="!isAnimating"
+          :to="{ name: 'about' }"
+          :text="index.button"
+        />
       </ACVTWrapper>
       <ACVTIndicator
         :is-inactive="!isMounted"
@@ -37,7 +38,6 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
-import ACVTBreaker from '~/components/Breaker.vue'
 import ACVTButton from '~/components/Button.vue'
 import ACVTHero from '~/components/Hero.vue'
 import ACVTIndicator from '~/components/Indicator.vue'
@@ -48,7 +48,6 @@ import ACVTWrapper from '~/components/Wrapper.vue'
 export default {
   name: 'Index',
   components: {
-    ACVTBreaker,
     ACVTButton,
     ACVTHero,
     ACVTIndicator,
@@ -132,7 +131,7 @@ export default {
       this.touchPosition = y
     },
     wheel({ deltaY }) {
-      if (!this.isAnimating) {
+      if (!this.isAnimating && this.isMounted) {
         if (deltaY > 0) {
           this.updateProject(this.currentIndex + 1)
         } else if (deltaY < 0) {

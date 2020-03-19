@@ -1,12 +1,23 @@
 <template>
-  <div :class="$style.container">
+  <div
+    :class="$style.container"
+    :style="style"
+  >
     <slot />
   </div>
 </template>
 
 <script>
+import { props, style } from '~/assets/scripts/grid'
+
 export default {
   name: 'Wrapper',
+  props,
+  computed: {
+    style() {
+      return style(this.$props)
+    },
+  },
 }
 </script>
 
@@ -15,7 +26,6 @@ export default {
   display: grid;
   grid-gap: space(md);
   grid-column: 3 / -3;
-  grid-template-rows: auto 1fr;
   align-content: flex-start;
 
   @include bp(lg) {

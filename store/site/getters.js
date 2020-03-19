@@ -1,4 +1,7 @@
 export default {
+  about(state) {
+    return state.about
+  },
   currentIndex(state) {
     return state.currentIndex
   },
