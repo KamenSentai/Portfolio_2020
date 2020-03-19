@@ -16,6 +16,7 @@
     >
       <ACVTHero
         :is-changing="isChanging"
+        is-expandable
         :is-inactive="!isMounted"
         :tag="`${index.tag} ${currentProject.formattedIndex}`"
         :title="currentProject.name"

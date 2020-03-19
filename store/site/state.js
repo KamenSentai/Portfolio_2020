@@ -3,18 +3,18 @@ export default () => ({
     button: 'Resume',
     description: [
       'My name is Alain CAO VAN TRUONG. I currently study at HÉTIC, a web school based in Montreuil.',
-      'I am looking for a 6-month internship near Paris as full-stack or back-end web developer from june 2020 to december 2020. Feel free to get in touch if you are interested !',
+      'I am looking for a 6-month internship near Paris as full-stack or back-end web developer from jun. 2020 to december 2020. Feel free to get in touch if you are interested !',
     ],
     main: [
       {
         title: 'Experiences',
         fields: [
           {
-            type: 'Intership',
-            tag: 'June 2019 — November 2019',
-            content: 'Meero',
+            subtitle: 'Intership',
+            tag: 'Jun. 2019 — Nov. 2019',
             extra: {
-              name: 'Missons',
+              name: 'Meero',
+              element: 'Missons',
               items: [
                 'Front-end development',
                 'Integration',
@@ -23,11 +23,11 @@ export default () => ({
             },
           },
           {
-            type: 'Project',
-            tag: 'January 2019 — June 2019',
-            content: 'Offit',
+            subtitle: 'Project',
+            tag: 'Jan. 2019 — Jun. 2019',
             extra: {
-              name: 'Missons',
+              name: 'Offit',
+              element: 'Missons',
               items: [
                 'Project management',
                 'Full-stack development',
@@ -35,11 +35,11 @@ export default () => ({
             },
           },
           {
-            type: 'Intership',
-            tag: 'July 2018 — September 2018',
-            content: 'Wait and See agency',
+            subtitle: 'Intership',
+            tag: 'Jul. 2018 — Sep. 2018',
             extra: {
-              name: 'Missons',
+              name: 'Wait and See agency',
+              element: 'Missons',
               items: [
                 'Integration',
                 'Front-end development',
@@ -52,11 +52,11 @@ export default () => ({
         title: 'Education',
         fields: [
           {
-            type: 'Web school',
+            subtitle: 'Web school',
             tag: '2016 — 2021',
-            content: 'HÉTIC',
             extra: {
-              name: 'Curriculum',
+              name: 'HÉTIC',
+              element: 'Curriculum',
               items: [
                 'Project management',
                 'Product design',
@@ -67,11 +67,11 @@ export default () => ({
             },
           },
           {
-            type: 'Prepatory school',
+            subtitle: 'Prepatory school',
             tag: '2014 — 2016',
-            content: 'Lycée Saint Louis',
             extra: {
-              name: 'Curriculum',
+              name: 'Lycée Saint Louis',
+              element: 'Curriculum',
               items: [
                 'Mathematics',
                 'Physics',
@@ -85,8 +85,8 @@ export default () => ({
         title: 'Skills',
         fields: [
           {
-            type: 'Front-end',
-            items: [
+            subtitle: 'Front-end',
+            list: [
               'Vue.js',
               'React.js',
               'Nuxt.js',
@@ -96,22 +96,22 @@ export default () => ({
             ],
           },
           {
-            type: 'Back-end',
-            items: [
+            subtitle: 'Back-end',
+            list: [
               'WordPress',
               'Node.js',
               'Slim Framework',
             ],
           },
           {
-            type: 'Mobile',
-            items: [
+            subtitle: 'Mobile',
+            list: [
               'Swift',
             ],
           },
           {
-            type: 'Learning',
-            items: [
+            subtitle: 'Learning',
+            list: [
               'Strapi',
               'Laravel',
               'Symfony',
@@ -127,23 +127,23 @@ export default () => ({
         title: 'Hobbies',
         fields: [
           {
-            type: 'Sciences',
-            items: [
+            subtitle: 'Sciences',
+            list: [
               'Mathematics',
               'Physics',
               'Computer science',
             ],
           },
           {
-            type: 'Animes',
-            items: [
+            subtitle: 'Animes',
+            list: [
               'Detective Conan',
               'Attack on Tian',
             ],
           },
           {
-            type: 'Series',
-            items: [
+            subtitle: 'Series',
+            list: [
               'Super Senter',
               'Kamen Rider',
               'Criminal Minds',
@@ -151,8 +151,8 @@ export default () => ({
             ],
           },
           {
-            type: 'Movies',
-            items: [
+            subtitle: 'Movies',
+            list: [
               'Ip Man',
               'Enter the Dragon',
               'Fist of Legend',
@@ -161,8 +161,8 @@ export default () => ({
             ],
           },
           {
-            type: 'Other',
-            items: [
+            subtitle: 'Other',
+            list: [
               'Pen spinning',
             ],
           },

@@ -4,6 +4,7 @@
       $style.container,
       {
         [$style.isChanging]: isChanging,
+        [$style.isExpandable]: isExpandable,
         [$style.isInactive]: isInactive,
         [$style.isLighten]: isLighten,
       }
@@ -21,6 +22,10 @@ export default {
   name: 'Hero',
   props: {
     isChanging: {
+      type: Boolean,
+      default: false,
+    },
+    isExpandable: {
       type: Boolean,
       default: false,
     },
@@ -116,6 +121,13 @@ export default {
       color: color(dark);
     }
   }
+
+  &.isExpandable .title {
+
+    @include bp(md) {
+      min-height: 2em;
+    }
+  }
 }
 
 .tag,
@@ -169,7 +181,6 @@ export default {
   }
 
   @include bp(md) {
-    min-height: 2em;
     font-size: size(md);
   }
 }

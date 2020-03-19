@@ -41,11 +41,10 @@ export default {
 <style lang="scss" module>
 .container {
   display: grid;
-  grid-gap: space(sx);
+  grid-gap: space(sm);
   align-content: flex-start;
   font-weight: 300;
-  line-height: 1.125;
-  letter-spacing: .03125em;
+  line-height: 1.25;
 
   &:not(.isInactive) {
 

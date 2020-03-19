@@ -59,9 +59,16 @@
           component="h2"
           :text="section.title"
         />
-        <div>
-          ok
-        </div>
+        <ACVTSection>
+          <ACVTField
+            v-for="(field, j) in section.fields"
+            :key="`field-${i}-${j}`"
+            :extra="field.extra"
+            :list="field.list"
+            :subtitle="field.subtitle"
+            :tag="field.tag"
+          />
+        </ACVTSection>
       </ACVTWrapper>
     </ACVTContainer>
     <ACVTCredit
@@ -79,10 +86,12 @@ import ACVTButton from '~/components/Button.vue'
 import ACVTContainer from '~/components/Container.vue'
 import ACVTCredit from '~/components/Credit.vue'
 import ACVTDocument from '~/components/Document.vue'
+import ACVTField from '~/components/Field.vue'
 import ACVTHero from '~/components/Hero.vue'
 import ACVTJumbotron from '~/components/Jumbotron.vue'
 import ACVTPage from '~/components/Page.vue'
 import ACVTPush from '~/components/Push.vue'
+import ACVTSection from '~/components/Section.vue'
 import ACVTScroll from '~/components/Scroll.vue'
 import ACVTTitle from '~/components/Title.vue'
 import ACVTWrapper from '~/components/Wrapper.vue'
@@ -96,10 +105,12 @@ export default {
     ACVTContainer,
     ACVTCredit,
     ACVTDocument,
+    ACVTField,
     ACVTHero,
     ACVTJumbotron,
     ACVTPage,
     ACVTPush,
+    ACVTSection,
     ACVTScroll,
     ACVTTitle,
     ACVTWrapper,
