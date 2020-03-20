@@ -99,6 +99,16 @@ export default {
   },
   methods: {
     ...mapActions('site', ['loadIndex', 'pageChange', 'updateIndex']),
+    touchmove({ touches }) {
+      const [{ clientY: y }] = touches
+      const movementY = y - this.touchPosition
+      this.touchPosition = y
+      this.wheel({ deltaY: -movementY })
+    },
+    touchstart({ touches }) {
+      const [{ clientY: y }] = touches
+      this.touchPosition = y
+    },
     updateProject(index) {
       if (index >= 0 && index < this.totalProjects) {
         this.isAnimating = true
@@ -114,16 +124,6 @@ export default {
           },
         })
       }
-    },
-    touchmove({ touches }) {
-      const [{ clientY: y }] = touches
-      const movementY = y - this.touchPosition
-      this.touchPosition = y
-      this.wheel({ deltaY: -movementY })
-    },
-    touchstart({ touches }) {
-      const [{ clientY: y }] = touches
-      this.touchPosition = y
     },
     wheel({ deltaY }) {
       if (!this.isAnimating && this.isMounted) {
