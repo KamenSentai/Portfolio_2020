@@ -1,7 +1,13 @@
 <template>
   <component
     :is="component"
-    :class="$style.container"
+    :class="[
+      $style.container,
+      {
+        [$style.isInactive]: isInactive,
+        [$style.isLighten]: isLighten,
+      }
+    ]"
     v-bind="$attrs"
     v-on="$listeners"
   >
@@ -17,6 +23,14 @@ export default {
       type: [Object, String],
       default: 'h1',
     },
+    isInactive: {
+      type: Boolean,
+      default: false,
+    },
+    isLighten: {
+      type: Boolean,
+      default: false,
+    },
     text: {
       type: String,
       required: true,
@@ -27,6 +41,7 @@ export default {
 
 <style lang="scss" module>
 .container {
+  position: relative;
   margin-top: -1.6rem;
   color: color(primary);
   font-weight: 300;
@@ -41,6 +56,46 @@ export default {
   @include bp(sm) {
     margin-top: 0;
     font-size: size(md);
+  }
+
+  &::before,
+  &::after {
+    background-color: color(dark);
+    transform: scaleX(0);
+    transition: transform $smooth time(short);
+    content: "";
+    @include overlay;
+  }
+
+  &::before {
+    transform-origin: left;
+    opacity: 0;
+  }
+
+  &::after {
+    transform-origin: right;
+    opacity: 1;
+  }
+
+  &.isInactive {
+
+    &::before {
+      transform: scaleX(1);
+      opacity: 1;
+    }
+
+    &::after {
+      transform: scaleX(1);
+      opacity: 0;
+    }
+  }
+
+  &.isLighten {
+
+    &::before,
+    &::after {
+      background-color: color(light);
+    }
   }
 }
 </style>

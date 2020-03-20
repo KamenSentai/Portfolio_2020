@@ -49,27 +49,34 @@
           :text="about.description"
         />
       </ACVTWrapper>
-      <ACVTWrapper
+      <ACVTReveal
         v-for="(section, i) in about.main"
         :key="`section-${i}`"
+        :component="ACVTWrapper"
+        is-window
         :auto-flow="$isMobile ? 'row' : 'column'"
         :template-columns="$isMobile ? '1fr' : '1fr 1fr'"
       >
-        <ACVTTitle
-          component="h2"
-          :text="section.title"
-        />
-        <ACVTSection>
-          <ACVTField
-            v-for="(field, j) in section.fields"
-            :key="`field-${i}-${j}`"
-            :extra="field.extra"
-            :list="field.list"
-            :subtitle="field.subtitle"
-            :tag="field.tag"
+        <template v-slot:default="reveal">
+          <ACVTTitle
+            component="h2"
+            :is-inactive="!isMounted || !reveal.isRevealed"
+            is-lighten
+            :text="section.title"
           />
-        </ACVTSection>
-      </ACVTWrapper>
+          <ACVTSection>
+            <ACVTField
+              v-for="(field, j) in section.fields"
+              :key="`field-${i}-${j}`"
+              :extra="field.extra"
+              :is-inactive="!isMounted || !reveal.isRevealed"
+              :list="field.list"
+              :subtitle="field.subtitle"
+              :tag="field.tag"
+            />
+          </ACVTSection>
+        </template>
+      </ACVTReveal>
     </ACVTContainer>
     <ACVTCredit
       :is-inactive="!isMounted"
@@ -91,6 +98,7 @@ import ACVTHero from '~/components/Hero.vue'
 import ACVTJumbotron from '~/components/Jumbotron.vue'
 import ACVTPage from '~/components/Page.vue'
 import ACVTPush from '~/components/Push.vue'
+import ACVTReveal from '~/components/Reveal.vue'
 import ACVTSection from '~/components/Section.vue'
 import ACVTScroll from '~/components/Scroll.vue'
 import ACVTTitle from '~/components/Title.vue'
@@ -110,6 +118,7 @@ export default {
     ACVTJumbotron,
     ACVTPage,
     ACVTPush,
+    ACVTReveal,
     ACVTSection,
     ACVTScroll,
     ACVTTitle,
@@ -117,6 +126,7 @@ export default {
   },
   data() {
     return {
+      ACVTWrapper,
       pageDelay: 1500,
       isFading: false,
       isMounted: false,
