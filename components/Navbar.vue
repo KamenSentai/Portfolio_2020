@@ -47,7 +47,8 @@ export default {
     },
   },
   computed: {
-    ...mapGetters('site', ['temporaryIndex', 'totalProjects']),
+    ...mapGetters('page', ['totalProjects']),
+    ...mapGetters('site', ['temporaryIndex']),
     digitsLength() {
       return this.totalProjects.toString().length + 1
     },

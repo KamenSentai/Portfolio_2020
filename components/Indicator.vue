@@ -64,7 +64,10 @@ export default {
       default: false,
     },
   },
-  computed: mapGetters('site', ['currentIndex', 'totalProjects']),
+  computed: {
+    ...mapGetters('page', ['totalProjects']),
+    ...mapGetters('site', ['currentIndex']),
+  },
 }
 </script>
 

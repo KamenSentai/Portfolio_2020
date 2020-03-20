@@ -68,7 +68,8 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('site', ['currentIndex', 'currentProject', 'totalProjects']),
+    ...mapGetters('page', ['currentProject', 'totalProjects']),
+    ...mapGetters('site', ['currentIndex']),
     ...mapGetters('text', ['index']),
   },
   mounted() {

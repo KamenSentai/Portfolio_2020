@@ -39,7 +39,8 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('site', ['header', 'isPageChanging']),
+    ...mapGetters('page', ['header']),
+    ...mapGetters('site', ['isPageChanging']),
     isCurrentRoute() {
       return (name) => name === this.$route.name
     },

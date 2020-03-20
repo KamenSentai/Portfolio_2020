@@ -132,7 +132,7 @@ export default {
       isMounted: false,
     }
   },
-  computed: mapGetters('site', ['about']),
+  computed: mapGetters('page', ['about']),
   beforeRouteLeave(to, _, next) {
     this.pageChange()
     this.isMounted = false
