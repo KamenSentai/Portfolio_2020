@@ -1,10 +1,8 @@
 <template>
   <div :class="$style.container">
     <ACVTLoading v-if="!isCompleted" />
-    <template v-else>
-      <nuxt />
-      <ACVTHeader />
-    </template>
+    <nuxt />
+    <ACVTHeader />
   </div>
 </template>
 

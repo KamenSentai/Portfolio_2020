@@ -3,7 +3,7 @@
     :class="[
       $style.container,
       {
-        [$style.isInactive]: !isMounted,
+        [$style.isInactive]: !isCompleted || !isMounted,
         [$style.isLighten]: $isAbout,
         [$style.isUnavailable]: isPageChanging,
       }
@@ -39,6 +39,7 @@ export default {
     }
   },
   computed: {
+    ...mapGetters('loading', ['isCompleted']),
     ...mapGetters('page', ['header']),
     ...mapGetters('site', ['isPageChanging']),
     isCurrentRoute() {

@@ -2,8 +2,8 @@ export default {
   currentIndex(state) {
     return state.currentIndex
   },
-  isInactive(state) {
-    return state.isInactive
+  isInactive(state, _, __, rootGetters) {
+    return state.isInactive || !rootGetters['loading/isCompleted']
   },
   isLighten(state) {
     return state.isLighten
