@@ -80,6 +80,7 @@ export default {
     &::after,
     .circle::after {
       transform: scaleX(1);
+      transform-origin: left;
     }
 
     &::after {
@@ -160,12 +161,8 @@ export default {
   }
 
   &::before {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
     background-color: color(dark);
+    @include overlay;
   }
 
   &::after {

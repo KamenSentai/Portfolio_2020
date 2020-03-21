@@ -50,53 +50,15 @@ export default {
   grid-gap: space(xs);
   justify-items: flex-start;
 
-  &:not(isInactive):not(.isChanging) {
+  &.isChanging,
+  &.isInactive {
 
     .tag,
     .title {
 
-      &::before {
-        transform: scaleX(0);
-        opacity: 0;
-      }
-
-      &::after {
-        transform: scaleX(0);
-        opacity: 1;
-      }
-    }
-  }
-
-  &.isChanging:not(.isInactive) {
-
-    .tag,
-    .title {
-
-      &::before {
-        transform: scaleX(1);
-        opacity: 1;
-      }
-
       &::after {
         transform: scaleX(1);
-        opacity: 0;
-      }
-    }
-  }
-
-  &.isInactive:not(.isChanging) {
-
-    .tag,
-    .title {
-
-      &::before {
-        transform: scaleX(1);
-        opacity: 1;
-      }
-
-      &::after {
-        transform: scaleX(1);
-        opacity: 0;
+        transform-origin: left;
       }
     }
   }
@@ -106,7 +68,6 @@ export default {
     .tag,
     .title {
 
-      &::before,
       &::after {
         background-color: color(light);
       }
@@ -129,22 +90,13 @@ export default {
 .title {
   position: relative;
 
-  &::before,
   &::after {
     background-color: color(dark);
     transform: scaleX(0);
+    transform-origin: right;
     transition: transform $smooth;
     content: "";
     @include overlay;
-  }
-
-  &::before {
-    transform-origin: left;
-    opacity: 0;
-  }
-
-  &::after {
-    transform-origin: right;
   }
 }
 

@@ -38,44 +38,22 @@ export default {
 .container {
   position: relative;
 
-  &::before,
   &::after {
     background-color: color(dark);
     transform: scaleX(0);
+    transform-origin: right;
     transition: transform $smooth time(short);
     content: "";
     @include overlay;
   }
 
-  &::before {
+  &.isInactive::after {
+    transform: scaleX(1);
     transform-origin: left;
-    opacity: 0;
   }
 
-  &::after {
-    transform-origin: right;
-    opacity: 1;
-  }
-
-  &.isInactive {
-
-    &::before {
-      transform: scaleX(1);
-      opacity: 1;
-    }
-
-    &::after {
-      transform: scaleX(1);
-      opacity: 0;
-    }
-  }
-
-  &.isLighten {
-
-    &::before,
-    &::after {
-      background-color: color(light);
-    }
+  &.isLighten::after {
+    background-color: color(light);
   }
 }
 </style>

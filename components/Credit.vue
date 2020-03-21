@@ -31,7 +31,7 @@ export default {
 <style lang="scss" module>
 .container {
   position: relative;
-  height: 100px;
+  height: 80px;
   overflow: hidden;
   color: color(dark);
   background-color: color(primary);
