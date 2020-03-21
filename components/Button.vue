@@ -1,5 +1,6 @@
 <template>
-  <nuxt-link
+  <component
+    :is="component"
     :class="[
       $style.container,
       {
@@ -13,7 +14,7 @@
   >
     <div :class="$style.circle" />
     <span :class="$style.text">{{ text }}</span>
-  </nuxt-link>
+  </component>
 </template>
 
 <script>
@@ -22,6 +23,10 @@ import { mapGetters } from 'vuex'
 export default {
   name: 'Button',
   props: {
+    component: {
+      type: [Object, String],
+      default: 'nuxt-link',
+    },
     isUnclickable: {
       type: Boolean,
       default: false,

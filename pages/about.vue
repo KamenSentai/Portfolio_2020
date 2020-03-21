@@ -8,7 +8,10 @@
         />
         <ACVTArea>
           <ACVTButton
-            :to="{ name: 'about' }"
+            component="a"
+            :href="about.resume"
+            rel="noopener noreferrer"
+            target="_blank"
             :text="about.button"
           />
           <ACVTBreaker>

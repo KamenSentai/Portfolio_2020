@@ -169,6 +169,7 @@ export default () => ({
         ],
       },
     ],
+    resume: '/blank.pdf',
     social: [
       {
         name: 'GitHub',
