@@ -2,22 +2,23 @@ export default {
   about(state) {
     return state.about
   },
-  currentProject(state, _, __, rootGetters) {
-    const currentIndex = rootGetters['site/currentIndex']
-    const totalProjects = rootGetters['page/totalProjects']
-    const digitsLength = totalProjects.toString().length + 1
-    const length = digitsLength - (currentIndex + 1).toString().length
-
-    return {
-      ...state.projects[currentIndex],
-      formattedIndex: '0'.repeat(length) + (currentIndex + 1),
-    }
+  currentProject(_, __, ___, rootGetters) {
+    return rootGetters['page/projects'][rootGetters['site/currentIndex']]
   },
   header(state) {
     return state.header
   },
-  projects(state) {
-    return state.projects
+  projects(state, _, __, rootGetters) {
+    const totalProjects = rootGetters['page/totalProjects']
+    const digitsLength = totalProjects.toString().length + 1
+
+    return state.projects.map((project, index) => {
+      const length = digitsLength - (index + 1).toString().length
+      return {
+        ...project,
+        formattedIndex: '0'.repeat(length) + (index + 1),
+      }
+    })
   },
   totalProjects(state) {
     return state.projects.length

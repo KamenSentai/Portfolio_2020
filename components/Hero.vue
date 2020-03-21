@@ -26,6 +26,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    isCurrent: {
+      type: Boolean,
+      default: false,
+    },
     isExpandable: {
       type: Boolean,
       default: false,
@@ -40,6 +44,15 @@ export default {
     },
   },
   computed: mapGetters('site', ['isInactive', 'isLighten']),
+  watch: {
+    isCurrent(value) {
+      if (value) {
+        setTimeout(() => {
+          this.$emit('mount')
+        }, 1000)
+      }
+    },
+  },
 }
 </script>
 

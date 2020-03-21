@@ -1,6 +1,6 @@
 export default () => ({
   currentIndex: 0,
-  duration: 875,
+  duration: 500,
   isInactive: true,
   isLighten: false,
   isPageChanging: false,

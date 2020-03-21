@@ -121,6 +121,14 @@ export default {
     ...mapGetters('page', ['about']),
     ...mapGetters('site', ['isInactive']),
   },
+  beforeMount() {
+    this.toggleLight(true)
+  },
+  mounted() {
+    setTimeout(() => {
+      this.toggleActivity()
+    }, 500)
+  },
   beforeRouteLeave(to, _, next) {
     this.pageChange()
     this.toggleActivity()
@@ -129,14 +137,6 @@ export default {
       this.isFading = true
       this.pageChange(next)
     }, this.pageDelay)
-  },
-  beforeMount() {
-    this.toggleLight(true)
-  },
-  mounted() {
-    setTimeout(() => {
-      this.toggleActivity()
-    }, 500)
   },
   methods: mapActions('site', ['pageChange', 'toggleActivity', 'toggleLight']),
 }

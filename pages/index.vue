@@ -13,17 +13,26 @@
       template-rows="auto 1fr"
       justify-items="flex-start"
     >
-      <ACVTHero
-        :is-changing="isChanging"
-        is-expandable
-        :tag="`${index.tag} ${currentProject.formattedIndex}`"
-        :title="currentProject.name"
-      />
-      <ACVTButton
-        :is-unclickable="isAnimating"
-        :to="{ name: 'about' }"
-        :text="index.button"
-      />
+      <template v-for="(project, i) in projects">
+        <ACVTHero
+          v-show="isCurrent(i)"
+          :key="`hero-${project.slug}`"
+          :is-changing="isChanging"
+          :is-current="isCurrent(i)"
+          is-expandable
+          :tag="`${index.tag} ${project.formattedIndex}`"
+          :title="project.name"
+          @mount="isAnimating = false"
+        />
+        <ACVTButton
+          v-show="isCurrent(i)"
+          :key="`button-${project.slug}`"
+          :is-unclickable="isAnimating"
+          :to="{ name: 'about' }"
+          :text="index.button"
+          :title="project.name"
+        />
+      </template>
     </ACVTWrapper>
     <ACVTIndicator
       @up="wheel({ deltaY: -1 })"
@@ -63,9 +72,19 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('page', ['currentProject', 'totalProjects']),
+    ...mapGetters('page', ['projects', 'totalProjects']),
     ...mapGetters('site', ['currentIndex', 'isInactive']),
     ...mapGetters('text', ['index']),
+    isCurrent() {
+      return (index) => this.currentIndex === index
+    },
+  },
+  watch: {
+    currentIndex() {
+      setTimeout(() => {
+        this.isChanging = false
+      }, 250)
+    },
   },
   beforeMount() {
     this.toggleLight(false)
@@ -112,20 +131,11 @@ export default {
       if (index >= 0 && index < this.totalProjects) {
         this.isAnimating = true
         this.isChanging = true
-
-        this.updateIndex({
-          index,
-          stropAnimating: () => {
-            this.isAnimating = false
-          },
-          stropChanging: () => {
-            this.isChanging = false
-          },
-        })
+        this.updateIndex(index)
       }
     },
     wheel({ deltaY }) {
-      if (!this.isAnimating && !this.isInactive) {
+      if (!this.isAnimating && !this.isChanging && !this.isInactive) {
         if (deltaY > 0) {
           this.updateProject(this.currentIndex + 1)
         } else if (deltaY < 0) {

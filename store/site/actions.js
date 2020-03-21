@@ -18,13 +18,11 @@ export default {
   toggleLight({ commit }, value = null) {
     commit('toggleLight', value)
   },
-  updateIndex({ commit, state: { duration } }, { index, stropAnimating, stropChanging }) {
+  updateIndex({ commit, state: { duration } }, index) {
     commit('loadIndex', index)
 
     setTimeout(() => {
       commit('updateIndex', index)
-      stropChanging()
-      setTimeout(stropAnimating, duration)
     }, duration)
   },
 }
