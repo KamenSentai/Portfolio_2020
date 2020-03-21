@@ -62,11 +62,10 @@ export default {
 
 <style lang="scss" module>
 .container {
-  position: relative;
-  width: 100%;
-  height: 100%;
+  z-index: 1;
   background-color: color(dark);
   @include centralizer;
+  @include overlay(fixed);
 
   &.isInactive .wrapper {
     transform: scaleX(0);

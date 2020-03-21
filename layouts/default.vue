@@ -1,8 +1,8 @@
 <template>
   <div :class="$style.container">
-    <ACVTLoading v-if="!isCompleted" />
     <nuxt />
     <ACVTHeader />
+    <ACVTLoading v-if="!isCompleted" />
   </div>
 </template>
 
