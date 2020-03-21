@@ -1,46 +1,37 @@
 <template>
-  <component
-    :is="component"
-    :class="[
-      $style.container,
-      {
-        [$style.isInactive]: isInactive || !isRevealed,
-        [$style.isLighten]: isLighten,
-      }
-    ]"
+  <ACVTVanish
+    :class="$style.container"
+    :component="component"
     v-bind="$attrs"
     v-on="$listeners"
   >
     {{ text }}
-  </component>
+  </ACVTVanish>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import ACVTVanish from '~/components/Vanish.vue'
 
 export default {
   name: 'Title',
+  components: {
+    ACVTVanish,
+  },
   props: {
     component: {
       type: [Object, String],
       default: 'h1',
-    },
-    isRevealed: {
-      type: Boolean,
-      default: true,
     },
     text: {
       type: String,
       required: true,
     },
   },
-  computed: mapGetters('site', ['isInactive', 'isLighten']),
 }
 </script>
 
 <style lang="scss" module>
 .container {
-  position: relative;
   margin-top: -1.6rem;
   color: color(primary);
   font-weight: 300;
@@ -55,46 +46,6 @@ export default {
   @include bp(sm) {
     margin-top: 0;
     font-size: size(md);
-  }
-
-  &::before,
-  &::after {
-    background-color: color(dark);
-    transform: scaleX(0);
-    transition: transform $smooth time(short);
-    content: "";
-    @include overlay;
-  }
-
-  &::before {
-    transform-origin: left;
-    opacity: 0;
-  }
-
-  &::after {
-    transform-origin: right;
-    opacity: 1;
-  }
-
-  &.isInactive {
-
-    &::before {
-      transform: scaleX(1);
-      opacity: 1;
-    }
-
-    &::after {
-      transform: scaleX(1);
-      opacity: 0;
-    }
-  }
-
-  &.isLighten {
-
-    &::before,
-    &::after {
-      background-color: color(light);
-    }
   }
 }
 </style>

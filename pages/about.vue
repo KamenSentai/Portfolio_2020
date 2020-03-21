@@ -29,9 +29,17 @@
       </ACVTWrapper>
     </ACVTJumbotron>
     <ACVTContainer :class="$style.container">
-      <ACVTWrapper v-if="$isMobile">
-        <ACVTDocument :text="about.description" />
-      </ACVTWrapper>
+      <ACVTReveal
+        v-if="$isMobile"
+        :component="ACVTWrapper"
+      >
+        <template v-slot:default="reveal">
+          <ACVTDocument
+            :is-revealed="reveal.isRevealed"
+            :text="about.description"
+          />
+        </template>
+      </ACVTReveal>
       <ACVTReveal
         v-for="(section, i) in about.main"
         :key="`section-${i}`"

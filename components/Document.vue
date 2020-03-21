@@ -1,12 +1,8 @@
 <template>
-  <div
-    :class="[
-      $style.container,
-      {
-        [$style.isInactive]: isInactive,
-        [$style.isLighten]: isLighten,
-      }
-    ]"
+  <ACVTVanish
+    :class="$style.container"
+    v-bind="$attrs"
+    v-on="$listeners"
   >
     <p
       v-for="(paragraph, i) in text"
@@ -29,14 +25,17 @@
         </a>
       </template>
     </p>
-  </div>
+  </ACVTVanish>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import ACVTVanish from '~/components/Vanish.vue'
 
 export default {
   name: 'Document',
+  components: {
+    ACVTVanish,
+  },
   props: {
     text: {
       type: Array,
@@ -44,7 +43,6 @@ export default {
     },
   },
   computed: {
-    ...mapGetters('site', ['isInactive', 'isLighten']),
     extracted() {
       return (paragraph) => {
         let mdContents = paragraph
@@ -80,52 +78,11 @@ export default {
 
 <style lang="scss" module>
 .container {
-  position: relative;
   display: grid;
   grid-gap: space(sm);
   align-content: flex-start;
   font-weight: 300;
   line-height: 1.25;
-
-  &::before,
-  &::after {
-    background-color: color(dark);
-    transform: scaleX(0);
-    transition: transform $smooth time(short);
-    content: "";
-    @include overlay;
-  }
-
-  &::before {
-    transform-origin: left;
-    opacity: 0;
-  }
-
-  &::after {
-    transform-origin: right;
-    opacity: 1;
-  }
-
-  &.isInactive {
-
-    &::before {
-      transform: scaleX(1);
-      opacity: 1;
-    }
-
-    &::after {
-      transform: scaleX(1);
-      opacity: 0;
-    }
-  }
-
-  &.isLighten {
-
-    &::before,
-    &::after {
-      background-color: color(light);
-    }
-  }
 }
 
 .link {

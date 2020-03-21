@@ -26,8 +26,8 @@ export const props = {
   inline: Boolean,
 }
 
-SHORTCUTS.map((shortcut) => shortcut.id).forEach((id) => {
-  props[id] = String
+SHORTCUTS.forEach((shortcut) => {
+  props[shortcut.id] = String
 })
 
 export const style = ($props) => SHORTCUTS.reduce((accu, { id, attr }) => {

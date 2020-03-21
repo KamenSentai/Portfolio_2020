@@ -1,8 +1,9 @@
 <template>
   <component
     :is="icon"
-    v-bind="$attrs"
     :class="`text-${color}`"
+    v-bind="$attrs"
+    v-on="$listeners"
   />
 </template>
 

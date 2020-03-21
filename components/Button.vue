@@ -9,6 +9,7 @@
       }
     ]"
     v-bind="$attrs"
+    v-on="$listeners"
   >
     <div :class="$style.circle" />
     <span :class="$style.text">{{ text }}</span>
