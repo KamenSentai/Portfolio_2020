@@ -6,7 +6,7 @@
   >
     <ACVTNavbar
       v-if="!$isTablet"
-      :is-clickable="!isAnimating"
+      :is-unclickable="isAnimating"
       @click="updateProject($event)"
     />
     <ACVTWrapper
@@ -20,7 +20,7 @@
         :title="currentProject.name"
       />
       <ACVTButton
-        :is-clickable="!isAnimating"
+        :is-unclickable="isAnimating"
         :to="{ name: 'about' }"
         :text="index.button"
       />

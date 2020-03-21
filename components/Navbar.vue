@@ -4,6 +4,7 @@
       $style.container,
       {
         [$style.isInactive]: isInactive,
+        [$style.isUnclickable]: isUnclickable,
       }
     ]"
   >
@@ -23,7 +24,7 @@
           }
         ]"
         :style="{ top: `${(i - 1) / (totalProjects - 1) * 100}%` }"
-        @click="isClickable && !isCurrent(i) && $emit('click', i - 1)"
+        @click="!isUnclickable && !isCurrent(i) && $emit('click', i - 1)"
       >
         <span :class="$style.number">{{ formattedNumber(i) }}</span>
       </div>
@@ -37,9 +38,9 @@ import { mapGetters } from 'vuex'
 export default {
   name: 'Navbar',
   props: {
-    isClickable: {
+    isUnclickable: {
       type: Boolean,
-      default: true,
+      default: false,
     },
   },
   computed: {
@@ -77,6 +78,10 @@ export default {
       opacity: 0;
       transition-delay: time(normal);
     }
+  }
+
+  &.isUnclickable .dot {
+    cursor: default;
   }
 }
 

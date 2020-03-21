@@ -5,7 +5,7 @@
       {
         [$style.isInactive]: isInactive,
         [$style.isLighten]: isLighten,
-        [$style.isUnlickable]: !isClickable,
+        [$style.isUnclickable]: isUnclickable,
       }
     ]"
     v-bind="$attrs"
@@ -21,9 +21,9 @@ import { mapGetters } from 'vuex'
 export default {
   name: 'Button',
   props: {
-    isClickable: {
+    isUnclickable: {
       type: Boolean,
-      default: true,
+      default: false,
     },
     isLighten: {
       type: Boolean,
@@ -108,7 +108,8 @@ export default {
     }
   }
 
-  &.isUnlickable {
+  &.isUnclickable {
+    cursor: default;
     pointer-events: none;
   }
 }
