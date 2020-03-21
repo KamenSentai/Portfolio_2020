@@ -3,9 +3,8 @@
     :class="[
       $style.container,
       {
-        [$style.isChanging]: isChanging,
         [$style.isExpandable]: isExpandable,
-        [$style.isInactive]: isInactive,
+        [$style.isInactive]: isInactive || isChanging,
         [$style.isLighten]: isLighten,
       }
     ]"
@@ -50,7 +49,6 @@ export default {
   grid-gap: space(xs);
   justify-items: flex-start;
 
-  &.isChanging,
   &.isInactive {
 
     .tag,

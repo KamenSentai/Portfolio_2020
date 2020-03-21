@@ -7,7 +7,7 @@
     <ACVTNavbar
       v-if="!$isTablet"
       :is-unclickable="isAnimating"
-      @click="updateProject($event)"
+      @click="updateProject"
     />
     <ACVTWrapper
       template-rows="auto 1fr"
