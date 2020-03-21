@@ -22,16 +22,15 @@ export default {
     ACVTContainer,
   },
   props: {
-    isInactive: {
-      type: Boolean,
-      default: false,
-    },
     isLighten: {
       type: Boolean,
       default: false,
     },
   },
-  computed: mapGetters('text', ['credit']),
+  computed: {
+    ...mapGetters('site', ['isInactive']),
+    ...mapGetters('text', ['credit']),
+  },
 }
 </script>
 

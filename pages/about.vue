@@ -6,14 +6,12 @@
     <ACVTJumbotron>
       <ACVTWrapper template-rows="auto 1fr">
         <ACVTHero
-          :is-inactive="!isMounted"
           is-lighten
           :tag="about.tag"
           :title="about.title"
         />
         <ACVTArea>
           <ACVTButton
-            :is-active="isMounted"
             is-lighten
             :to="{ name: 'about' }"
             :text="about.button"
@@ -23,18 +21,13 @@
               v-for="(socialNetwork, i) in about.social"
               :key="socialNetwork.name"
               :index="i"
-              :is-inactive="!isMounted"
               :link="socialNetwork.link"
               :name="socialNetwork.name"
             />
           </ACVTBreaker>
-          <ACVTScroll
-            :is-inactive="!isMounted"
-            is-lighten
-          />
+          <ACVTScroll is-lighten />
           <ACVTDocument
             v-if="!$isMobile"
-            :is-inactive="!isMounted"
             is-lighten
             :text="about.description"
           />
@@ -44,7 +37,6 @@
     <ACVTContainer :class="$style.container">
       <ACVTWrapper v-if="$isMobile">
         <ACVTDocument
-          :is-inactive="!isMounted"
           is-lighten
           :text="about.description"
         />
@@ -60,8 +52,8 @@
         <template v-slot:default="reveal">
           <ACVTTitle
             component="h2"
-            :is-inactive="!isMounted || !reveal.isRevealed"
             is-lighten
+            :is-revealed="reveal.isRevealed"
             :text="section.title"
           />
           <ACVTSection>
@@ -69,7 +61,6 @@
               v-for="(field, j) in section.fields"
               :key="`field-${i}-${j}`"
               :extra="field.extra"
-              :is-inactive="!isMounted || !reveal.isRevealed"
               :list="field.list"
               :subtitle="field.subtitle"
               :tag="field.tag"
@@ -78,10 +69,7 @@
         </template>
       </ACVTReveal>
     </ACVTContainer>
-    <ACVTCredit
-      :is-inactive="!isMounted"
-      is-lighten
-    />
+    <ACVTCredit is-lighten />
   </ACVTPage>
 </template>
 
@@ -129,13 +117,15 @@ export default {
       ACVTWrapper,
       pageDelay: 1500,
       isFading: false,
-      isMounted: false,
     }
   },
-  computed: mapGetters('page', ['about']),
+  computed: {
+    ...mapGetters('page', ['about']),
+    ...mapGetters('site', ['isInactive']),
+  },
   beforeRouteLeave(to, _, next) {
     this.pageChange()
-    this.isMounted = false
+    this.toggleActivity()
 
     setTimeout(() => {
       this.isFading = true
@@ -144,10 +134,10 @@ export default {
   },
   mounted() {
     setTimeout(() => {
-      this.isMounted = true
+      this.toggleActivity()
     }, 500)
   },
-  methods: mapActions('site', ['pageChange']),
+  methods: mapActions('site', ['pageChange', 'toggleActivity']),
 }
 </script>
 

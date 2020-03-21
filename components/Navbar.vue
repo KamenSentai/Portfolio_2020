@@ -3,14 +3,14 @@
     :class="[
       $style.container,
       {
-        [$style.isInactive]: !isActive,
+        [$style.isInactive]: isInactive,
       }
     ]"
   >
     <div :class="$style.wrapper">
       <div
         :class="$style.fillbar"
-        :style="{ transform: `scaleY(${isActive ? temporaryIndex / (totalProjects - 1) : 0})` }"
+        :style="{ transform: `scaleY(${!isInactive ? temporaryIndex / (totalProjects - 1) : 0})` }"
       />
       <div
         v-for="i in totalProjects"
@@ -37,10 +37,6 @@ import { mapGetters } from 'vuex'
 export default {
   name: 'Navbar',
   props: {
-    isActive: {
-      type: Boolean,
-      default: true,
-    },
     isClickable: {
       type: Boolean,
       default: true,
@@ -48,15 +44,15 @@ export default {
   },
   computed: {
     ...mapGetters('page', ['totalProjects']),
-    ...mapGetters('site', ['temporaryIndex']),
+    ...mapGetters('site', ['isInactive', 'temporaryIndex']),
     digitsLength() {
       return this.totalProjects.toString().length + 1
     },
     isCurrent() {
-      return (index) => this.isActive && this.temporaryIndex === index - 1
+      return (index) => !this.isInactive && this.temporaryIndex === index - 1
     },
     isReached() {
-      return (index) => this.isActive && this.temporaryIndex >= index - 1
+      return (index) => !this.isInactive && this.temporaryIndex >= index - 1
     },
     formattedNumber() {
       return (index) => '0'.repeat(this.digitsLength - index.toString().length) + index

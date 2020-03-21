@@ -1,12 +1,5 @@
 <template>
-  <div
-    :class="[
-      $style.container,
-      {
-        [$style.isInactive]: isInactive,
-      }
-    ]"
-  >
+  <div :class="$style.container">
     <div :class="$style.head">
       <h3 :class="$style.subtitle">
         {{ subtitle }}
@@ -66,10 +59,6 @@ export default {
       type: Array,
       default: () => [],
     },
-    isInactive: {
-      type: Boolean,
-      default: false,
-    },
     subtitle: {
       type: String,
       required: true,
@@ -86,10 +75,6 @@ export default {
 .container {
   display: grid;
   grid-gap: space(sm);
-
-  &.isInactive {
-
-  }
 }
 
 .head {

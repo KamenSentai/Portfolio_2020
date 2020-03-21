@@ -23,6 +23,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import ACVTIcon from '~/components/Icon.vue'
 
 export default {
@@ -34,10 +35,6 @@ export default {
     index: {
       type: Number,
       default: 0,
-    },
-    isInactive: {
-      type: Boolean,
-      default: false,
     },
     link: {
       type: String,
@@ -53,6 +50,7 @@ export default {
       delay: 125,
     }
   },
+  computed: mapGetters('site', ['isInactive']),
 }
 </script>
 

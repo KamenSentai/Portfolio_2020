@@ -5,6 +5,9 @@ export default {
   pageChange(state) {
     state.isPageChanging = !state.isPageChanging
   },
+  toggleActivity(state) {
+    state.isInactive = !state.isInactive
+  },
   updateIndex(state, index) {
     state.currentIndex = index
   },

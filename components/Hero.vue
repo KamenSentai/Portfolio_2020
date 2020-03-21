@@ -18,6 +18,8 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   name: 'Hero',
   props: {
@@ -26,10 +28,6 @@ export default {
       default: false,
     },
     isExpandable: {
-      type: Boolean,
-      default: false,
-    },
-    isInactive: {
       type: Boolean,
       default: false,
     },
@@ -46,6 +44,7 @@ export default {
       required: true,
     },
   },
+  computed: mapGetters('site', ['isInactive']),
 }
 </script>
 

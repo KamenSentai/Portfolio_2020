@@ -33,13 +33,11 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   name: 'Document',
   props: {
-    isInactive: {
-      type: Boolean,
-      default: false,
-    },
     isLighten: {
       type: Boolean,
       default: false,
@@ -50,6 +48,7 @@ export default {
     },
   },
   computed: {
+    ...mapGetters('site', ['isInactive']),
     extracted() {
       return (paragraph) => {
         let mdContents = paragraph

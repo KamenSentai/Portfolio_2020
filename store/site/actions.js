@@ -12,6 +12,9 @@ export default {
       commit('pageChange')
     }
   },
+  toggleActivity({ commit }) {
+    commit('toggleActivity')
+  },
   updateIndex({ commit, state: { duration } }, { index, stropAnimating, stropChanging }) {
     commit('loadIndex', index)
 

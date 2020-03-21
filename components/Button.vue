@@ -3,7 +3,7 @@
     :class="[
       $style.container,
       {
-        [$style.isInactive]: !isActive,
+        [$style.isInactive]: isInactive,
         [$style.isLighten]: isLighten,
         [$style.isUnlickable]: !isClickable,
       }
@@ -16,13 +16,11 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   name: 'Button',
   props: {
-    isActive: {
-      type: Boolean,
-      default: true,
-    },
     isClickable: {
       type: Boolean,
       default: true,
@@ -36,6 +34,7 @@ export default {
       required: true,
     },
   },
+  computed: mapGetters('site', ['isInactive']),
 }
 </script>
 

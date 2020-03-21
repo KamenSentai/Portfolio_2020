@@ -4,7 +4,7 @@
     :class="[
       $style.container,
       {
-        [$style.isInactive]: isInactive,
+        [$style.isInactive]: isInactive || !isRevealed,
         [$style.isLighten]: isLighten,
       }
     ]"
@@ -16,6 +16,8 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   name: 'Title',
   props: {
@@ -23,19 +25,20 @@ export default {
       type: [Object, String],
       default: 'h1',
     },
-    isInactive: {
-      type: Boolean,
-      default: false,
-    },
     isLighten: {
       type: Boolean,
       default: false,
+    },
+    isRevealed: {
+      type: Boolean,
+      default: true,
     },
     text: {
       type: String,
       required: true,
     },
   },
+  computed: mapGetters('site', ['isInactive']),
 }
 </script>
 

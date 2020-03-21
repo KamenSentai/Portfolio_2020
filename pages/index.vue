@@ -6,7 +6,6 @@
   >
     <ACVTNavbar
       v-if="!$isTablet"
-      :is-active="isMounted"
       :is-clickable="!isAnimating"
       @click="updateProject($event)"
     />
@@ -17,19 +16,16 @@
       <ACVTHero
         :is-changing="isChanging"
         is-expandable
-        :is-inactive="!isMounted"
         :tag="`${index.tag} ${currentProject.formattedIndex}`"
         :title="currentProject.name"
       />
       <ACVTButton
-        :is-active="isMounted"
         :is-clickable="!isAnimating"
         :to="{ name: 'about' }"
         :text="index.button"
       />
     </ACVTWrapper>
     <ACVTIndicator
-      :is-inactive="!isMounted"
       @up="wheel({ deltaY: -1 })"
       @down="wheel({ deltaY: 1 })"
     />
@@ -63,18 +59,17 @@ export default {
       isAnimating: false,
       isChanging: false,
       isFading: false,
-      isMounted: false,
       touchPosition: 0,
     }
   },
   computed: {
     ...mapGetters('page', ['currentProject', 'totalProjects']),
-    ...mapGetters('site', ['currentIndex']),
+    ...mapGetters('site', ['currentIndex', 'isInactive']),
     ...mapGetters('text', ['index']),
   },
   mounted() {
     setTimeout(() => {
-      this.isMounted = true
+      this.toggleActivity()
       window.addEventListener('touchstart', this.touchstart)
       window.addEventListener('touchmove', this.touchmove)
       window.addEventListener('wheel', this.wheel)
@@ -88,7 +83,7 @@ export default {
   beforeRouteLeave(to, _, next) {
     if (to.name === 'about') {
       this.pageChange()
-      this.isMounted = false
+      this.toggleActivity()
 
       setTimeout(() => {
         this.isFading = true
@@ -99,7 +94,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions('site', ['loadIndex', 'pageChange', 'updateIndex']),
+    ...mapActions('site', ['loadIndex', 'pageChange', 'toggleActivity', 'updateIndex']),
     touchmove({ touches }) {
       const [{ clientY: y }] = touches
       const movementY = y - this.touchPosition
@@ -127,7 +122,7 @@ export default {
       }
     },
     wheel({ deltaY }) {
-      if (!this.isAnimating && this.isMounted) {
+      if (!this.isAnimating && !this.isInactive) {
         if (deltaY > 0) {
           this.updateProject(this.currentIndex + 1)
         } else if (deltaY < 0) {

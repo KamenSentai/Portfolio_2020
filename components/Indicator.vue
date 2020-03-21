@@ -58,15 +58,9 @@ export default {
   components: {
     ACVTIcon,
   },
-  props: {
-    isInactive: {
-      type: Boolean,
-      default: false,
-    },
-  },
   computed: {
     ...mapGetters('page', ['totalProjects']),
-    ...mapGetters('site', ['currentIndex']),
+    ...mapGetters('site', ['currentIndex', 'isInactive']),
   },
 }
 </script>
