@@ -28,7 +28,7 @@
           v-show="isCurrent(i)"
           :key="`button-${project.slug}`"
           :is-unclickable="isAnimating"
-          :to="{ name: 'about' }"
+          :to="{ name: 'project-slug', params: { slug: project.slug } }"
           :text="index.button"
           :title="project.name"
         />

@@ -193,17 +193,28 @@ export default () => ({
   },
   header: [
     {
+      isMain: true,
       name: 'index',
       title: 'ACVT',
-      isMain: true,
+      routes: [
+        'about',
+        'project-slug',
+      ],
     },
     {
       name: 'about',
       title: 'About',
+      routes: [
+        'index',
+        'project-slug',
+      ],
     },
     {
       name: 'index',
       title: 'Return',
+      routes: [
+        'about',
+      ],
     },
   ],
   projects: [

@@ -11,12 +11,12 @@
   >
     <header :class="$style.header">
       <component
-        :is="link.isCurrentRoute ? link.tag : 'nuxt-link'"
+        :is="link.isActive ? 'nuxt-link' : link.tag"
         v-for="(link, index) in links"
         :key="`link-${index}`"
         :class="$style.link"
-        :title="!link.isCurrentRoute && link.title"
-        :to="!link.isCurrentRoute && { name: link.name }"
+        :title="link.isActive && link.title"
+        :to="link.isActive && { name: link.name }"
       >
         {{ link.title }}
       </component>
@@ -42,16 +42,17 @@ export default {
     ...mapGetters('loading', ['isCompleted']),
     ...mapGetters('page', ['header']),
     ...mapGetters('site', ['isPageChanging']),
-    isCurrentRoute() {
-      return (name) => name === this.$route.name
+    isActive() {
+      return (routes) => !!routes && routes.includes(this.$route.name)
     },
     links() {
       return this.header
-        .map((link) => {
-          const isCurrentRoute = this.isCurrentRoute(link.name)
-          return { ...link, isCurrentRoute, tag: link.isMain ? 'h1' : 'span' }
-        })
-        .filter((link) => link.isMain || !link.isCurrentRoute)
+        .map((link) => ({
+          ...link,
+          isActive: this.isActive(link.routes),
+          tag: link.isMain ? 'h1' : 'span',
+        }))
+        .filter((link) => link.isMain || link.isActive)
     },
   },
   mounted() {
