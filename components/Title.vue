@@ -25,10 +25,6 @@ export default {
       type: [Object, String],
       default: 'h1',
     },
-    isLighten: {
-      type: Boolean,
-      default: false,
-    },
     isRevealed: {
       type: Boolean,
       default: true,
@@ -38,7 +34,7 @@ export default {
       required: true,
     },
   },
-  computed: mapGetters('site', ['isInactive']),
+  computed: mapGetters('site', ['isInactive', 'isLighten']),
 }
 </script>
 

@@ -21,14 +21,8 @@ export default {
   components: {
     ACVTContainer,
   },
-  props: {
-    isLighten: {
-      type: Boolean,
-      default: false,
-    },
-  },
   computed: {
-    ...mapGetters('site', ['isInactive']),
+    ...mapGetters('site', ['isInactive', 'isLighten']),
     ...mapGetters('text', ['credit']),
   },
 }

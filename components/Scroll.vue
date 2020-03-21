@@ -17,14 +17,8 @@ import { mapGetters } from 'vuex'
 
 export default {
   name: 'Scroll',
-  props: {
-    isLighten: {
-      type: Boolean,
-      default: false,
-    },
-  },
   computed: {
-    ...mapGetters('site', ['isInactive']),
+    ...mapGetters('site', ['isInactive', 'isLighten']),
     ...mapGetters('text', ['scroll']),
   },
 }

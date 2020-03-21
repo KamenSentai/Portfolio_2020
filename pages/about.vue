@@ -1,18 +1,13 @@
 <template>
-  <ACVTPage
-    :is-fading="isFading"
-    is-lighten
-  >
+  <ACVTPage :is-fading="isFading">
     <ACVTJumbotron>
       <ACVTWrapper template-rows="auto 1fr">
         <ACVTHero
-          is-lighten
           :tag="about.tag"
           :title="about.title"
         />
         <ACVTArea>
           <ACVTButton
-            is-lighten
             :to="{ name: 'about' }"
             :text="about.button"
           />
@@ -25,10 +20,9 @@
               :name="socialNetwork.name"
             />
           </ACVTBreaker>
-          <ACVTScroll is-lighten />
+          <ACVTScroll />
           <ACVTDocument
             v-if="!$isMobile"
-            is-lighten
             :text="about.description"
           />
         </ACVTArea>
@@ -36,10 +30,7 @@
     </ACVTJumbotron>
     <ACVTContainer :class="$style.container">
       <ACVTWrapper v-if="$isMobile">
-        <ACVTDocument
-          is-lighten
-          :text="about.description"
-        />
+        <ACVTDocument :text="about.description" />
       </ACVTWrapper>
       <ACVTReveal
         v-for="(section, i) in about.main"
@@ -52,7 +43,6 @@
         <template v-slot:default="reveal">
           <ACVTTitle
             component="h2"
-            is-lighten
             :is-revealed="reveal.isRevealed"
             :text="section.title"
           />
@@ -69,7 +59,7 @@
         </template>
       </ACVTReveal>
     </ACVTContainer>
-    <ACVTCredit is-lighten />
+    <ACVTCredit />
   </ACVTPage>
 </template>
 
@@ -132,12 +122,15 @@ export default {
       this.pageChange(next)
     }, this.pageDelay)
   },
+  beforeMount() {
+    this.toggleLight(true)
+  },
   mounted() {
     setTimeout(() => {
       this.toggleActivity()
     }, 500)
   },
-  methods: mapActions('site', ['pageChange', 'toggleActivity']),
+  methods: mapActions('site', ['pageChange', 'toggleActivity', 'toggleLight']),
 }
 </script>
 

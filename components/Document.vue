@@ -38,17 +38,13 @@ import { mapGetters } from 'vuex'
 export default {
   name: 'Document',
   props: {
-    isLighten: {
-      type: Boolean,
-      default: false,
-    },
     text: {
       type: Array,
       required: true,
     },
   },
   computed: {
-    ...mapGetters('site', ['isInactive']),
+    ...mapGetters('site', ['isInactive', 'isLighten']),
     extracted() {
       return (paragraph) => {
         let mdContents = paragraph

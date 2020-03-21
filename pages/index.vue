@@ -67,6 +67,9 @@ export default {
     ...mapGetters('site', ['currentIndex', 'isInactive']),
     ...mapGetters('text', ['index']),
   },
+  beforeMount() {
+    this.toggleLight(false)
+  },
   mounted() {
     setTimeout(() => {
       this.toggleActivity()
@@ -94,7 +97,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions('site', ['loadIndex', 'pageChange', 'toggleActivity', 'updateIndex']),
+    ...mapActions('site', ['loadIndex', 'pageChange', 'toggleActivity', 'toggleLight', 'updateIndex']),
     touchmove({ touches }) {
       const [{ clientY: y }] = touches
       const movementY = y - this.touchPosition

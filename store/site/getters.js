@@ -5,6 +5,9 @@ export default {
   isInactive(state) {
     return state.isInactive
   },
+  isLighten(state) {
+    return state.isLighten
+  },
   isPageChanging(state) {
     return state.isPageChanging
   },

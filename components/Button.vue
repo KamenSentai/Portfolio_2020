@@ -25,16 +25,12 @@ export default {
       type: Boolean,
       default: false,
     },
-    isLighten: {
-      type: Boolean,
-      default: false,
-    },
     text: {
       type: String,
       required: true,
     },
   },
-  computed: mapGetters('site', ['isInactive']),
+  computed: mapGetters('site', ['isInactive', 'isLighten']),
 }
 </script>
 

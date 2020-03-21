@@ -16,6 +16,8 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   name: 'Page',
   props: {
@@ -27,11 +29,8 @@ export default {
       type: Boolean,
       default: false,
     },
-    isLighten: {
-      type: Boolean,
-      default: false,
-    },
   },
+  computed: mapGetters('site', ['isLighten']),
 }
 </script>
 
