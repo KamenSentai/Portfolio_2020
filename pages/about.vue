@@ -29,43 +29,32 @@
       </ACVTWrapper>
     </ACVTJumbotron>
     <ACVTContainer :class="$style.container">
-      <ACVTReveal
-        v-if="$isMobile"
-        :component="ACVTWrapper"
-      >
-        <template v-slot:default="reveal">
-          <ACVTDocument
-            :is-revealed="reveal.isRevealed"
-            :text="about.description"
-          />
-        </template>
-      </ACVTReveal>
-      <ACVTReveal
+      <ACVTWrapper v-if="$isMobile">
+        <ACVTDocument :text="about.description" />
+      </ACVTWrapper>
+      <ACVTWrapper
         v-for="(section, i) in about.main"
         :key="`section-${i}`"
-        :component="ACVTWrapper"
-        is-window
         :auto-flow="$isMobile ? 'row' : 'column'"
         :template-columns="$isMobile ? '1fr' : '1fr 1fr'"
       >
-        <template v-slot:default="reveal">
-          <ACVTTitle
-            component="h2"
-            :is-revealed="reveal.isRevealed"
-            :text="section.title"
+        <ACVTTitle
+          component="h2"
+          :is-revealed="revealed.includes(i)"
+          :text="section.title"
+        />
+        <ACVTSection>
+          <ACVTField
+            v-for="(field, j) in section.fields"
+            :key="`field-${i}-${j}`"
+            :extra="field.extra"
+            :list="field.list"
+            :subtitle="field.subtitle"
+            :tag="field.tag"
+            @reveal="reveal(i)"
           />
-          <ACVTSection>
-            <ACVTField
-              v-for="(field, j) in section.fields"
-              :key="`field-${i}-${j}`"
-              :extra="field.extra"
-              :list="field.list"
-              :subtitle="field.subtitle"
-              :tag="field.tag"
-            />
-          </ACVTSection>
-        </template>
-      </ACVTReveal>
+        </ACVTSection>
+      </ACVTWrapper>
     </ACVTContainer>
     <ACVTCredit />
   </ACVTPage>
@@ -84,7 +73,6 @@ import ACVTHero from '~/components/Hero.vue'
 import ACVTJumbotron from '~/components/Jumbotron.vue'
 import ACVTPage from '~/components/Page.vue'
 import ACVTPush from '~/components/Push.vue'
-import ACVTReveal from '~/components/Reveal.vue'
 import ACVTSection from '~/components/Section.vue'
 import ACVTScroll from '~/components/Scroll.vue'
 import ACVTTitle from '~/components/Title.vue'
@@ -104,7 +92,6 @@ export default {
     ACVTJumbotron,
     ACVTPage,
     ACVTPush,
-    ACVTReveal,
     ACVTSection,
     ACVTScroll,
     ACVTTitle,
@@ -115,6 +102,7 @@ export default {
       ACVTWrapper,
       pageDelay: 1500,
       isFading: false,
+      revealed: [],
     }
   },
   computed: {
@@ -138,7 +126,13 @@ export default {
       this.pageChange(next)
     }, this.pageDelay)
   },
-  methods: mapActions('site', ['pageChange', 'toggleActivity', 'toggleLight']),
+  methods: {
+    ...mapActions('site', ['pageChange', 'toggleActivity', 'toggleLight']),
+    reveal(index) {
+      this.revealed.push(index)
+    },
+  },
+
 }
 </script>
 

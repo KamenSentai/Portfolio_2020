@@ -4,7 +4,7 @@
     :class="[
       $style.container,
       {
-        [$style.isInactive]: isInactive || !isRevealed,
+        [$style.isInactive]: !isActive,
         [$style.isLighten]: isLighten,
       }
     ]"
@@ -29,8 +29,33 @@ export default {
       type: Boolean,
       default: true,
     },
+    order: {
+      type: Number,
+      default: 0,
+    },
   },
-  computed: mapGetters('site', ['isInactive', 'isLighten']),
+  data() {
+    return {
+      delay: 75,
+      isActive: false,
+    }
+  },
+  computed: {
+    ...mapGetters('site', ['isInactive', 'isLighten']),
+    isHidden() {
+      return this.isInactive || !this.isRevealed
+    },
+  },
+  watch: {
+    isHidden: {
+      handler(value) {
+        setTimeout(() => {
+          this.isActive = !value
+        }, this.delay * this.order)
+      },
+      immediate: true,
+    },
+  },
 }
 </script>
 

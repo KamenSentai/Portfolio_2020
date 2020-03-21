@@ -1,55 +1,108 @@
 <template>
-  <div :class="$style.container">
-    <div :class="$style.head">
-      <h3 :class="$style.subtitle">
-        {{ subtitle }}
-      </h3>
-      <span
-        v-if="tag"
-        :class="$style.tag"
-      >
-        {{ tag }}
-      </span>
-    </div>
-    <div :class="$style.body">
+  <ACVTReveal
+    :class="$style.container"
+    @reveal="$emit('reveal')"
+  >
+    <template v-slot:default="revealEvent">
       <div
-        v-if="extra.name && extra.element && extra.items"
-        :class="$style.extra"
+        :class="[
+          $style.head,
+          {
+            [$style.isInactive]: isInactive || !revealEvent.isRevealed,
+          }
+        ]"
       >
-        <h4 :class="$style.name">
-          {{ extra.name }}
-        </h4>
-        <div :class="$style.content">
-          <h5 :class="$style.element">
-            {{ extra.element }}
-          </h5>
-          <ul :class="$style.box">
-            <li
-              v-for="(item, i) in extra.items"
-              :key="`item-${i}`"
-              :class="$style.item"
-            >
-              {{ item }}
-            </li>
-          </ul>
-        </div>
-      </div>
-      <template v-if="list">
-        <div
-          v-for="(element, i) in list"
-          :key="`element-${i}`"
-          :class="$style.element"
+        <ACVTVanish
+          :class="$style.subtitle"
+          component="h3"
+          :is-revealed="revealEvent.isRevealed"
+          v-bind="$attrs"
+          v-on="$listeners"
         >
-          {{ element }}
+          {{ subtitle }}
+        </ACVTVanish>
+        <ACVTVanish
+          v-if="tag"
+          :class="$style.tag"
+          component="span"
+          :is-revealed="revealEvent.isRevealed"
+          v-bind="$attrs"
+          v-on="$listeners"
+        >
+          {{ tag }}
+        </ACVTVanish>
+      </div>
+      <div :class="$style.body">
+        <div
+          v-if="extra.name && extra.element && extra.items"
+          :class="$style.extra"
+        >
+          <ACVTVanish
+            :class="$style.name"
+            component="h4"
+            :is-revealed="revealEvent.isRevealed"
+            :order="1"
+            v-bind="$attrs"
+            v-on="$listeners"
+          >
+            {{ extra.name }}
+          </ACVTVanish>
+          <div :class="$style.content">
+            <ACVTVanish
+              :class="$style.element"
+              component="h5"
+              :is-revealed="revealEvent.isRevealed"
+              :order="2"
+              v-bind="$attrs"
+              v-on="$listeners"
+            >
+              {{ extra.element }}
+            </ACVTVanish>
+            <ul :class="$style.box">
+              <ACVTVanish
+                v-for="(item, i) in extra.items"
+                :key="`item-${i}`"
+                :class="$style.item"
+                component="li"
+                :is-revealed="revealEvent.isRevealed"
+                :order="2 + i"
+                v-bind="$attrs"
+                v-on="$listeners"
+              >
+                {{ item }}
+              </ACVTVanish>
+            </ul>
+          </div>
         </div>
-      </template>
-    </div>
-  </div>
+        <template v-if="list">
+          <ACVTVanish
+            v-for="(element, i) in list"
+            :key="`element-${i}`"
+            :class="$style.element"
+            :is-revealed="revealEvent.isRevealed"
+            :order="i"
+            v-bind="$attrs"
+            v-on="$listeners"
+          >
+            {{ element }}
+          </ACVTVanish>
+        </template>
+      </div>
+    </template>
+  </ACVTReveal>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+import ACVTReveal from '~/components/Reveal.vue'
+import ACVTVanish from '~/components/Vanish.vue'
+
 export default {
   name: 'Field',
+  components: {
+    ACVTReveal,
+    ACVTVanish,
+  },
   props: {
     extra: {
       type: Object,
@@ -68,6 +121,7 @@ export default {
       default: '',
     },
   },
+  computed: mapGetters('site', ['isInactive']),
 }
 </script>
 
@@ -88,7 +142,14 @@ export default {
     grid-column: 1 / 3;
     height: .2rem;
     background-color: color(primary);
+    transform-origin: left;
+    transition: transform $smooth-slower;
     content: "";
+  }
+
+  &.isInactive::after {
+    transform: scaleX(0);
+    transform-origin: right;
   }
 }
 
