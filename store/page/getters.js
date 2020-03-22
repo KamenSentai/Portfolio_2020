@@ -2,8 +2,14 @@ export default {
   about(state) {
     return state.about
   },
-  currentProject(_, __, ___, rootGetters) {
-    return rootGetters['page/projects'][rootGetters['site/currentIndex']]
+  currentProject(state, _, __, rootGetters) {
+    const currentIndex = rootGetters['site/currentIndex']
+    const currentProject = rootGetters['page/projects'][currentIndex]
+    const totalProjects = rootGetters['page/totalProjects']
+    return {
+      ...currentProject,
+      next: state.projects[(currentIndex + 1) % totalProjects].slug,
+    }
   },
   header(state) {
     return state.header

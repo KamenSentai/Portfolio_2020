@@ -9,6 +9,7 @@ export default () => ({
   project: {
     code: 'View code',
     demo: 'View demo',
+    next: 'Next project',
   },
   scroll: {
     text: 'Scroll',

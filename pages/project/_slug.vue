@@ -56,6 +56,15 @@
           />
         </ACVTSection>
       </ACVTWrapper>
+      <ACVTWrapper
+        component="footer"
+        justify-content="flex-end"
+      >
+        <ACVTButton
+          :text="project.next"
+          :to="{ name: 'project-slug', params: { slug: currentProject.next } }"
+        />
+      </ACVTWrapper>
     </ACVTContainer>
   </ACVTPage>
 </template>
