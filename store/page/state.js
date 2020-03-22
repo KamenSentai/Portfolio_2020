@@ -231,9 +231,7 @@ export default () => ({
         'I didn’t not chose to refactor the previous portfolio and I prefered to build her portfolio from scratch because the code of the previous portfolio is frameworkless.',
       ],
       parallax: resources.AssoieLouvartMockups,
-      date: [
-        'January 2020 — Frebruary 2020',
-      ],
+      date: 'January 2020 — Frebruary 2020',
       tools: [
         'Vue.js',
       ],
@@ -260,9 +258,7 @@ export default () => ({
         'We were 3 front-end developer and 3 back-end developers alonside a Head of, a product owner, a product manager and two UX/UI designers.',
       ],
       parallax: resources.MeeroDropMockups,
-      date: [
-        'June 2019 — November 2019',
-      ],
+      date: 'June 2019 — November 2019',
       tools: [
         'Vue.js',
         'Symfony',
@@ -294,9 +290,7 @@ export default () => ({
         'The website presents the company, the rate and a blog. All articles are written by Victor Mertz. Unfortunately, we couldn\'t be able to provide him a webapp.',
       ],
       parallax: resources.OffitMockups,
-      date: [
-        'January 2019 — June 2019',
-      ],
+      date: 'January 2019 — June 2019',
       tools: [
         'Vue.js',
         'WordPress',
@@ -337,9 +331,7 @@ export default () => ({
         'By the end of the five days, we succeeded with the sign up and sign in feature, we managed how to scan a product code, we can fetch data from the API and interact with the database.',
       ],
       parallax: resources.ScaneatMockups,
-      date: [
-        'April 2019',
-      ],
+      date: 'April 2019',
       tools: [
         'Swift',
         'Firebase',
@@ -379,9 +371,7 @@ export default () => ({
         'This portfolio is awarded with a [Honorable Mention](https://www.awwwards.com/sites/gaetan-lefebvre-portfolio) and a [Mobile Excellence](https://www.awwwards.com/sites/gaetan-lefebvre-portfolio/mobile-excellence-report) by Awwwards.',
       ],
       parallax: resources.GaetanLefebvreMockups,
-      date: [
-        'December 2018 — March 2019',
-      ],
+      date: 'December 2018 — March 2019',
       tools: [
         'Vue.js',
         'Nuxt.js',
@@ -410,9 +400,7 @@ export default () => ({
         'I tried to use socket.io so that the chat system is live, but it was unsuccessful. If I have time, I itendend to refactor this project.',
       ],
       parallax: resources.ChatMEANMockups,
-      date: [
-        'Frebruary 2019',
-      ],
+      date: 'Frebruary 2019',
       tools: [
         'MongoDB',
         'Angular',

@@ -46,7 +46,7 @@
         >
           <ACVTField
             subtitle="Date"
-            :text="currentProject.date"
+            :text="[currentProject.date]"
           />
           <ACVTField
             subtitle="Tools"
@@ -65,7 +65,8 @@
       >
         <ACVTButton
           :text="project.next"
-          :to="{ name: 'project-slug', params: { slug: currentProject.next } }"
+          :title="nextProject.name"
+          :to="{ name: 'project-slug', params: { slug: nextProject.slug } }"
         />
       </ACVTWrapper>
     </ACVTContainer>
@@ -112,6 +113,9 @@ export default {
     ...mapGetters('page', ['currentProject']),
     ...mapGetters('site', ['fromRoute']),
     ...mapGetters('text', ['index', 'project']),
+    nextProject() {
+      return this.currentProject.next
+    },
   },
   beforeRouteEnter(to, from, next) {
     next((vm) => {

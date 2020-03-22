@@ -8,7 +8,7 @@ export default {
     const totalProjects = rootGetters['page/totalProjects']
     return {
       ...currentProject,
-      next: state.projects[(currentIndex + 1) % totalProjects].slug,
+      next: state.projects[(currentIndex + 1) % totalProjects],
     }
   },
   header(state) {
