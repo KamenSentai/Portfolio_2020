@@ -1,3 +1,5 @@
+import resources from '~/assets/scripts/resources'
+
 export default () => ({
   about: {
     button: 'Resume',
@@ -228,7 +230,7 @@ export default () => ({
         'Assoïe is a UX/UI designer and classmate of mine. She wanted to update her portfolio in order to present her works as she is looking for an internship in a foreign country.',
         'I didn’t not chose to refactor the previous portfolio and I prefered to build her portfolio from scratch because the code of the previous portfolio is frameworkless.',
       ],
-      mockup: '',
+      parallax: resources.AssoieLouvartMockups,
       date: [
         'January 2020 — Frebruary 2020',
       ],
@@ -257,7 +259,7 @@ export default () => ({
         'Meero is mainly a BtoB company, and a new project BtoC is planned which is MeeroDrop : it is a sharing media platform oriented towards photography.',
         'We were 3 front-end developer and 3 back-end developers alonside a Head of, a product owner, a product manager and two UX/UI designers.',
       ],
-      mockup: '',
+      parallax: resources.MeeroDropMockups,
       date: [
         'June 2019 — November 2019',
       ],
@@ -291,7 +293,7 @@ export default () => ({
         'Victor Mertz is the founder of Offit, a BtoB coaching service, and he needs us to develop a website for his company and a webapp to manage his clients\' activities.',
         'The website presents the company, the rate and a blog. All articles are written by Victor Mertz. Unfortunately, we couldn\'t be able to provide him a webapp.',
       ],
-      mockup: '',
+      parallax: resources.OffitMockups,
       date: [
         'January 2019 — June 2019',
       ],
@@ -334,7 +336,7 @@ export default () => ({
         'One member of our team has food constraints in their way of life. So, we imagined an application which helps people to easily detect which product is appropriate for a user by scanning it.',
         'By the end of the five days, we succeeded with the sign up and sign in feature, we managed how to scan a product code, we can fetch data from the API and interact with the database.',
       ],
-      mockup: '',
+      parallax: resources.ScaneatMockups,
       date: [
         'April 2019',
       ],
@@ -376,7 +378,7 @@ export default () => ({
         'I started to use Vue.js, but I quickly migrated to Nuxt.js framework for SEO reasons. It was a long project, from early January to late March, due to plenty of responsive, animations and SEO constraints.',
         'This portfolio is awarded with a [Honorable Mention](https://www.awwwards.com/sites/gaetan-lefebvre-portfolio) and a [Mobile Excellence](https://www.awwwards.com/sites/gaetan-lefebvre-portfolio/mobile-excellence-report) by Awwwards.',
       ],
-      mockup: '',
+      parallax: resources.GaetanLefebvreMockups,
       date: [
         'December 2018 — March 2019',
       ],
@@ -407,7 +409,7 @@ export default () => ({
         'Assoïe, Jay-min and Olivia basically designed all the sketches, Loris integrated them and I built the chat system.',
         'I tried to use socket.io so that the chat system is live, but it was unsuccessful. If I have time, I itendend to refactor this project.',
       ],
-      mockup: '',
+      parallax: resources.ChatMEANMockups,
       date: [
         'Frebruary 2019',
       ],

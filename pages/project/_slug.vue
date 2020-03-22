@@ -36,6 +36,9 @@
           :text="currentProject.description"
         />
       </ACVTWrapper>
+    </ACVTContainer>
+    <ACVTParallax :src="currentProject.parallax" />
+    <ACVTContainer is-larger>
       <ACVTWrapper>
         <ACVTSection
           :template-columns="$isMobile ? '1fr' : '1fr 1fr'"
@@ -78,6 +81,7 @@ import ACVTField from '~/components/Field.vue'
 import ACVTHero from '~/components/Hero.vue'
 import ACVTJumbotron from '~/components/Jumbotron.vue'
 import ACVTPage from '~/components/Page.vue'
+import ACVTParallax from '~/components/Parallax.vue'
 import ACVTScroll from '~/components/Scroll.vue'
 import ACVTSection from '~/components/Section.vue'
 import ACVTWrapper from '~/components/Wrapper.vue'
@@ -92,6 +96,7 @@ export default {
     ACVTHero,
     ACVTJumbotron,
     ACVTPage,
+    ACVTParallax,
     ACVTScroll,
     ACVTSection,
     ACVTWrapper,
