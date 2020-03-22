@@ -31,7 +31,7 @@
         </ACVTArea>
       </ACVTWrapper>
     </ACVTJumbotron>
-    <ACVTContainer :class="$style.container">
+    <ACVTContainer is-larger>
       <ACVTWrapper v-if="$isMobile">
         <ACVTDocument :text="about.description" />
       </ACVTWrapper>
@@ -138,10 +138,3 @@ export default {
 
 }
 </script>
-
-<style lang="scss" module>
-.container {
-  grid-row-gap: space(xl);
-  padding: space(xl) 0;
-}
-</style>

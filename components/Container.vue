@@ -1,5 +1,12 @@
 <template>
-  <div :class="$style.container">
+  <div
+    :class="[
+      $style.container,
+      {
+        [$style.isLarger]: isLarger
+      }
+    ]"
+  >
     <slot />
   </div>
 </template>
@@ -7,6 +14,12 @@
 <script>
 export default {
   name: 'Container',
+  props: {
+    isLarger: {
+      type: Boolean,
+      default: false,
+    },
+  },
 }
 </script>
 
@@ -31,6 +44,11 @@ export default {
 
   @include bp(xs) {
     grid-template-columns: repeat(4, 60px);
+  }
+
+  &.isLarger {
+    grid-row-gap: space(xl);
+    padding: space(xl) 0;
   }
 }
 </style>
