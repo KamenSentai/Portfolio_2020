@@ -92,11 +92,14 @@ export default {
   },
   beforeMount() {
     this.toggleLight(false)
+    this.isRequiring = this.fromRoute !== 'project-slug'
   },
   mounted() {
     setTimeout(() => {
       if (this.fromRoute !== 'project-slug') {
         this.toggleActivity()
+      } else {
+        this.isRequiring = true
       }
       window.addEventListener('touchstart', this.touchstart)
       window.addEventListener('touchmove', this.touchmove)

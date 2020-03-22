@@ -11,7 +11,7 @@
     <div :class="$style.wrapper">
       <div
         :class="$style.fillbar"
-        :style="{ transform: `scaleY(${!isInactive ? temporaryIndex / (totalProjects - 1) : 0})` }"
+        :style="{ transform: `scaleY(${!(isInactive || !isRequired) ? rate : 0})` }"
       />
       <div
         v-for="i in totalProjects"
@@ -61,6 +61,9 @@ export default {
     },
     formattedNumber() {
       return (index) => '0'.repeat(this.digitsLength - index.toString().length) + index
+    },
+    rate() {
+      return this.temporaryIndex / (this.totalProjects - 1)
     },
   },
 }
