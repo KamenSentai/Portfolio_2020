@@ -39,12 +39,6 @@ export default {
     width: 100%;
   }
 
-  &::before,
-  &::after {
-    background-color: color(light);
-    content: "";
-  }
-
   &::before {
     position: absolute;
     bottom: -8px;
@@ -55,13 +49,16 @@ export default {
     border-bottom: 8px solid transparent;
     border-left: 8px solid transparent;
     transition: transform $smooth time(short);
+    content: "";
   }
 
   &::after {
     width: .2rem;
     height: size(xl);
+    background-color: color(light);
     transform-origin: bottom;
     transition: transform $smooth-slower time(normal);
+    content: "";
 
     @include bp(sm) {
       height: size(md);
