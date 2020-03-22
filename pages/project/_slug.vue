@@ -67,9 +67,9 @@ export default {
   },
   data() {
     return {
-      delay: 1500,
       isFading: false,
       isRequiring: true,
+      pageDelay: 1500,
     }
   },
   computed: {
@@ -112,7 +112,7 @@ export default {
       setTimeout(() => {
         this.isFading = true
         this.pageChange(next)
-      }, this.delay)
+      }, this.pageDelay)
     } else if (to.name === 'index') {
       this.pageChange()
       this.isRequiring = false
@@ -120,7 +120,7 @@ export default {
       setTimeout(() => {
         this.pageChange()
         next()
-      }, this.delay)
+      }, this.pageDelay)
     } else {
       next()
     }

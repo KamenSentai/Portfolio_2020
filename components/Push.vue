@@ -10,7 +10,8 @@
     :title="name"
     target="_blank"
     rel="noopener noreferrer"
-    :style="{ transitionDelay: `${index * delay}ms` }"
+    v-bind="$attrs"
+    v-on="$listeners"
   >
     <ACVTIcon
       :class="$style.icon"
@@ -32,10 +33,6 @@ export default {
     ACVTIcon,
   },
   props: {
-    index: {
-      type: Number,
-      default: 0,
-    },
     link: {
       type: String,
       required: true,
@@ -44,11 +41,6 @@ export default {
       type: String,
       required: true,
     },
-  },
-  data() {
-    return {
-      delay: 125,
-    }
   },
   computed: mapGetters('site', ['isInactive']),
 }

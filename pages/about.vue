@@ -18,9 +18,9 @@
             <ACVTPush
               v-for="(socialNetwork, i) in about.social"
               :key="socialNetwork.name"
-              :index="i"
               :link="socialNetwork.link"
               :name="socialNetwork.name"
+              :style="{ transitionDelay: `${i * pushDelay}ms` }"
             />
           </ACVTBreaker>
           <ACVTScroll />
@@ -104,6 +104,7 @@ export default {
     return {
       ACVTWrapper,
       pageDelay: 1500,
+      pushDelay: 125,
       isFading: false,
       revealed: [],
     }
