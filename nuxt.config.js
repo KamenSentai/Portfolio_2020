@@ -52,6 +52,11 @@ export default {
   css: [
     '~/assets/styles/index.scss',
   ],
+  router: {
+    middleware: [
+      'route',
+    ],
+  },
   plugins: [
     '~/plugins/vue-mixin.js',
     '~/plugins/vue-mq.js',

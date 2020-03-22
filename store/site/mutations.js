@@ -14,4 +14,8 @@ export default {
   updateIndex(state, index) {
     state.currentIndex = index
   },
+  updateRoute(state, route) {
+    state.fromRoute = state.toRoute
+    state.toRoute = route
+  },
 }
