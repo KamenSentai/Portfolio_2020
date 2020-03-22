@@ -3,7 +3,7 @@
     :class="[
       $style.container,
       {
-        [$style.isInactive]: isInactive,
+        [$style.isInactive]: isInactive || !isRequired,
         [$style.isUnclickable]: isUnclickable,
       }
     ]"
@@ -38,6 +38,10 @@ import { mapGetters } from 'vuex'
 export default {
   name: 'Navbar',
   props: {
+    isRequired: {
+      type: Boolean,
+      default: true,
+    },
     isUnclickable: {
       type: Boolean,
       default: false,

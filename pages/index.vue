@@ -6,6 +6,7 @@
   >
     <ACVTNavbar
       v-if="!$isTablet"
+      :is-required="isRequiring"
       :is-unclickable="isAnimating"
       @click="updateProject"
     />
@@ -27,6 +28,7 @@
         <ACVTButton
           v-show="isCurrent(i)"
           :key="`button-${project.slug}`"
+          :is-required="isRequiring"
           :is-unclickable="isAnimating"
           :to="{ name: 'project-slug', params: { slug: project.slug } }"
           :text="index.button"
@@ -35,6 +37,7 @@
       </template>
     </ACVTWrapper>
     <ACVTIndicator
+      :is-required="isRequiring"
       @up="wheel({ deltaY: -1 })"
       @down="wheel({ deltaY: 1 })"
     />
@@ -68,12 +71,14 @@ export default {
       isAnimating: false,
       isChanging: false,
       isFading: false,
+      isRequiring: true,
+      projectDelay: 2000,
       touchPosition: 0,
     }
   },
   computed: {
     ...mapGetters('page', ['projects', 'totalProjects']),
-    ...mapGetters('site', ['currentIndex', 'isInactive']),
+    ...mapGetters('site', ['currentIndex', 'fromRoute', 'isInactive']),
     ...mapGetters('text', ['index']),
     isCurrent() {
       return (index) => this.currentIndex === index
@@ -91,7 +96,9 @@ export default {
   },
   mounted() {
     setTimeout(() => {
-      this.toggleActivity()
+      if (this.fromRoute !== 'project-slug') {
+        this.toggleActivity()
+      }
       window.addEventListener('touchstart', this.touchstart)
       window.addEventListener('touchmove', this.touchmove)
       window.addEventListener('wheel', this.wheel)
@@ -111,12 +118,24 @@ export default {
         this.isFading = true
         this.pageChange(next)
       }, this.aboutDelay)
+    } else if (to.name === 'project-slug') {
+      this.isRequiring = false
+
+      setTimeout(() => {
+        next()
+      }, this.projectDelay)
     } else {
       next()
     }
   },
   methods: {
-    ...mapActions('site', ['loadIndex', 'pageChange', 'toggleActivity', 'toggleLight', 'updateIndex']),
+    ...mapActions('site', [
+      'loadIndex',
+      'pageChange',
+      'toggleActivity',
+      'toggleLight',
+      'updateIndex',
+    ]),
     touchmove({ touches }) {
       const [{ clientY: y }] = touches
       const movementY = y - this.touchPosition

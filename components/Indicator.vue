@@ -3,7 +3,7 @@
     :class="[
       $style.container,
       {
-        [$style.isInactive]: isInactive,
+        [$style.isInactive]: isInactive || !isRequired,
       }
     ]"
   >
@@ -57,6 +57,12 @@ export default {
   name: 'Indicator',
   components: {
     ACVTIcon,
+  },
+  props: {
+    isRequired: {
+      type: Boolean,
+      default: true,
+    },
   },
   computed: {
     ...mapGetters('page', ['totalProjects']),

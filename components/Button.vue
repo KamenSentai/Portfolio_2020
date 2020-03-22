@@ -4,7 +4,7 @@
     :class="[
       $style.container,
       {
-        [$style.isInactive]: isInactive,
+        [$style.isInactive]: isInactive || !isRequired,
         [$style.isLighten]: isLighten,
         [$style.isUnclickable]: isUnclickable,
       }
@@ -26,6 +26,10 @@ export default {
     component: {
       type: [Object, String],
       default: 'nuxt-link',
+    },
+    isRequired: {
+      type: Boolean,
+      default: true,
     },
     isUnclickable: {
       type: Boolean,
