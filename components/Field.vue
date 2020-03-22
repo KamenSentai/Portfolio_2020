@@ -33,6 +33,12 @@
         </ACVTVanish>
       </div>
       <div :class="$style.body">
+        <ACVTVanish
+          v-if="!!text"
+          :component="ACVTDocument"
+          :is-revealed="revealEvent.isRevealed"
+          :text="text"
+        />
         <div
           v-if="extra.name && extra.element && extra.items"
           :class="$style.extra"
@@ -74,7 +80,7 @@
             </ul>
           </div>
         </div>
-        <template v-if="list">
+        <template v-if="list.length">
           <ACVTVanish
             v-for="(element, i) in list"
             :key="`element-${i}`"
@@ -94,6 +100,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import ACVTDocument from '~/components/Document.vue'
 import ACVTReveal from '~/components/Reveal.vue'
 import ACVTVanish from '~/components/Vanish.vue'
 
@@ -120,6 +127,15 @@ export default {
       type: String,
       default: '',
     },
+    text: {
+      type: Array,
+      default: () => [],
+    },
+  },
+  data() {
+    return {
+      ACVTDocument,
+    }
   },
   computed: mapGetters('site', ['isInactive']),
 }

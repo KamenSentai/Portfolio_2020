@@ -224,7 +224,10 @@ export default () => ({
       slug: 'assoie-louvart',
       code: 'https://github.com/KamenSentai/Assoie_Louvart-portfolio',
       demo: 'http://assoielouvart.com/',
-      description: '',
+      description: [
+        'Assoïe is a UX/UI designer and classmate of mine. She wanted to update her portfolio in order to present her works as she is looking for an internship in a foreign country.',
+        'I didn’t not chose to refactor the previous portfolio and I prefered to build her portfolio from scratch because the code of the previous portfolio is frameworkless.',
+      ],
       mockup: '',
       date: '',
       tools: [
@@ -243,7 +246,11 @@ export default () => ({
       slug: 'meerodrop',
       code: '',
       demo: 'https://www.meerodrop.com/fr/',
-      description: '',
+      description: [
+        'I went to a 5-month internship at Meero. [Meero](https://www.meero.com/) is a french startup based in Paris and it is an on-demand photography company.',
+        'Meero is mainly a BtoB company, and a new project BtoC is planned which is MeeroDrop : it is a sharing media platform oriented towards photography.',
+        'We were 3 front-end developer and 3 back-end developers alonside a Head of, a product owner, a product manager and two UX/UI designers.',
+      ],
       mockup: '',
       date: '',
       tools: [
@@ -262,7 +269,11 @@ export default () => ({
       slug: 'offit',
       code: '',
       demo: 'https://offit.com/',
-      description: '',
+      description: [
+        'Our third year at HÉTIC is lead by a 6-month project with a client.',
+        'Victor Mertz is the founder of Offit, a BtoB coaching service, and he needs us to develop a website for his company and a webapp to manage his clients\' activities.',
+        'The website presents the company, the rate and a blog. All articles are written by Victor Mertz. Unfortunately, we couldn\'t be able to provide him a webapp.',
+      ],
       mockup: '',
       date: '',
       tools: [
@@ -281,7 +292,11 @@ export default () => ({
       slug: 'scaneat',
       code: 'https://github.com/KamenSentai/ScanEat',
       demo: '',
-      description: '',
+      description: [
+        'At school, we had a 5-days project about mobile : design a mobile application, develop it and build its business model. There was one rule : use [Open Food Fact API](https://en.wiki.openfoodfacts.org/API).',
+        'One member of our team has food constraints in their way of life. So, we imagined an application which helps people to easily detect which product is appropriate for a user by scanning it.',
+        'By the end of the five days, we succeeded with the sign up and sign in feature, we managed how to scan a product code, we can fetch data from the API and interact with the database.',
+      ],
       mockup: '',
       date: '',
       tools: [
@@ -300,7 +315,11 @@ export default () => ({
       slug: 'gaetan-lefebvre',
       code: 'https://github.com/KamenSentai/Gaetan-Lefebvre_portfolio',
       demo: 'https://gaetanlefebvre.fr/',
-      description: '',
+      description: [
+        'Gaëtan Lefebvre is a 4-year student at HÉTIC when I am a 3-third student. He was looking for a developer for his portfolio and I accepted to help him.',
+        'I started to use Vue.js, but I quickly migrated to Nuxt.js framework for SEO reasons. It was a long project, from early January to late March, due to plenty of responsive, animations and SEO constraints.',
+        'This portfolio is awarded with a [Honorable Mention](https://www.awwwards.com/sites/gaetan-lefebvre-portfolio) and a [Mobile Excellence](https://www.awwwards.com/sites/gaetan-lefebvre-portfolio/mobile-excellence-report) by Awwwards.',
+      ],
       mockup: '',
       date: '',
       tools: [
@@ -319,7 +338,11 @@ export default () => ({
       slug: 'chatmean',
       code: 'https://github.com/KamenSentai/ChatMEAN',
       demo: '',
-      description: '',
+      description: [
+        'In class, we built a Stack MEAN boilerplate, then we had to use it to develop a chat for a school project. The project was a real opportunity to test all the four technologies of the Stack MEAN ecosystem. The final step remaining is using Socket.io in order to make the chat live.',
+        'Assoïe, Jay-min and Olivia basically designed all the sketches, Loris integrated them and I built the chat system.',
+        'I tried to use socket.io so that the chat system is live, but it was unsuccessful. If I have time, I itendend to refactor this project.',
+      ],
       mockup: '',
       date: '',
       tools: [

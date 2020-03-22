@@ -1,7 +1,6 @@
 <template>
   <component
     :is="component"
-    :component="component"
     v-bind="$attrs"
     v-on="$listeners"
   >
