@@ -16,6 +16,7 @@ export default {
       const length = digitsLength - (index + 1).toString().length
       return {
         ...project,
+        index,
         formattedIndex: '0'.repeat(length) + (index + 1),
       }
     })

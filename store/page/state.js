@@ -221,6 +221,8 @@ export default () => ({
     {
       name: 'Assoïe Louvart\'s portfolio',
       slug: 'assoie-louvart',
+      code: 'https://github.com/KamenSentai/Assoie_Louvart-portfolio',
+      demo: 'http://assoielouvart.com/',
       description: '',
       mockup: '',
       date: '',
@@ -238,6 +240,8 @@ export default () => ({
     {
       name: 'MeeroDrop',
       slug: 'meerodrop',
+      code: '',
+      demo: 'https://www.meerodrop.com/fr/',
       description: '',
       mockup: '',
       date: '',
@@ -255,6 +259,8 @@ export default () => ({
     {
       name: 'Offit',
       slug: 'offit',
+      code: '',
+      demo: 'https://offit.com/',
       description: '',
       mockup: '',
       date: '',
@@ -272,6 +278,8 @@ export default () => ({
     {
       name: 'Scaneat',
       slug: 'scaneat',
+      code: 'https://github.com/KamenSentai/ScanEat',
+      demo: '',
       description: '',
       mockup: '',
       date: '',
@@ -289,6 +297,8 @@ export default () => ({
     {
       name: 'Gaëtan Lefebvre\'s portfolio',
       slug: 'gaetan-lefebvre',
+      code: 'https://github.com/KamenSentai/Gaetan-Lefebvre_portfolio',
+      demo: 'https://gaetanlefebvre.fr/',
       description: '',
       mockup: '',
       date: '',
@@ -306,6 +316,8 @@ export default () => ({
     {
       name: 'ChatMEAN',
       slug: 'chatmean',
+      code: 'https://github.com/KamenSentai/ChatMEAN',
+      demo: '',
       description: '',
       mockup: '',
       date: '',

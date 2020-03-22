@@ -67,12 +67,11 @@ export default {
   data() {
     return {
       ACVTJumbotron,
-      aboutDelay: 1750,
+      delay: 2000,
       isAnimating: false,
       isChanging: false,
       isFading: false,
       isRequiring: true,
-      projectDelay: 2000,
       touchPosition: 0,
     }
   },
@@ -117,13 +116,15 @@ export default {
       setTimeout(() => {
         this.isFading = true
         this.pageChange(next)
-      }, this.aboutDelay)
+      }, this.delay)
     } else if (to.name === 'project-slug') {
+      this.pageChange()
       this.isRequiring = false
 
       setTimeout(() => {
+        this.pageChange()
         next()
-      }, this.projectDelay)
+      }, this.delay)
     } else {
       next()
     }

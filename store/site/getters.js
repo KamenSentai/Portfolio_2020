@@ -14,9 +14,6 @@ export default {
   isPageChanging(state) {
     return state.isPageChanging
   },
-  projects(state) {
-    return state.projects
-  },
   temporaryIndex(state) {
     return state.temporaryIndex
   },

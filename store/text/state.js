@@ -6,6 +6,10 @@ export default () => ({
     button: 'Discover',
     tag: 'Project',
   },
+  project: {
+    code: 'View code',
+    demo: 'View demo',
+  },
   scroll: {
     text: 'Scroll',
   },

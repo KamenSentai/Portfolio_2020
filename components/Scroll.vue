@@ -3,7 +3,7 @@
     :class="[
       $style.container,
       {
-        [$style.isInactive]: isInactive,
+        [$style.isInactive]: isInactive || !isRequired,
         [$style.isLighten]: isLighten,
       }
     ]"
@@ -17,6 +17,12 @@ import { mapGetters } from 'vuex'
 
 export default {
   name: 'Scroll',
+  props: {
+    isRequired: {
+      type: Boolean,
+      default: true,
+    },
+  },
   computed: {
     ...mapGetters('site', ['isInactive', 'isLighten']),
     ...mapGetters('text', ['scroll']),

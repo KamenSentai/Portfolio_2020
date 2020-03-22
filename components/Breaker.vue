@@ -1,6 +1,11 @@
 <template>
   <ACVTGrid
-    :class="$style.container"
+    :class="[
+      $style.container,
+      {
+        [$style.isLarger]: isLarger
+      }
+    ]"
     v-bind="$attrs"
     v-on="$listeners"
   >
@@ -16,6 +21,12 @@ export default {
   components: {
     ACVTGrid,
   },
+  props: {
+    isLarger: {
+      type: Boolean,
+      default: false,
+    },
+  },
 }
 </script>
 
@@ -25,5 +36,9 @@ export default {
   grid-gap: space(sm);
   align-content: center;
   justify-content: flex-start;
+
+  &.isLarger {
+    grid-gap: space(md);
+  }
 }
 </style>
