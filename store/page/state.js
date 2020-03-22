@@ -115,6 +115,7 @@ export default () => ({
               'Strapi',
               'Laravel',
               'Symfony',
+              'TypeScript',
               'GatsbyJS',
               'Next.js',
               'GraphQL',

@@ -140,14 +140,12 @@ export default {
       'toggleLight',
       'updateIndex',
     ]),
-    touchmove({ touches }) {
-      const [{ clientY: y }] = touches
+    touchmove({ touches: [{ clientY: y }] }) {
       const movementY = y - this.touchPosition
       this.touchPosition = y
       this.wheel({ deltaY: -movementY })
     },
-    touchstart({ touches }) {
-      const [{ clientY: y }] = touches
+    touchstart({ touches: [{ clientY: y }] }) {
       this.touchPosition = y
     },
     updateProject(index) {
