@@ -18,6 +18,7 @@
         <ACVTHero
           v-show="isCurrent(i)"
           :key="`hero-${project.slug}`"
+          component="h2"
           :is-changing="isChanging"
           :is-current="isCurrent(i)"
           is-expandable

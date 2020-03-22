@@ -10,9 +10,12 @@
     ]"
   >
     <span :class="$style.tag">{{ tag }}</span>
-    <h2 :class="$style.title">
+    <component
+      :is="component"
+      :class="$style.title"
+    >
       {{ title }}
-    </h2>
+    </component>
   </div>
 </template>
 
@@ -22,6 +25,10 @@ import { mapGetters } from 'vuex'
 export default {
   name: 'Hero',
   props: {
+    component: {
+      type: [Object, String],
+      default: 'h1',
+    },
     isChanging: {
       type: Boolean,
       default: false,
