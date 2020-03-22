@@ -229,14 +229,20 @@ export default () => ({
         'I didn’t not chose to refactor the previous portfolio and I prefered to build her portfolio from scratch because the code of the previous portfolio is frameworkless.',
       ],
       mockup: '',
-      date: '',
+      date: [
+        'January 2020 — Frebruary 2020',
+      ],
       tools: [
-        '',
+        'Vue.js',
       ],
       team: [
         {
-          name: '',
-          role: '',
+          name: 'Assoïe LOUVART DE PONTLEVOYE',
+          role: 'Project manager & UX/UI designer',
+        },
+        {
+          name: 'Alain CAO VAN TRUONG',
+          role: 'Front-end developer',
         },
       ],
       gallery: [],
@@ -252,14 +258,25 @@ export default () => ({
         'We were 3 front-end developer and 3 back-end developers alonside a Head of, a product owner, a product manager and two UX/UI designers.',
       ],
       mockup: '',
-      date: '',
+      date: [
+        'June 2019 — November 2019',
+      ],
       tools: [
-        '',
+        'Vue.js',
+        'Symfony',
+        'API Platform',
+        'AWS',
+        'Docker',
+        'Jenkins',
       ],
       team: [
         {
-          name: '',
+          name: 'MeeroDrop squad',
           role: '',
+        },
+        {
+          name: 'Alain CAO VAN TRUONG',
+          role: 'Front-end developer',
         },
       ],
       gallery: [],
@@ -275,14 +292,34 @@ export default () => ({
         'The website presents the company, the rate and a blog. All articles are written by Victor Mertz. Unfortunately, we couldn\'t be able to provide him a webapp.',
       ],
       mockup: '',
-      date: '',
+      date: [
+        'January 2019 — June 2019',
+      ],
       tools: [
-        '',
+        'Vue.js',
+        'WordPress',
+        'ACF',
       ],
       team: [
         {
-          name: '',
-          role: '',
+          name: 'Paul AGOSTINI',
+          role: 'Project manager',
+        },
+        {
+          name: 'Victor BLOCH',
+          role: 'Lead UX/UI designer',
+        },
+        {
+          name: 'Yoann HALM',
+          role: 'UX/UI designer & SEO/SEA manager',
+        },
+        {
+          name: 'Charles BASSIGNOT',
+          role: 'Back-end developer',
+        },
+        {
+          name: 'Alain CAO VAN TRUONG',
+          role: 'Full-stack developer',
         },
       ],
       gallery: [],
@@ -298,14 +335,33 @@ export default () => ({
         'By the end of the five days, we succeeded with the sign up and sign in feature, we managed how to scan a product code, we can fetch data from the API and interact with the database.',
       ],
       mockup: '',
-      date: '',
+      date: [
+        'April 2019',
+      ],
       tools: [
-        '',
+        'Swift',
+        'Firebase',
       ],
       team: [
         {
-          name: '',
-          role: '',
+          name: 'Arthur GIRAULT',
+          role: 'Project manager & marketing manager',
+        },
+        {
+          name: 'Yoël HANOUFA',
+          role: 'UX/UI designer & marketing manager',
+        },
+        {
+          name: 'Téo MIGDAL',
+          role: 'UX/UI designer & marketing manager',
+        },
+        {
+          name: 'Marie-Athénaïs DUSSORDET',
+          role: 'Mobile developer',
+        },
+        {
+          name: 'Alain CAO VAN TRUONG',
+          role: 'Mobile developer',
         },
       ],
       gallery: [],
@@ -321,14 +377,22 @@ export default () => ({
         'This portfolio is awarded with a [Honorable Mention](https://www.awwwards.com/sites/gaetan-lefebvre-portfolio) and a [Mobile Excellence](https://www.awwwards.com/sites/gaetan-lefebvre-portfolio/mobile-excellence-report) by Awwwards.',
       ],
       mockup: '',
-      date: '',
+      date: [
+        'December 2018 — March 2019',
+      ],
       tools: [
-        '',
+        'Vue.js',
+        'Nuxt.js',
+        'GSAP',
       ],
       team: [
         {
-          name: '',
-          role: '',
+          name: 'Gaëtan LEFEBVRE',
+          role: 'Project manager & UX/UI designer',
+        },
+        {
+          name: 'Alain CAO VAN TRUONG',
+          role: 'Front-end developer',
         },
       ],
       gallery: [],
@@ -344,14 +408,35 @@ export default () => ({
         'I tried to use socket.io so that the chat system is live, but it was unsuccessful. If I have time, I itendend to refactor this project.',
       ],
       mockup: '',
-      date: '',
+      date: [
+        'Frebruary 2019',
+      ],
       tools: [
-        '',
+        'MongoDB',
+        'Angular',
+        'Express.js',
+        'Node.js',
       ],
       team: [
         {
-          name: '',
-          role: '',
+          name: 'Assoïe LOUVART DE PONTLEVOYE',
+          role: 'Project manager & UX/UI designer',
+        },
+        {
+          name: 'Jay-min PATEL',
+          role: 'UX/UI designer',
+        },
+        {
+          name: 'Olivia MONKAM',
+          role: 'UX/UI designer',
+        },
+        {
+          name: 'Loris MARINO',
+          role: 'Front-end developer',
+        },
+        {
+          name: 'Alain CAO VAN TRUONG',
+          role: 'Back-end developer',
         },
       ],
       gallery: [],

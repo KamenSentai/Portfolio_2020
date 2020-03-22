@@ -1,6 +1,11 @@
 <template>
   <ACVTReveal
-    :class="$style.container"
+    :class="[
+      $style.container,
+      {
+        [$style.isLarger]: isLarger,
+      }
+    ]"
     @reveal="$emit('reveal')"
   >
     <template v-slot:default="revealEvent">
@@ -34,7 +39,7 @@
       </div>
       <div :class="$style.body">
         <ACVTVanish
-          v-if="!!text"
+          v-if="text.length"
           :component="ACVTDocument"
           :is-revealed="revealEvent.isRevealed"
           :text="text"
@@ -93,6 +98,23 @@
             {{ element }}
           </ACVTVanish>
         </template>
+        <template v-if="group.length">
+          <ACVTVanish
+            v-for="([prev, next], i) in group"
+            :key="`element-${i}`"
+            :component="ACVTBreaker"
+            :is-revealed="revealEvent.isRevealed"
+            :order="i"
+            template-columns="1fr 1fr"
+          >
+            <p :class="$style.line">
+              {{ prev }}
+            </p>
+            <p :class="$style.line">
+              {{ next }}
+            </p>
+          </ACVTVanish>
+        </template>
       </div>
     </template>
   </ACVTReveal>
@@ -100,6 +122,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import ACVTBreaker from '~/components/Breaker.vue'
 import ACVTDocument from '~/components/Document.vue'
 import ACVTReveal from '~/components/Reveal.vue'
 import ACVTVanish from '~/components/Vanish.vue'
@@ -114,6 +137,14 @@ export default {
     extra: {
       type: Object,
       default: () => ({}),
+    },
+    group: {
+      type: Array,
+      default: () => [],
+    },
+    isLarger: {
+      type: Boolean,
+      default: false,
     },
     list: {
       type: Array,
@@ -134,6 +165,7 @@ export default {
   },
   data() {
     return {
+      ACVTBreaker,
       ACVTDocument,
     }
   },
@@ -145,6 +177,10 @@ export default {
 .container {
   display: grid;
   grid-gap: space(sm);
+
+  &.isLarger {
+    grid-column: 1 / -1;
+  }
 }
 
 .head {
@@ -231,7 +267,7 @@ export default {
   text-align: right;
 }
 
-.element {
-  font-size: size(sm);
+.line {
+  font-size: size(xs);
 }
 </style>

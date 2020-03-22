@@ -79,7 +79,7 @@ export default {
 <style lang="scss" module>
 .container {
   display: grid;
-  grid-gap: space(sm);
+  grid-gap: space(xs);
   align-content: flex-start;
   font-weight: 300;
   line-height: 1.25;

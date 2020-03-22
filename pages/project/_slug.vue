@@ -36,6 +36,26 @@
           :text="currentProject.description"
         />
       </ACVTWrapper>
+      <ACVTWrapper>
+        <ACVTSection
+          :template-columns="$isMobile ? '1fr' : '1fr 1fr'"
+          align-items="flex-start"
+        >
+          <ACVTField
+            subtitle="Date"
+            :text="currentProject.date"
+          />
+          <ACVTField
+            subtitle="Tools"
+            :text="currentProject.tools"
+          />
+          <ACVTField
+            is-larger
+            :group="currentProject.team.map((entity) => Object.values(entity))"
+            subtitle="Team"
+          />
+        </ACVTSection>
+      </ACVTWrapper>
     </ACVTContainer>
   </ACVTPage>
 </template>
@@ -50,6 +70,7 @@ import ACVTHero from '~/components/Hero.vue'
 import ACVTJumbotron from '~/components/Jumbotron.vue'
 import ACVTPage from '~/components/Page.vue'
 import ACVTScroll from '~/components/Scroll.vue'
+import ACVTSection from '~/components/Section.vue'
 import ACVTWrapper from '~/components/Wrapper.vue'
 
 export default {
@@ -63,6 +84,7 @@ export default {
     ACVTJumbotron,
     ACVTPage,
     ACVTScroll,
+    ACVTSection,
     ACVTWrapper,
   },
   data() {

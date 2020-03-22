@@ -21,6 +21,6 @@ export default {
 
 <style lang="scss" module>
 .container {
-  grid-gap: space(lg);
+  grid-gap: space(lg) space(sm);
 }
 </style>
