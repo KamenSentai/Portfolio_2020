@@ -113,6 +113,8 @@ export default {
     window.removeEventListener('wheel', this.wheel)
   },
   beforeRouteLeave(to, _, next) {
+    this.isAnimating = true
+
     if (to.name === 'about') {
       this.pageChange()
       this.toggleActivity()
