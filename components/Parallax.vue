@@ -1,5 +1,5 @@
 <template>
-  <div
+  <ACVTVanish
     ref="container"
     :class="$style.container"
     :style="{ paddingTop: padding, paddingBottom: padding }"
@@ -10,12 +10,17 @@
       :style="transform"
       @load="load"
     >
-  </div>
+  </ACVTVanish>
 </template>
 
 <script>
+import ACVTVanish from '~/components/Vanish.vue'
+
 export default {
   name: 'Parallax',
+  components: {
+    ACVTVanish,
+  },
   props: {
     src: {
       type: String,
@@ -47,7 +52,7 @@ export default {
         const {
           clientHeight,
           offsetTop,
-        } = this.$refs.container || { clientHeight: 0, offsetTop: 0 }
+        } = (this.$refs.container && this.$refs.container.$el) || { clientHeight: 0, offsetTop: 0 }
         const from = offsetTop - windowHeight
         const to = offsetTop + clientHeight
         const delta = ((scrollY - from) / (to - from) - 0.5) * (1 - frameRatio) * 100
