@@ -1,3 +1,4 @@
 export default ({ store, route }) => {
-  store.commit('site/updateRoute', route.name, { root: true })
+  const { name, params } = route
+  store.commit('site/updateRoute', { name, params }, { root: true })
 }

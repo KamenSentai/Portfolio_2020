@@ -16,7 +16,7 @@
         :key="`link-${index}`"
         :class="$style.link"
         :title="link.isActive && link.title"
-        :to="link.isActive && { name: link.name }"
+        :to="link.isActive && { name: link.name, params: link.params }"
       >
         {{ link.title }}
       </component>
@@ -40,7 +40,7 @@ export default {
   },
   computed: {
     ...mapGetters('loading', ['isCompleted']),
-    ...mapGetters('site', ['isPageChanging']),
+    ...mapGetters('site', ['fromRoute', 'isPageChanging']),
     ...mapGetters('text', ['header']),
     isActive() {
       return (routes) => !!routes && routes.includes(this.$route.name)
@@ -65,7 +65,8 @@ export default {
           ],
         },
         {
-          name: 'index',
+          name: this.fromRoute.name || 'index',
+          params: this.fromRoute.params,
           title: this.header.return,
           routes: [
             'about',

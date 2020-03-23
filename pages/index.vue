@@ -93,11 +93,11 @@ export default {
   },
   beforeMount() {
     this.toggleLight(false)
-    this.isRequiring = this.fromRoute !== 'project-slug'
+    this.isRequiring = this.fromRoute.name !== 'project-slug'
   },
   mounted() {
     setTimeout(() => {
-      if (this.fromRoute !== 'project-slug') {
+      if (this.fromRoute.name !== 'project-slug') {
         this.toggleActivity()
       } else {
         this.isRequiring = true
