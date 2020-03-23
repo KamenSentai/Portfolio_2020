@@ -1,5 +1,8 @@
 export default {
-  loadIndex({ commit, state: { duration } }, index) {
+  loadIndex({ commit }, index) {
+    commit('loadIndex', index)
+  },
+  navigateIndex({ commit, state: { duration } }, index) {
     commit('loadIndex', index)
 
     setTimeout(() => {

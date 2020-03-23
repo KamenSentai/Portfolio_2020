@@ -166,16 +166,24 @@ export default {
     }
   },
   beforeRouteUpdate(_, __, next) {
+    const index = (this.currentProject.index + 1) % this.totalProjects
     this.pageChange()
     this.toggleActivity()
 
     setTimeout(() => {
-      this.updateIndex((this.currentProject.index + 1) % this.totalProjects)
+      this.loadIndex(index)
+      this.updateIndex(index)
       this.pageChange()
       next()
     }, this.pageDelay)
   },
-  methods: mapActions('site', ['pageChange', 'toggleActivity', 'toggleLight', 'updateIndex']),
+  methods: mapActions('site', [
+    'loadIndex',
+    'pageChange',
+    'toggleActivity',
+    'toggleLight',
+    'updateIndex',
+  ]),
 }
 </script>
 

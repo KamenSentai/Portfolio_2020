@@ -134,7 +134,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions('site', ['loadIndex', 'pageChange', 'toggleActivity', 'toggleLight']),
+    ...mapActions('site', ['navigateIndex', 'pageChange', 'toggleActivity', 'toggleLight']),
     touchmove({ touches: [{ clientY: y }] }) {
       const movementY = y - this.touchPosition
       this.touchPosition = y
@@ -147,7 +147,7 @@ export default {
       if (index >= 0 && index < this.totalProjects) {
         this.isAnimating = true
         this.isChanging = true
-        this.loadIndex(index)
+        this.navigateIndex(index)
       }
     },
     wheel({ deltaY }) {
