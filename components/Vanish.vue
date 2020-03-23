@@ -69,7 +69,7 @@ export default {
     transform-origin: right;
     transition: transform $smooth time(short);
     content: "";
-    @include overlay;
+    @include overlay((position: absolute, value: -1px));
   }
 
   &.isInactive::after {

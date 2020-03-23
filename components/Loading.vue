@@ -65,7 +65,7 @@ export default {
   z-index: 1;
   background-color: color(dark);
   @include centralizer;
-  @include overlay(fixed);
+  @include overlay((position: fixed, value: 0));
 
   &.isInactive .wrapper {
     transform: scaleX(0);

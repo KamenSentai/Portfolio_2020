@@ -85,11 +85,14 @@ $breakpoints: (
   @content;
 }
 
-@mixin overlay($position: absolute) {
-  position: $position;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
+@mixin overlay($list: (
+  position: absolute,
+  value: 0,
+)) {
+  position: map-get($list, position);
+  top: map-get($list, value);
+  right: map-get($list, value);
+  bottom: map-get($list, value);
+  left: map-get($list, value);
   @content;
 }

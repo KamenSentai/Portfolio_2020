@@ -132,7 +132,7 @@ export default {
     transition: transform $smooth-slower time(longest);
     content: "";
     pointer-events: none;
-    @include overlay;
+    @include overlay((position: absolute, value: -1px));
   }
 }
 </style>
