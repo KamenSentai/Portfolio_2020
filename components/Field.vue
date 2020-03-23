@@ -60,7 +60,7 @@
           </ACVTVanish>
           <div :class="$style.content">
             <ACVTVanish
-              :class="$style.element"
+              class="font-sm"
               component="h5"
               :is-revealed="revealEvent.isRevealed"
               :order="2"
@@ -89,7 +89,7 @@
           <ACVTVanish
             v-for="(element, i) in list"
             :key="`element-${i}`"
-            :class="$style.element"
+            class="font-xs"
             :is-revealed="revealEvent.isRevealed"
             :order="i"
             v-bind="$attrs"
@@ -107,10 +107,10 @@
             :order="i"
             template-columns="1fr 1fr"
           >
-            <p :class="$style.line">
+            <p class="font-xs">
               {{ prev }}
             </p>
-            <p :class="$style.line">
+            <p class="font-xs">
               {{ next }}
             </p>
           </ACVTVanish>
@@ -251,10 +251,6 @@ export default {
   align-items: baseline;
 }
 
-.element {
-  font-size: size(sm);
-}
-
 .box {
   display: grid;
   grid-gap: space(xs);
@@ -265,9 +261,5 @@ export default {
 .item {
   font-weight: 300;
   text-align: right;
-}
-
-.line {
-  font-size: size(xs);
 }
 </style>

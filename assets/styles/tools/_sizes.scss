@@ -10,3 +10,10 @@ $sizes: (
 @function size($name) {
   @return map-get($sizes, $name);
 }
+
+@each $name, $size in $sizes {
+
+  .font-#{$name} {
+    font-size: $size;
+  }
+}

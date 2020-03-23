@@ -119,7 +119,7 @@ export default () => ({
               'Symfony',
               'TypeScript',
               'GatsbyJS',
-              'Next.js',
+              'Cypress',
               'GraphQL',
               'Docker',
             ],
@@ -147,7 +147,7 @@ export default () => ({
           {
             subtitle: 'Series',
             list: [
-              'Super Senter',
+              'Super Sentai',
               'Kamen Rider',
               'Criminal Minds',
               'Breaking Bad',
