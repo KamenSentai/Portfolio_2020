@@ -7,6 +7,7 @@
         [$style.isLighten]: isLighten,
       }
     ]"
+    @click="scrollTo"
   >
     <span :class="$style.text">{{ scroll.text }}</span>
   </div>
@@ -14,6 +15,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import { easings, scrollTo } from '~/assets/scripts/scroll'
 
 export default {
   name: 'Scroll',
@@ -27,6 +29,11 @@ export default {
     ...mapGetters('site', ['isInactive', 'isLighten']),
     ...mapGetters('text', ['scroll']),
   },
+  methods: {
+    scrollTo() {
+      scrollTo(window.innerHeight, 1000, easings.easeInOutQuad)
+    },
+  },
 }
 </script>
 
@@ -35,11 +42,11 @@ export default {
   position: relative;
   display: grid;
   grid-gap: space(sm);
-  align-content: flex-end;
-  align-items: flex-end;
+  align-self: flex-end;
   justify-content: center;
   justify-items: center;
   width: 80px;
+  cursor: pointer;
 
   @include bp(sm) {
     width: 100%;
