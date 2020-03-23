@@ -86,6 +86,7 @@ import ACVTParallax from '~/components/Parallax.vue'
 import ACVTScroll from '~/components/Scroll.vue'
 import ACVTSection from '~/components/Section.vue'
 import ACVTWrapper from '~/components/Wrapper.vue'
+import { easings, scrollTo } from '~/assets/scripts/scroll'
 
 export default {
   name: 'Project',
@@ -111,7 +112,7 @@ export default {
   },
   computed: {
     ...mapGetters('page', ['currentProject', 'totalProjects']),
-    ...mapGetters('site', ['fromRoute']),
+    ...mapGetters('site', ['isInactive']),
     ...mapGetters('text', ['index', 'project']),
     nextProject() {
       return this.currentProject.next
@@ -133,11 +134,11 @@ export default {
   },
   beforeMount() {
     this.toggleLight(false)
-    this.isRequiring = this.fromRoute.name !== 'index'
+    this.isRequiring = this.isInactive
   },
   mounted() {
     setTimeout(() => {
-      if (this.fromRoute.name !== 'index') {
+      if (this.isInactive) {
         this.toggleActivity()
       } else {
         this.isRequiring = true
@@ -145,21 +146,27 @@ export default {
     }, 500)
   },
   beforeRouteLeave(to, _, next) {
-    if (to.name === 'about') {
+    if (to.name === 'index') {
+      this.pageChange()
+      this.isRequiring = false
+
+      if (window.scrollY < window.innerHeight / 2) {
+        scrollTo(0, 1000, easings.easeInOutQuad)
+      } else {
+        this.toggleActivity()
+      }
+
+      setTimeout(() => {
+        this.pageChange()
+        next()
+      }, this.pageDelay)
+    } else if (to.name === 'about') {
       this.pageChange()
       this.toggleActivity()
 
       setTimeout(() => {
         this.isFading = true
         this.pageChange(next)
-      }, this.pageDelay)
-    } else if (to.name === 'index') {
-      this.pageChange()
-      this.isRequiring = false
-
-      setTimeout(() => {
-        this.pageChange()
-        next()
       }, this.pageDelay)
     } else {
       next()

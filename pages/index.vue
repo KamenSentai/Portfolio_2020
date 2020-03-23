@@ -78,7 +78,7 @@ export default {
   },
   computed: {
     ...mapGetters('page', ['projects', 'totalProjects']),
-    ...mapGetters('site', ['currentIndex', 'fromRoute', 'isInactive']),
+    ...mapGetters('site', ['currentIndex', 'isInactive']),
     ...mapGetters('text', ['index']),
     isCurrent() {
       return (index) => this.currentIndex === index
@@ -93,11 +93,11 @@ export default {
   },
   beforeMount() {
     this.toggleLight(false)
-    this.isRequiring = this.fromRoute.name !== 'project-slug'
+    this.isRequiring = this.isInactive
   },
   mounted() {
     setTimeout(() => {
-      if (this.fromRoute.name !== 'project-slug') {
+      if (this.isInactive) {
         this.toggleActivity()
       } else {
         this.isRequiring = true
