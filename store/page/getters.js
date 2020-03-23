@@ -11,9 +11,6 @@ export default {
       next: state.projects[(currentIndex + 1) % totalProjects],
     }
   },
-  header(state) {
-    return state.header
-  },
   projects(state, _, __, rootGetters) {
     const totalProjects = rootGetters['page/totalProjects']
     const digitsLength = totalProjects.toString().length + 1

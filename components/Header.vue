@@ -40,13 +40,38 @@ export default {
   },
   computed: {
     ...mapGetters('loading', ['isCompleted']),
-    ...mapGetters('page', ['header']),
     ...mapGetters('site', ['isPageChanging']),
+    ...mapGetters('text', ['header']),
     isActive() {
       return (routes) => !!routes && routes.includes(this.$route.name)
     },
     links() {
-      return this.header
+      return [
+        {
+          isMain: true,
+          name: 'index',
+          title: this.header.main,
+          routes: [
+            'about',
+            'project-slug',
+          ],
+        },
+        {
+          name: 'about',
+          title: this.header.about,
+          routes: [
+            'index',
+            'project-slug',
+          ],
+        },
+        {
+          name: 'index',
+          title: this.header.return,
+          routes: [
+            'about',
+          ],
+        },
+      ]
         .map((link) => ({
           ...link,
           isActive: this.isActive(link.routes),

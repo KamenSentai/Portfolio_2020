@@ -194,32 +194,6 @@ export default () => ({
     tag: 'I am a',
     title: 'Junior full-stack developer',
   },
-  header: [
-    {
-      isMain: true,
-      name: 'index',
-      title: 'ACVT',
-      routes: [
-        'about',
-        'project-slug',
-      ],
-    },
-    {
-      name: 'about',
-      title: 'About',
-      routes: [
-        'index',
-        'project-slug',
-      ],
-    },
-    {
-      name: 'index',
-      title: 'Return',
-      routes: [
-        'about',
-      ],
-    },
-  ],
   projects: [
     {
       name: 'Assoïe Louvart\'s portfolio',

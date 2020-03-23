@@ -2,6 +2,9 @@ export default {
   credit(state) {
     return state.credit
   },
+  header(state) {
+    return state.header
+  },
   index(state) {
     return state.index
   },
