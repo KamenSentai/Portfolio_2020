@@ -4,7 +4,7 @@
     :is-fading="isFading"
     is-limited
   >
-    <ACVTNavbar
+    <ACVTSidebar
       v-if="!$isTablet"
       :is-required="isRequiring"
       :is-unclickable="isAnimating"
@@ -51,7 +51,7 @@ import ACVTButton from '~/components/Button.vue'
 import ACVTHero from '~/components/Hero.vue'
 import ACVTIndicator from '~/components/Indicator.vue'
 import ACVTJumbotron from '~/components/Jumbotron.vue'
-import ACVTNavbar from '~/components/Navbar.vue'
+import ACVTSidebar from '~/components/Sidebar.vue'
 import ACVTPage from '~/components/Page.vue'
 import ACVTWrapper from '~/components/Wrapper.vue'
 
@@ -61,7 +61,7 @@ export default {
     ACVTButton,
     ACVTHero,
     ACVTIndicator,
-    ACVTNavbar,
+    ACVTSidebar,
     ACVTPage,
     ACVTWrapper,
   },

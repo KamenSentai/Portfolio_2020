@@ -36,7 +36,7 @@
 import { mapGetters } from 'vuex'
 
 export default {
-  name: 'Navbar',
+  name: 'Sidebar',
   props: {
     isRequired: {
       type: Boolean,
