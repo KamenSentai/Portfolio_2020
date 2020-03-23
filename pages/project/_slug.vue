@@ -110,7 +110,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('page', ['currentProject']),
+    ...mapGetters('page', ['currentProject', 'totalProjects']),
     ...mapGetters('site', ['fromRoute']),
     ...mapGetters('text', ['index', 'project']),
     nextProject() {
@@ -165,9 +165,17 @@ export default {
       next()
     }
   },
-  methods: {
-    ...mapActions('site', ['pageChange', 'toggleActivity', 'toggleLight']),
+  beforeRouteUpdate(_, __, next) {
+    this.pageChange()
+    this.toggleActivity()
+
+    setTimeout(() => {
+      this.updateIndex((this.currentProject.index + 1) % this.totalProjects)
+      this.pageChange()
+      next()
+    }, this.pageDelay)
   },
+  methods: mapActions('site', ['pageChange', 'toggleActivity', 'toggleLight', 'updateIndex']),
 }
 </script>
 

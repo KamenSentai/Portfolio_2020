@@ -1,6 +1,10 @@
 export default {
-  loadIndex({ commit }, index) {
+  loadIndex({ commit, state: { duration } }, index) {
     commit('loadIndex', index)
+
+    setTimeout(() => {
+      commit('updateIndex', index)
+    }, duration)
   },
   pageChange({ commit, state: { duration } }, callback) {
     if (callback) {
@@ -18,11 +22,7 @@ export default {
   toggleLight({ commit }, value = null) {
     commit('toggleLight', value)
   },
-  updateIndex({ commit, state: { duration } }, index) {
-    commit('loadIndex', index)
-
-    setTimeout(() => {
-      commit('updateIndex', index)
-    }, duration)
+  updateIndex({ commit }, index) {
+    commit('updateIndex', index)
   },
 }
