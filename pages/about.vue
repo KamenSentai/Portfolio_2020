@@ -9,14 +9,14 @@
         <ACVTArea>
           <ACVTButton
             component="a"
-            :href="about.resume"
+            :href="resume"
             rel="noopener noreferrer"
             target="_blank"
             :text="about.button"
           />
           <ACVTBreaker>
             <ACVTPush
-              v-for="(socialNetwork, i) in about.social"
+              v-for="(socialNetwork, i) in social"
               :key="socialNetwork.name"
               :link="socialNetwork.link"
               :name="socialNetwork.name"
@@ -36,7 +36,7 @@
         <ACVTDocument :text="about.description" />
       </ACVTWrapper>
       <ACVTWrapper
-        v-for="(section, i) in about.main"
+        v-for="(section, i) in curriculum"
         :key="`section-${i}`"
         :auto-flow="$isMobile ? 'row' : 'column'"
         :template-columns="$isMobile ? '1fr' : '1fr 1fr'"
@@ -110,7 +110,8 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('page', ['about']),
+    ...mapGetters('page', ['curriculum', 'resume', 'social']),
+    ...mapGetters('text', ['about']),
     ...mapGetters('site', ['isInactive']),
   },
   beforeMount() {

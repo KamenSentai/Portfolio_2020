@@ -1,6 +1,6 @@
 export default {
-  about(state) {
-    return state.about
+  curriculum(state) {
+    return state.curriculum
   },
   currentProject(state, _, __, rootGetters) {
     const currentIndex = rootGetters['site/currentIndex']
@@ -23,6 +23,12 @@ export default {
         formattedIndex: '0'.repeat(length) + (index + 1),
       }
     })
+  },
+  resume(state) {
+    return state.resume
+  },
+  social(state) {
+    return state.social
   },
   totalProjects(state) {
     return state.projects.length
