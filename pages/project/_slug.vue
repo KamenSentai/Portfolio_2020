@@ -116,7 +116,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('page', ['currentProject', 'totalProjects']),
+    ...mapGetters('page', ['currentProject', 'projects', 'totalProjects']),
     ...mapGetters('site', ['isInactive']),
     ...mapGetters('text', ['index', 'project']),
     nextProject() {
@@ -125,9 +125,7 @@ export default {
   },
   beforeRouteEnter(to, from, next) {
     next((vm) => {
-      const requestedProject = vm.$store
-        .getters['page/projects']
-        .find((project) => project.slug === to.params.slug)
+      const requestedProject = vm.projects.find((project) => project.slug === to.params.slug)
 
       if (requestedProject) {
         vm.$store.commit('site/updateIndex', requestedProject.index, { root: true })
@@ -150,7 +148,7 @@ export default {
       }
     }, 500)
   },
-  beforeRouteLeave(to, _, next) {
+  beforeRouteLeave(to, from, next) {
     if (to.name === 'index') {
       this.pageChange()
       this.isRequiring = false
@@ -177,8 +175,8 @@ export default {
       next()
     }
   },
-  beforeRouteUpdate(_, __, next) {
-    const index = (this.currentProject.index + 1) % this.totalProjects
+  beforeRouteUpdate(to, from, next) {
+    const { index } = this.projects.find((project) => project.slug === to.params.slug)
     this.pageChange()
     this.toggleActivity()
 
