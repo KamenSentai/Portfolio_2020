@@ -1,3 +1,15 @@
+const routes = {
+  path: '/projects/',
+  slugs: [
+    'assoie-louvart',
+    'meerodrop',
+    'offit',
+    'scaneat',
+    'gaetan-lefebvre',
+    'chatmean',
+  ],
+}
+
 export default {
   mode: 'universal',
   head: {
@@ -82,5 +94,8 @@ export default {
         },
       },
     },
+  },
+  generate: {
+    routes: routes.slugs.map((slug) => routes.path + slug),
   },
 }
