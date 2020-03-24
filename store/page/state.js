@@ -219,7 +219,14 @@ export default () => ({
           role: 'Front-end developer',
         },
       ],
-      gallery: [],
+      gallery: [
+        [resources.AssoieLouvartHomeYukey, resources.AssoieLouvartProjectYukey],
+        [resources.AssoieLouvartHomeFeedchi, resources.AssoieLouvartProjectFeedchi],
+        [resources.AssoieLouvartHomePocketNurse, resources.AssoieLouvartProjectPocketNurse],
+        [resources.AssoieLouvartHomeMealthy, resources.AssoieLouvartProjectMealthy],
+        [resources.AssoieLouvartHomeAcneStudios, resources.AssoieLouvartProjectAcneStudios],
+        [resources.AssoieLouvartAbout],
+      ],
     },
     {
       name: 'MeeroDrop',
@@ -251,7 +258,14 @@ export default () => ({
           role: 'Front-end developer',
         },
       ],
-      gallery: [],
+      gallery: [
+        [resources.MeeroDropHome],
+        [resources.MeeroDropUpload],
+        [resources.MeeroDropGallery],
+        [resources.MeeroDropGrid],
+        [resources.MeeroDropDrops],
+        [resources.MeeroDropProfil],
+      ],
     },
     {
       name: 'Offit',
@@ -292,7 +306,14 @@ export default () => ({
           role: 'Full-stack developer',
         },
       ],
-      gallery: [],
+      gallery: [
+        [resources.OffitHome],
+        [resources.OffitValues],
+        [resources.OffitPrograms],
+        [resources.OffitQuote],
+        [resources.OffitForm],
+        [resources.OffitArticle],
+      ],
     },
     {
       name: 'Scaneat',
@@ -332,7 +353,10 @@ export default () => ({
           role: 'Mobile developer',
         },
       ],
-      gallery: [],
+      gallery: [
+        [resources.ScaneatSignIn, resources.ScaneatSignUp, resources.ScaneatSuggestions],
+        [resources.ScaneatList, resources.ScaneatScan, resources.ScaneatOptions],
+      ],
     },
     {
       name: 'Gaëtan Lefebvre\'s portfolio',
@@ -361,7 +385,14 @@ export default () => ({
           role: 'Front-end developer',
         },
       ],
-      gallery: [],
+      gallery: [
+        [resources.GaetanLefebvreAboutGreen, resources.GaetanLefebvreAboutBlue],
+        [resources.GaetanLefebvreAboutRed, resources.GaetanLefebvreAboutYellow],
+        [resources.GaetanLefebvreHomeGreen, resources.GaetanLefebvreHomeBlue],
+        [resources.GaetanLefebvreHomeRed, resources.GaetanLefebvreHomeYellow],
+        [resources.GaetanLefebvreProjectGreen, resources.GaetanLefebvreProjectBlue],
+        [resources.GaetanLefebvreProjectRed, resources.GaetanLefebvreProjectYellow],
+      ],
     },
     {
       name: 'ChatMEAN',
@@ -403,7 +434,12 @@ export default () => ({
           role: 'Back-end developer',
         },
       ],
-      gallery: [],
+      gallery: [
+        [resources.ChatMEANHome],
+        [resources.ChatMEANSignIn],
+        [resources.ChatMEANSignUp],
+        [resources.ChatMEANRoom],
+      ],
     },
   ],
 })

@@ -59,6 +59,9 @@
           />
         </ACVTSection>
       </ACVTWrapper>
+      <ACVTWrapper>
+        <ACVTGallery :gallery="currentProject.gallery" />
+      </ACVTWrapper>
       <ACVTWrapper
         component="footer"
         justify-content="flex-end"
@@ -79,6 +82,7 @@ import ACVTBreaker from '~/components/Breaker.vue'
 import ACVTButton from '~/components/Button.vue'
 import ACVTContainer from '~/components/Container.vue'
 import ACVTField from '~/components/Field.vue'
+import ACVTGallery from '~/components/Gallery.vue'
 import ACVTHero from '~/components/Hero.vue'
 import ACVTJumbotron from '~/components/Jumbotron.vue'
 import ACVTPage from '~/components/Page.vue'
@@ -95,6 +99,7 @@ export default {
     ACVTButton,
     ACVTContainer,
     ACVTField,
+    ACVTGallery,
     ACVTHero,
     ACVTJumbotron,
     ACVTPage,
