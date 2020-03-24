@@ -187,8 +187,12 @@ export default () => ({
         link: 'https://twitter.com/AlainCVT',
       },
       {
+        name: 'CodePen',
+        link: 'https://codepen.io/KamenSentai',
+      },
+      {
         name: 'Email',
-        link: 'mailto:cvt.alain@gmail.com',
+        link: 'mailto:contact@alaincaovantruong.com',
       },
     ],
     tag: 'I am a',
