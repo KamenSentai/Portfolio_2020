@@ -110,6 +110,7 @@ export default {
   },
   data() {
     return {
+      isFound: true,
       isFading: false,
       isRequiring: true,
       pageDelay: 1500,
@@ -131,6 +132,7 @@ export default {
         vm.$store.commit('site/updateIndex', requestedProject.index, { root: true })
         next()
       } else {
+        vm.isFound = false
         next({ name: 'index' })
       }
     })
@@ -141,7 +143,7 @@ export default {
   },
   mounted() {
     setTimeout(() => {
-      if (this.isInactive) {
+      if (this.isInactive && this.isFound) {
         this.toggleActivity()
       } else {
         this.isRequiring = true
