@@ -196,6 +196,17 @@ export default {
     'toggleLight',
     'updateIndex',
   ]),
+  metaInfo() {
+    return {
+      title: '',
+      meta: [
+        {
+          name: 'description',
+          content: '',
+        },
+      ],
+    }
+  },
 }
 </script>
 

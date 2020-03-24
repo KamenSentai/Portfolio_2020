@@ -162,5 +162,16 @@ export default {
       }
     },
   },
+  metaInfo() {
+    return {
+      title: '',
+      meta: [
+        {
+          name: 'description',
+          content: '',
+        },
+      ],
+    }
+  },
 }
 </script>

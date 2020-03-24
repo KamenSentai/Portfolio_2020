@@ -136,6 +136,16 @@ export default {
       this.revealed.push(index)
     },
   },
-
+  metaInfo() {
+    return {
+      title: '',
+      meta: [
+        {
+          name: 'description',
+          content: '',
+        },
+      ],
+    }
+  },
 }
 </script>

@@ -59,6 +59,7 @@ export default {
   },
   plugins: [
     '~/plugins/vue-mixin.js',
+    '~/plugins/vue-meta.js',
     '~/plugins/vue-mq.js',
   ],
   buildModules: [
