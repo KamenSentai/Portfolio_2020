@@ -164,11 +164,11 @@ export default {
   },
   metaInfo() {
     return {
-      title: '',
+      title: this.index.meta.title,
       meta: [
         {
           name: 'description',
-          content: '',
+          content: this.index.meta.description,
         },
       ],
     }

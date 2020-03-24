@@ -18,6 +18,9 @@ export default {
     ACVTLoading,
   },
   computed: mapGetters('loading', ['isCompleted']),
+  metaInfo: {
+    titleTemplate: 'Alain Cao Van Truong | %s',
+  },
 }
 </script>
 

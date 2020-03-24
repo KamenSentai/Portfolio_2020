@@ -32,8 +32,8 @@
     <ACVTContainer is-larger>
       <ACVTWrapper>
         <ACVTField
-          subtitle="Description"
-          :text="currentProject.description"
+          :subtitle="project.context"
+          :text="currentProject.context"
         />
       </ACVTWrapper>
     </ACVTContainer>
@@ -45,17 +45,17 @@
           align-items="flex-start"
         >
           <ACVTField
-            subtitle="Date"
+            :subtitle="project.date"
             :text="[currentProject.date]"
           />
           <ACVTField
-            subtitle="Tools"
+            :subtitle="project.tools"
             :text="currentProject.tools"
           />
           <ACVTField
             is-larger
             :group="currentProject.team.map((entity) => Object.values(entity))"
-            subtitle="Team"
+            :subtitle="project.team"
           />
         </ACVTSection>
       </ACVTWrapper>
@@ -198,11 +198,11 @@ export default {
   ]),
   metaInfo() {
     return {
-      title: '',
+      title: this.currentProject.name,
       meta: [
         {
           name: 'description',
-          content: '',
+          content: this.currentProject.description,
         },
       ],
     }
