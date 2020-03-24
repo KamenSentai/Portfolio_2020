@@ -16,10 +16,6 @@ export default {
       type: [Object, String],
       default: 'div',
     },
-    isWindow: {
-      type: Boolean,
-      default: false,
-    },
     threshold: {
       type: Number,
       default: 0.25,
@@ -50,10 +46,7 @@ export default {
     observe() {
       Object.assign(this.$data, this.$options.data())
 
-      const { $el, isWindow } = this
-      const threshold = isWindow
-        ? (window.innerHeight * this.threshold) / $el.clientHeight
-        : this.threshold
+      const { $el, threshold } = this
 
       new IntersectionObserver((entries, self) => {
         entries.forEach((entry) => {
