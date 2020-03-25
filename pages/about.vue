@@ -15,12 +15,12 @@
             :text="about.button"
           />
           <ACVTBreaker>
-            <ACVTPush
+            <ACVTLink
               v-for="(socialNetwork, i) in social"
               :key="socialNetwork.name"
               :link="socialNetwork.link"
               :name="socialNetwork.name"
-              :style="{ transitionDelay: `${i * pushDelay}ms` }"
+              :style="{ transitionDelay: `${i * linkDelay}ms` }"
             />
           </ACVTBreaker>
           <ACVTScroll />
@@ -74,8 +74,8 @@ import ACVTDocument from '~/components/Document.vue'
 import ACVTField from '~/components/Field.vue'
 import ACVTHero from '~/components/Hero.vue'
 import ACVTJumbotron from '~/components/Jumbotron.vue'
+import ACVTLink from '~/components/Link.vue'
 import ACVTPage from '~/components/Page.vue'
-import ACVTPush from '~/components/Push.vue'
 import ACVTSection from '~/components/Section.vue'
 import ACVTScroll from '~/components/Scroll.vue'
 import ACVTTitle from '~/components/Title.vue'
@@ -93,8 +93,8 @@ export default {
     ACVTField,
     ACVTHero,
     ACVTJumbotron,
+    ACVTLink,
     ACVTPage,
-    ACVTPush,
     ACVTSection,
     ACVTScroll,
     ACVTTitle,
@@ -104,7 +104,7 @@ export default {
     return {
       ACVTWrapper,
       pageDelay: 1500,
-      pushDelay: 125,
+      linkDelay: 125,
       isFading: false,
       revealed: [],
     }

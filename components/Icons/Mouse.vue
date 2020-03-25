@@ -1,5 +1,8 @@
 <template>
-  <svg viewBox="0 0 20 40">
+  <svg
+    viewBox="0 0 20 40"
+    fill="none"
+  >
     <rect
       width="19"
       height="39"

@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import slot from './Icons'
+import icons from './Icons'
 
 export default {
   name: 'Icon',
@@ -24,7 +24,7 @@ export default {
   },
   computed: {
     icon() {
-      return slot[this.name]
+      return icons[this.name]
     },
   },
 }

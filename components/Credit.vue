@@ -31,7 +31,7 @@ export default {
 <style lang="scss" module>
 .container {
   position: relative;
-  height: 80px;
+  height: size(lg);
   overflow: hidden;
   color: color(dark);
   background-color: color(primary);
@@ -80,12 +80,9 @@ export default {
   &.isLighten {
     color: color(light);
 
+    &::selection,
     &::before,
     &::after {
-      background-color: color(light);
-    }
-
-    &::selection {
       background-color: color(light);
     }
   }

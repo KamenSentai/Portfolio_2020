@@ -28,7 +28,7 @@ import { mapGetters } from 'vuex'
 import ACVTIcon from '~/components/Icon.vue'
 
 export default {
-  name: 'Push',
+  name: 'Link',
   components: {
     ACVTIcon,
   },
