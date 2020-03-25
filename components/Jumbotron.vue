@@ -33,6 +33,7 @@ export default {
   position: relative;
   min-height: 100vh;
   padding-top: calc(#{space(md)} + #{space(lg)} + 1em);
+  transition: height $smooth;
 
   &.isLimited {
     grid-template-rows: 1fr auto;
