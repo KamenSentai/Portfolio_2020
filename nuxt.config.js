@@ -87,6 +87,7 @@ export default {
   ],
   modules: [
     '@nuxtjs/style-resources',
+    '@nuxtjs/sitemap',
   ],
   styleResources: {
     scss: [
@@ -102,6 +103,15 @@ export default {
       '/project/gaetan-lefebvre',
       '/project/chatmean',
     ],
+  },
+  sitemap: {
+    hostname: author.url,
+    defaults: {
+      changefreq: 'monthly',
+      priority: 1,
+      lastmod: new Date(),
+      lastmodrealtime: true,
+    },
   },
   build: {
     extend(configuration, { isDev, isClient }) {
