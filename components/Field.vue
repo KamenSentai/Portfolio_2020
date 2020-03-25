@@ -49,7 +49,7 @@
           :class="$style.extra"
         >
           <ACVTVanish
-            :class="$style.name"
+            :class="$isMobile ? 'font-md' : 'font-lg'"
             component="h4"
             :is-revealed="revealEvent.isRevealed"
             :order="1"
@@ -234,14 +234,6 @@ export default {
 .extra {
   display: grid;
   grid-gap: space(sm);
-}
-
-.name {
-  font-size: size(lg);
-
-  @include bp(lg) {
-    font-size: size(md);
-  }
 }
 
 .content {

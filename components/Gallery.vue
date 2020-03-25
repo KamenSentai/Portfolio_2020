@@ -1,5 +1,8 @@
 <template>
-  <ACVTSection :class="$style.container">
+  <ACVTSection
+    :class="$style.container"
+    :is-thiner="$isMobile"
+  >
     <ACVTReveal
       v-for="(group, i) in gallery"
       :key="`group-${i}`"
@@ -11,6 +14,7 @@
         }
       ]"
       :threshold="0.25"
+      :is-larger="$isMobile"
       :auto-flow="$isMobile ? 'row' : 'column'"
       :template-columns="$isMobile ? '1fr' : '1fr '.repeat(group.length).trim()"
       @reveal="reveal(i)"
