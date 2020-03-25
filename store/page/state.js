@@ -420,7 +420,7 @@ export default () => ({
       ],
     },
   ],
-  resume: '/blank.pdf',
+  resume: '/CV-CAO_VAN_TRUONG_Alain.pdf',
   social: [
     {
       name: 'GitHub',
