@@ -92,10 +92,12 @@ export default {
 <style lang="scss" module>
 .container {
   position: fixed;
-  top: space(md);
+  top: 0;
   right: 0;
   left: 0;
   z-index: 100;
+  padding: space(md) 0;
+  background: linear-gradient(to top, gradient(dark, .5));
 
   &.isInactive {
     pointer-events: none;
@@ -107,6 +109,7 @@ export default {
 
   &.isLighten {
     color: color(dark);
+    background: linear-gradient(to top, gradient(light, .5));
 
     .link::after {
       background-color: color(light);
