@@ -1,15 +1,35 @@
+const { author, config } = require('./package.json')
+
+const title = `${author.name} | Junior full-stack developer`
+const description = 'My name is Alain CAO VAN TRUONG. I am a full-stack web developer student and I currently study at HÉTIC, a web school based in Montreuil.'
+
+const BASE_URL = process.env.NODE_ENV === 'production'
+  ? author.url
+  : `http://localhost:${config.nuxt.port}`
+
 export default {
   mode: 'universal',
   head: {
     htmlAttrs: {
       lang: 'en',
     },
-    titleTemplate: 'Alain Cao Van Truong | %s',
+    titleTemplate: `${author.name} | %s`,
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { name: 'msapplication-TileColor', content: '#FFBF00' },
       { name: 'theme-color', content: '#FFBF00' },
+      { name: 'og:title', content: title },
+      { name: 'og:description', content: description },
+      { name: 'og:type', content: 'website' },
+      { name: 'og:url', content: BASE_URL },
+      { name: 'og:image', content: `${BASE_URL}/og.png` },
+      { name: 'twitter:card', content: 'summary' },
+      { name: 'twitter:site', content: '@AlainCVT' },
+      { name: 'twitter:title', content: title },
+      { name: 'twitter:description', content: description },
+      { name: 'twitter:image', content: `${BASE_URL}/twitter.png` },
+      { name: 'twitter:image:alt', content: author.name },
     ],
     link: [
       {
