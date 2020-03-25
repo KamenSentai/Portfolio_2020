@@ -122,7 +122,7 @@ export default {
       this.toggleActivity()
     }, 500)
   },
-  beforeRouteLeave(to, _, next) {
+  beforeRouteLeave(_, __, next) {
     this.pageChange()
     this.toggleActivity()
 

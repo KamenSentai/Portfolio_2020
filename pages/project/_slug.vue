@@ -124,7 +124,7 @@ export default {
       return this.currentProject.next
     },
   },
-  beforeRouteEnter(to, from, next) {
+  beforeRouteEnter(to, _, next) {
     next((vm) => {
       const requestedProject = vm.projects.find((project) => project.slug === to.params.slug)
 
@@ -150,7 +150,7 @@ export default {
       }
     }, 500)
   },
-  beforeRouteLeave(to, from, next) {
+  beforeRouteLeave(to, _, next) {
     if (to.name === 'index') {
       this.pageChange()
       this.isRequiring = false
@@ -177,7 +177,7 @@ export default {
       next()
     }
   },
-  beforeRouteUpdate(to, from, next) {
+  beforeRouteUpdate(to, _, next) {
     const { index } = this.projects.find((project) => project.slug === to.params.slug)
     this.pageChange()
     this.toggleActivity()
@@ -209,6 +209,3 @@ export default {
   },
 }
 </script>
-
-<style lang="scss" module>
-</style>
