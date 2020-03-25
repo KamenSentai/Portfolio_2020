@@ -53,14 +53,14 @@ export default {
     digitsLength() {
       return this.totalProjects.toString().length + 1
     },
+    formattedNumber() {
+      return (index) => '0'.repeat(this.digitsLength - index.toString().length) + index
+    },
     isCurrent() {
       return (index) => !this.isInactive && this.temporaryIndex === index - 1
     },
     isReached() {
       return (index) => !this.isInactive && this.temporaryIndex >= index - 1
-    },
-    formattedNumber() {
-      return (index) => '0'.repeat(this.digitsLength - index.toString().length) + index
     },
     rate() {
       return this.temporaryIndex / (this.totalProjects - 1)
