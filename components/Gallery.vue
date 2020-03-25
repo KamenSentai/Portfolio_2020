@@ -7,7 +7,7 @@
       :class="[
         $style.group,
         {
-          [$style.isRevealed]: revealed.includes(i),
+          [$style.isRevealed]: $isMobile || revealed.includes(i),
         }
       ]"
       :threshold="0.25"

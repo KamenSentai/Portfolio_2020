@@ -4,7 +4,7 @@
     :class="[
       $style.container,
       {
-        [$style.isInactive]: !isActive,
+        [$style.isInactive]: !isActive && !isLoading,
         [$style.isLighten]: isLighten,
       }
     ]"
@@ -24,6 +24,10 @@ export default {
     component: {
       type: [Object, String],
       default: 'div',
+    },
+    isLoading: {
+      type: Boolean,
+      default: false,
     },
     isRevealed: {
       type: Boolean,

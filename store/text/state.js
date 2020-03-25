@@ -28,6 +28,10 @@ export default () => ({
     },
     tag: 'Project',
   },
+  loading: {
+    tag: 'Developer & student',
+    title: 'Alain Cao Van Truong',
+  },
   project: {
     code: 'View code',
     context: 'Context',

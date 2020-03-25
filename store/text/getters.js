@@ -11,6 +11,9 @@ export default {
   index(state) {
     return state.index
   },
+  loading(state) {
+    return state.loading
+  },
   project(state) {
     return state.project
   },
