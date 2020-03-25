@@ -162,7 +162,7 @@ export default {
       }
     },
   },
-  metaInfo() {
+  head() {
     return {
       title: this.index.meta.title,
       meta: [

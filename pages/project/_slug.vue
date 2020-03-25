@@ -196,7 +196,7 @@ export default {
     'toggleLight',
     'updateIndex',
   ]),
-  metaInfo() {
+  head() {
     return {
       title: this.currentProject.name,
       meta: [

@@ -137,7 +137,7 @@ export default {
       this.revealed.push(index)
     },
   },
-  metaInfo() {
+  head() {
     return {
       title: this.about.meta.title,
       meta: [
