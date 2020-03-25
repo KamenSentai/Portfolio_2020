@@ -175,7 +175,7 @@ export default () => ({
       description: 'This is Assoïe Louvart\'s portfolio made with Nuxt.js',
       context: [
         'Assoïe is a UX/UI designer and classmate of mine. She wanted to update her portfolio in order to present her works as she is looking for an internship in a foreign country.',
-        'I didn’t not chose to refactor the previous portfolio and I prefered to build her portfolio from scratch because the code of the previous portfolio is frameworkless.',
+        'I didn’t not choose to refactor the previous portfolio and I preferred to build her portfolio from scratch because the code of the previous portfolio is frameworkless.',
       ],
       parallax: resources.AssoieLouvartMockups,
       date: 'January 2020 — Frebruary 2020',
@@ -210,7 +210,7 @@ export default () => ({
       context: [
         'I went to a 5-month internship at [Meero](https://www.meero.com/). Meero is a french startup based in Paris and it is an on-demand photography company.',
         'Meero is mainly a BtoB company, and a new project BtoC is planned which is MeeroDrop : it is a sharing media platform oriented towards photography.',
-        'We were 3 front-end developer and 3 back-end developers alonside a Head of, a product owner, a product manager and two UX/UI designers.',
+        'We were three front-end developers and three back-end developers alongside a Head of, a product owner, a product manager and two UX/UI designers.',
       ],
       parallax: resources.MeeroDropMockups,
       date: 'June 2019 — November 2019',
@@ -380,7 +380,7 @@ export default () => ({
       context: [
         'In class, we built a Stack MEAN boilerplate, then we had to use it to develop a chat for a school project. The project was a real opportunity to test all the four technologies of the Stack MEAN ecosystem. The final step remaining is using Socket.io in order to make the chat live.',
         'Assoïe, Jay-min and Olivia basically designed all the sketches, Loris integrated them and I built the chat system.',
-        'I tried to use socket.io so that the chat system is live, but it was unsuccessful. If I have time, I itendend to refactor this project.',
+        'I tried to use socket.io so that the chat system is live, but it was unsuccessful. If I have time, I would like to refactor this project.',
       ],
       parallax: resources.ChatMEANMockups,
       date: 'Frebruary 2019',
