@@ -59,9 +59,7 @@
           />
         </ACVTSection>
       </ACVTWrapper>
-      <ACVTWrapper>
-        <ACVTGallery :gallery="currentProject.gallery" />
-      </ACVTWrapper>
+      <ACVTGallery :gallery="currentProject.gallery" />
       <ACVTWrapper
         component="footer"
         justify-content="flex-end"
