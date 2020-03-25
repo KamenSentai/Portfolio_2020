@@ -96,6 +96,8 @@ export default {
     this.isRequiring = this.isInactive
   },
   mounted() {
+    document.documentElement.style.overflow = 'hidden'
+
     setTimeout(() => {
       if (this.isInactive) {
         this.toggleActivity()
@@ -108,6 +110,7 @@ export default {
     }, 500)
   },
   destroyed() {
+    document.documentElement.style.overflow = 'auto'
     window.removeEventListener('touchstart', this.touchstart)
     window.removeEventListener('touchmove', this.touchmove)
     window.removeEventListener('wheel', this.wheel)
