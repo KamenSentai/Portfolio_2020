@@ -1,6 +1,11 @@
 <template>
   <ACVTGrid
-    :class="$style.container"
+    :class="[
+      $style.container,
+      {
+        [$style.isThiner]: isThiner,
+      }
+    ]"
     v-bind="$attrs"
     v-on="$listeners"
   >
@@ -16,11 +21,21 @@ export default {
   components: {
     ACVTGrid,
   },
+  props: {
+    isThiner: {
+      type: Boolean,
+      default: false,
+    },
+  },
 }
 </script>
 
 <style lang="scss" module>
 .container {
   grid-gap: space(lg) space(sm);
+
+  &.isThiner {
+    grid-gap: space(md) space(sm);
+  }
 }
 </style>

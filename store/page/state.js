@@ -135,7 +135,7 @@ export default () => ({
           subtitle: 'Animes',
           list: [
             'Detective Conan',
-            'Attack on Tian',
+            'Attack on Titan',
           ],
         },
         {

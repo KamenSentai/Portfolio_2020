@@ -43,7 +43,7 @@
       >
         <ACVTTitle
           component="h2"
-          :is-revealed="revealed.includes(i)"
+          :is-revealed="$isMobile || revealed.includes(i)"
           :text="section.title"
         />
         <ACVTSection>
