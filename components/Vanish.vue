@@ -5,7 +5,7 @@
       $style.container,
       {
         [$style.isInactive]: !isActive && !isLoading,
-        [$style.isLighten]: isLighten,
+        [$style.isLighten]: isLighten || $isAbout,
       }
     ]"
     v-bind="$attrs"

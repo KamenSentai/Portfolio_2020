@@ -65,7 +65,7 @@ export default {
           ],
         },
         {
-          name: this.fromRoute.name || 'index',
+          name: this.returningRoute || 'index',
           params: this.fromRoute.params,
           title: this.header.return,
           routes: [
@@ -79,6 +79,9 @@ export default {
           tag: link.isMain ? 'h1' : 'span',
         }))
         .filter((link) => link.isMain || link.isActive)
+    },
+    returningRoute() {
+      return this.fromRoute.name === this.$route.name ? 'index' : this.fromRoute.name
     },
   },
   mounted() {
