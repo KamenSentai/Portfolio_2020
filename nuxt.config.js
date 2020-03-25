@@ -1,15 +1,3 @@
-const routes = {
-  path: '/projects/',
-  slugs: [
-    'assoie-louvart',
-    'meerodrop',
-    'offit',
-    'scaneat',
-    'gaetan-lefebvre',
-    'chatmean',
-  ],
-}
-
 export default {
   mode: 'universal',
   head: {
@@ -86,7 +74,27 @@ export default {
       '~/assets/styles/index.scss',
     ],
   },
+  generate: {
+    routes: [
+      '/project/assoie-louvart',
+      '/project/meerodrop',
+      '/project/offit',
+      '/project/scaneat',
+      '/project/gaetan-lefebvre',
+      '/project/chatmean',
+    ],
+  },
   build: {
+    extend(configuration, { isDev, isClient }) {
+      if (isDev && isClient) {
+        configuration.module.rules.push({
+          enforce: 'pre',
+          test: /\.(js|vue)$/,
+          loader: 'eslint-loader',
+          exclude: /(node_modules)/,
+        })
+      }
+    },
     loaders: {
       cssModules: {
         modules: {
@@ -94,8 +102,5 @@ export default {
         },
       },
     },
-  },
-  generate: {
-    routes: routes.slugs.map((slug) => routes.path + slug),
   },
 }
