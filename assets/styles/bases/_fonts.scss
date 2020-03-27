@@ -11,16 +11,8 @@ $weights: (
   @return map-get($weights, $name);
 }
 
-@each $name, $weight in $weights {
-
-  .weight-#{$name} {
-    font-weight: $weight;
-  }
-}
-
-
 @font-face {
-  font-weight: 300;
+  font-weight: weight(light);
   font-family: "Teko";
   src: url("#{$path}/Teko-Light.woff") format("woff"),
     url("#{$path}/Teko-Light.woff2") format("woff2")
@@ -28,7 +20,7 @@ $weights: (
 }
 
 @font-face {
-  font-weight: normal;
+  font-weight: weight(normal);
   font-family: "Teko";
   src: url("#{$path}/Teko-Regular.woff") format("woff"),
     url("#{$path}/Teko-Regular.woff2") format("woff2")
@@ -36,7 +28,7 @@ $weights: (
 }
 
 @font-face {
-  font-weight: 700;
+  font-weight: weight(bold);
   font-family: "Teko";
   src: url("#{$path}/Teko-Bold.woff") format("woff"),
     url("#{$path}/Teko-Bold.woff2") format("woff2")

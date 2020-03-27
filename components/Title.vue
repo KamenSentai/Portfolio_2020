@@ -34,7 +34,7 @@ export default {
 .container {
   margin-top: -1.6rem;
   color: color(primary);
-  font-weight: 300;
+  font-weight: weight(300);
   font-size: size(xl);
   text-transform: uppercase;
 

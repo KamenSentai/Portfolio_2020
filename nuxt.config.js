@@ -91,7 +91,7 @@ export default {
   ],
   styleResources: {
     scss: [
-      '~/assets/styles/index.scss',
+      '~/assets/styles/tools/_index.scss',
     ],
   },
   generate: {

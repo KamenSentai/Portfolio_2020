@@ -72,7 +72,7 @@
             <ACVTVanish
               v-for="(item, i) in section.items"
               :key="`item-${i}`"
-              class="text-right weight-light"
+              :class="$style.tag"
               component="li"
               :is-revealed="revealEvent.isRevealed"
               :order="1 + i"
@@ -209,7 +209,7 @@ export default {
 
 .subtitle {
   color: color(primary);
-  font-weight: 300;
+  font-weight: weight(300);
   font-size: size(sm);
   text-transform: uppercase;
 
@@ -219,13 +219,9 @@ export default {
 }
 
 .tag {
-  font-weight: 300;
+  font-weight: weight(300);
   font-size: size(xs);
   text-align: right;
-
-  @include bp(xs) {
-    font-size: size(regular);
-  }
 }
 
 .body {

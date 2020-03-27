@@ -1,0 +1,20 @@
+@each $name, $color in $colors {
+
+  .text-#{$name} {
+    color: $color;
+  }
+}
+
+@each $name, $weight in $weights {
+
+  .weight-#{$name} {
+    font-weight: $weight;
+  }
+}
+
+@each $name, $size in $sizes {
+
+  .font-#{$name} {
+    font-size: $size;
+  }
+}
