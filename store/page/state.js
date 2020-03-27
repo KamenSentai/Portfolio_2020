@@ -8,9 +8,9 @@ export default () => ({
         {
           subtitle: 'Intership',
           tag: 'Jun. 2019 — Nov. 2019',
-          extra: {
-            name: 'Meero',
-            element: 'Missons',
+          name: 'Meero',
+          section: {
+            subject: 'Missons',
             items: [
               'Front-end development',
               'Integration',
@@ -21,9 +21,9 @@ export default () => ({
         {
           subtitle: 'Project',
           tag: 'Jan. 2019 — Jun. 2019',
-          extra: {
-            name: 'Offit',
-            element: 'Missons',
+          name: 'Offit',
+          section: {
+            subject: 'Missons',
             items: [
               'Project management',
               'Full-stack development',
@@ -33,9 +33,9 @@ export default () => ({
         {
           subtitle: 'Intership',
           tag: 'Jul. 2018 — Sep. 2018',
-          extra: {
-            name: 'Wait and See agency',
-            element: 'Missons',
+          name: 'Wait and See agency',
+          section: {
+            subject: 'Missons',
             items: [
               'Integration',
               'Front-end development',
@@ -50,9 +50,9 @@ export default () => ({
         {
           subtitle: 'Web school',
           tag: '2016 — 2021',
-          extra: {
-            name: 'HÉTIC',
-            element: 'Curriculum',
+          name: 'HÉTIC',
+          section: {
+            subject: 'Curriculum',
             items: [
               'Project management',
               'Product design',
@@ -65,9 +65,9 @@ export default () => ({
         {
           subtitle: 'Prepatory school',
           tag: '2014 — 2016',
-          extra: {
-            name: 'Lycée Saint Louis',
-            element: 'Curriculum',
+          name: 'Lycée Saint Louis',
+          section: {
+            subject: 'Curriculum',
             items: [
               'Mathematics',
               'Physics',
@@ -82,7 +82,7 @@ export default () => ({
       fields: [
         {
           subtitle: 'Front-end',
-          list: [
+          items: [
             'Vue.js',
             'React.js',
             'Nuxt.js',
@@ -93,7 +93,7 @@ export default () => ({
         },
         {
           subtitle: 'Back-end',
-          list: [
+          items: [
             'WordPress',
             'Node.js',
             'Slim Framework',
@@ -101,13 +101,13 @@ export default () => ({
         },
         {
           subtitle: 'Mobile',
-          list: [
+          items: [
             'Swift',
           ],
         },
         {
           subtitle: 'Learning',
-          list: [
+          items: [
             'Strapi',
             'Laravel',
             'Symfony',
@@ -125,7 +125,7 @@ export default () => ({
       fields: [
         {
           subtitle: 'Sciences',
-          list: [
+          items: [
             'Mathematics',
             'Physics',
             'Computer science',
@@ -133,14 +133,14 @@ export default () => ({
         },
         {
           subtitle: 'Animes',
-          list: [
+          items: [
             'Detective Conan',
             'Attack on Titan',
           ],
         },
         {
           subtitle: 'Series',
-          list: [
+          items: [
             'Super Sentai',
             'Kamen Rider',
             'Criminal Minds',
@@ -149,7 +149,7 @@ export default () => ({
         },
         {
           subtitle: 'Movies',
-          list: [
+          items: [
             'Ip Man',
             'Enter the Dragon',
             'Fist of Legend',
@@ -159,7 +159,7 @@ export default () => ({
         },
         {
           subtitle: 'Other',
-          list: [
+          items: [
             'Pen spinning',
           ],
         },

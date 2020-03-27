@@ -1,6 +1,24 @@
 $path: "~assets/fonts";
 $font: "Teko", sans-serif;
 
+$weights: (
+  light: 300,
+  normal: normal,
+  bold: 700,
+);
+
+@function weight($name) {
+  @return map-get($weights, $name);
+}
+
+@each $name, $weight in $weights {
+
+  .weight-#{$name} {
+    font-weight: $weight;
+  }
+}
+
+
 @font-face {
   font-weight: 300;
   font-family: "Teko";
