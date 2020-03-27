@@ -37,8 +37,6 @@ export default {
 <style lang="scss" module>
 .container {
   position: relative;
-  color: color(light);
-  background-color: color(dark);
 
   &::after {
     z-index: 100;
@@ -54,13 +52,8 @@ export default {
     opacity: 1;
   }
 
-  &.isLighten {
-    color: color(dark);
-    background-color: color(light);
-
-    &::after {
-      background-color: color(dark);
-    }
+  &.isLighten::after {
+    background-color: color(dark);
   }
 }
 </style>
