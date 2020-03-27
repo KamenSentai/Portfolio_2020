@@ -3,6 +3,7 @@
     :class="[
       $style.container,
       {
+        [$style.hasBackground]: hasBackground,
         [$style.isInactive]: !isCompleted || !isMounted,
         [$style.isLighten]: $isAbout,
         [$style.isUnavailable]: isPageChanging,
@@ -42,6 +43,9 @@ export default {
     ...mapGetters('loading', ['isCompleted']),
     ...mapGetters('site', ['fromRoute', 'isPageChanging']),
     ...mapGetters('text', ['header']),
+    hasBackground() {
+      return this.$route.name === 'project-slug'
+    },
     isActive() {
       return (routes) => !!routes && routes.includes(this.$route.name)
     },
@@ -100,7 +104,7 @@ export default {
   left: 0;
   z-index: 100;
 
-  &::before {
+  &.hasBackground::before {
     position: absolute;
     top: - space(md);
     right: 0;
@@ -109,6 +113,10 @@ export default {
     background: linear-gradient(to top, gradient(dark, .5));
     content: "";
     pointer-events: none;
+
+    &.isLighten {
+      background: linear-gradient(to top, gradient(light, .5));
+    }
   }
 
   &.isInactive {
@@ -121,10 +129,6 @@ export default {
 
   &.isLighten {
     color: color(dark);
-
-    &::before {
-      background: linear-gradient(to top, gradient(light, .5));
-    }
 
     .link::after {
       background-color: color(light);
@@ -154,7 +158,6 @@ export default {
     position: absolute;
     right: - space(xs);
     left: - space(xs);
-    z-index: -1;
     padding: calc(50% + #{space(xs)}) 0;
     border: .2rem solid color(primary);
     border-radius: 100%;

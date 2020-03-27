@@ -44,58 +44,56 @@
           :is-revealed="revealEvent.isRevealed"
           :text="text"
         />
+        <ACVTVanish
+          v-if="name"
+          :class="$isMobile ? 'font-md' : 'font-lg'"
+          component="h4"
+          :is-revealed="revealEvent.isRevealed"
+          v-bind="$attrs"
+          v-on="$listeners"
+        >
+          {{ name }}
+        </ACVTVanish>
         <div
-          v-if="extra.name && extra.element && extra.items"
-          :class="$style.extra"
+          v-if="section.subject && section.items"
+          :class="$style.wrapper"
         >
           <ACVTVanish
-            :class="$isMobile ? 'font-md' : 'font-lg'"
-            component="h4"
+            class="font-sm"
+            component="h5"
             :is-revealed="revealEvent.isRevealed"
             :order="1"
             v-bind="$attrs"
             v-on="$listeners"
           >
-            {{ extra.name }}
+            {{ section.subject }}
           </ACVTVanish>
-          <div :class="$style.content">
+          <ul :class="$style.list">
             <ACVTVanish
-              class="font-sm"
-              component="h5"
+              v-for="(item, i) in section.items"
+              :key="`item-${i}`"
+              class="text-right weight-light"
+              component="li"
               :is-revealed="revealEvent.isRevealed"
-              :order="2"
+              :order="1 + i"
               v-bind="$attrs"
               v-on="$listeners"
             >
-              {{ extra.element }}
+              {{ item }}
             </ACVTVanish>
-            <ul :class="$style.box">
-              <ACVTVanish
-                v-for="(item, i) in extra.items"
-                :key="`item-${i}`"
-                :class="$style.item"
-                component="li"
-                :is-revealed="revealEvent.isRevealed"
-                :order="2 + i"
-                v-bind="$attrs"
-                v-on="$listeners"
-              >
-                {{ item }}
-              </ACVTVanish>
-            </ul>
-          </div>
+          </ul>
         </div>
-        <template v-if="list.length">
+        <template v-if="items.length">
           <ACVTVanish
-            v-for="(element, i) in list"
-            :key="`element-${i}`"
+            v-for="(item, i) in items"
+            :key="`item-${i}`"
             class="font-xs"
             :is-revealed="revealEvent.isRevealed"
             :order="i"
             v-bind="$attrs"
             v-on="$listeners"
           >
-            {{ element }}
+            {{ item }}
           </ACVTVanish>
         </template>
         <template v-if="group.length">
@@ -134,10 +132,6 @@ export default {
     ACVTVanish,
   },
   props: {
-    extra: {
-      type: Object,
-      default: () => ({}),
-    },
     group: {
       type: Array,
       default: () => [],
@@ -146,9 +140,17 @@ export default {
       type: Boolean,
       default: false,
     },
-    list: {
+    items: {
       type: Array,
       default: () => [],
+    },
+    name: {
+      type: String,
+      default: '',
+    },
+    section: {
+      type: Object,
+      default: () => ({}),
     },
     subtitle: {
       type: String,
@@ -231,27 +233,17 @@ export default {
   grid-gap: space(sm);
 }
 
-.extra {
-  display: grid;
-  grid-gap: space(sm);
-}
-
-.content {
+.wrapper {
   display: grid;
   grid-auto-flow: column;
   grid-gap: space(sm);
   align-items: baseline;
 }
 
-.box {
+.list {
   display: grid;
   grid-gap: space(xs);
   justify-items: flex-end;
   list-style: none;
-}
-
-.item {
-  font-weight: 300;
-  text-align: right;
 }
 </style>

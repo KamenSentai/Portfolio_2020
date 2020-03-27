@@ -50,8 +50,9 @@
           <ACVTField
             v-for="(field, j) in section.fields"
             :key="`field-${i}-${j}`"
-            :extra="field.extra"
-            :list="field.list"
+            :items="field.items"
+            :name="field.name"
+            :section="field.section"
             :subtitle="field.subtitle"
             :tag="field.tag"
             @reveal="reveal(i)"
