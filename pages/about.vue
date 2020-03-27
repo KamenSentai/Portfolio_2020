@@ -38,6 +38,7 @@
       <ACVTWrapper
         v-for="(section, i) in curriculum"
         :key="`section-${i}`"
+        is-smaller
         :auto-flow="$isMobile ? 'row' : 'column'"
         :template-columns="$isMobile ? '1fr' : '1fr 1fr'"
       >
@@ -103,7 +104,6 @@ export default {
   },
   data() {
     return {
-      ACVTWrapper,
       pageDelay: 1500,
       linkDelay: 125,
       isFading: false,

@@ -120,7 +120,7 @@ export default {
 
 .tag {
   color: color(primary);
-  font-weight: weight(300);
+  font-weight: 300;
   font-size: size(md);
   text-transform: uppercase;
 
