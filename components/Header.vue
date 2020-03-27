@@ -5,7 +5,8 @@
       {
         [$style.hasBackground]: hasBackground,
         [$style.isInactive]: !isCompleted || !isMounted,
-        [$style.isLighten]: $isAbout,
+        [$style.isLighten]: isLighten,
+        [$style.isLoading]: !isCompleted,
         [$style.isUnavailable]: isPageChanging,
       }
     ]"
@@ -41,7 +42,7 @@ export default {
   },
   computed: {
     ...mapGetters('loading', ['isCompleted']),
-    ...mapGetters('site', ['fromRoute', 'isPageChanging']),
+    ...mapGetters('site', ['fromRoute', 'isLighten', 'isPageChanging']),
     ...mapGetters('text', ['header']),
     hasBackground() {
       return this.$route.name === 'project-slug'
@@ -133,6 +134,10 @@ export default {
     .link::after {
       background-color: color(light);
     }
+  }
+
+  &.isLoading {
+    opacity: 0;
   }
 
   &.isUnavailable {
