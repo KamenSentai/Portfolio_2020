@@ -1,18 +1,8 @@
 $path: "~assets/fonts";
 $font: "Teko", sans-serif;
 
-$weights: (
-  light: 300,
-  normal: normal,
-  bold: 700,
-);
-
-@function weight($name) {
-  @return map-get($weights, $name);
-}
-
 @font-face {
-  font-weight: weight(light);
+  font-weight: 300;
   font-family: "Teko";
   src: url("#{$path}/Teko-Light.woff") format("woff"),
     url("#{$path}/Teko-Light.woff2") format("woff2")
@@ -20,7 +10,7 @@ $weights: (
 }
 
 @font-face {
-  font-weight: weight(normal);
+  font-weight: normal;
   font-family: "Teko";
   src: url("#{$path}/Teko-Regular.woff") format("woff"),
     url("#{$path}/Teko-Regular.woff2") format("woff2")
@@ -28,7 +18,7 @@ $weights: (
 }
 
 @font-face {
-  font-weight: weight(bold);
+  font-weight: 700;
   font-family: "Teko";
   src: url("#{$path}/Teko-Bold.woff") format("woff"),
     url("#{$path}/Teko-Bold.woff2") format("woff2")

@@ -1,6 +1,11 @@
 <template>
   <ACVTGrid
-    :class="$style.container"
+    :class="[
+      $style.container,
+      {
+        [$style.isSmaller]: isSmaller,
+      }
+    ]"
     v-bind="$attrs"
     v-on="$listeners"
   >
@@ -15,6 +20,12 @@ export default {
   name: 'Wrapper',
   components: {
     ACVTGrid,
+  },
+  props: {
+    isSmaller: {
+      type: Boolean,
+      default: false,
+    },
   },
 }
 </script>
@@ -31,6 +42,10 @@ export default {
 
   @include bp(md) {
     grid-column: 1 / -1;
+  }
+
+  &.isSmaller {
+    grid-gap: space(sm);
   }
 }
 </style>

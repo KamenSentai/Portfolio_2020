@@ -9,13 +9,6 @@
   }
 }
 
-@each $name, $weight in $weights {
-
-  .weight-#{$name} {
-    font-weight: $weight;
-  }
-}
-
 @each $name, $size in $sizes {
 
   .font-#{$name} {

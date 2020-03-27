@@ -209,7 +209,7 @@ export default {
 
 .subtitle {
   color: color(primary);
-  font-weight: weight(300);
+  font-weight: 300;
   font-size: size(sm);
   text-transform: uppercase;
 
@@ -219,7 +219,7 @@ export default {
 }
 
 .tag {
-  font-weight: weight(300);
+  font-weight: 300;
   font-size: size(xs);
   text-align: right;
 }
