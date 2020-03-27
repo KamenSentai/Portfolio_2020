@@ -22,7 +22,15 @@ export default {
   toggleActivity({ commit }, value = null) {
     commit('toggleActivity', value)
   },
-  toggleLight({ commit }, value = null) {
+  toggleLight({ commit, state: { isLighten } }, value = null) {
+    if ((value === null && !isLighten) || value) {
+      document.body.classList.add('bg-light')
+      document.body.classList.add('text-dark')
+    } else {
+      document.body.classList.remove('bg-light')
+      document.body.classList.remove('text-dark')
+    }
+
     commit('toggleLight', value)
   },
   updateIndex({ commit }, index) {

@@ -81,12 +81,12 @@ export default {
   display: grid;
   grid-gap: space(xs);
   align-content: flex-start;
-  font-weight: 300;
+  font-weight: weight(300);
   line-height: 1.25;
 }
 
 .link {
   color: color(primary);
-  font-weight: normal;
+  font-weight: weight(normal);
 }
 </style>
