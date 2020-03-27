@@ -78,6 +78,21 @@ export default () => ({
       ],
     },
     {
+      title: 'Mentions',
+      fields: [
+        {
+          subtitle: 'Awwwards',
+          section: {
+            subject: 'Gaëtan Lefebvre\'s porfolio',
+            items: [
+              'Honorable Mention',
+              'Mobile Excellence',
+            ],
+          },
+        },
+      ],
+    },
+    {
       title: 'Skills',
       fields: [
         {
