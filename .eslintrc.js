@@ -47,6 +47,7 @@ module.exports = {
               assets: resolve(__dirname, 'assets'),
               '~assets': resolve(__dirname, 'assets'),
               '~components': resolve(__dirname, 'components'),
+              '~modules': resolve(__dirname, 'modules'),
               '~plugins': resolve(__dirname, 'plugins'),
               '~pages': resolve(__dirname, 'pages'),
               '~router': resolve(__dirname, '.nuxt/router'),

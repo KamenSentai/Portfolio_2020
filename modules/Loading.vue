@@ -33,8 +33,8 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
-import resources from '~/assets/scripts/resources'
 import ACVTVanish from '~/components/Vanish.vue'
+import resources from '~/assets/scripts/resources'
 
 export default {
   name: 'Loading',

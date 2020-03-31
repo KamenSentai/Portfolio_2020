@@ -120,8 +120,8 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import ACVTDocument from '~/modules/Document.vue'
 import ACVTBreaker from '~/components/Breaker.vue'
-import ACVTDocument from '~/components/Document.vue'
 import ACVTReveal from '~/components/Reveal.vue'
 import ACVTVanish from '~/components/Vanish.vue'
 

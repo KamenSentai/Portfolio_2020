@@ -47,10 +47,10 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
+import ACVTJumbotron from '~/modules/Jumbotron.vue'
 import ACVTButton from '~/components/Button.vue'
 import ACVTHero from '~/components/Hero.vue'
 import ACVTIndicator from '~/components/Indicator.vue'
-import ACVTJumbotron from '~/components/Jumbotron.vue'
 import ACVTSidebar from '~/components/Sidebar.vue'
 import ACVTPage from '~/components/Page.vue'
 import ACVTWrapper from '~/components/Wrapper.vue'

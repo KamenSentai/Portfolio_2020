@@ -101,6 +101,7 @@ export default () => ({
             'Vue.js',
             'React.js',
             'Nuxt.js',
+            'Next.js',
             'THREE.js',
             'SASS',
             'Stylus',
@@ -112,6 +113,8 @@ export default () => ({
             'WordPress',
             'Node.js',
             'Slim Framework',
+            'MySQL',
+            'MongoDB',
           ],
         },
         {
@@ -124,8 +127,6 @@ export default () => ({
           subtitle: 'Learning',
           items: [
             'Strapi',
-            'Laravel',
-            'Symfony',
             'TypeScript',
             'GatsbyJS',
             'Cypress',

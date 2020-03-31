@@ -8,8 +8,8 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import ACVTHeader from '~/components/Header.vue'
-import ACVTLoading from '~/components/Loading.vue'
+import ACVTHeader from '~/modules/Header.vue'
+import ACVTLoading from '~/modules/Loading.vue'
 
 export default {
   name: 'Default',

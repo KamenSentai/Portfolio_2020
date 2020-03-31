@@ -1,19 +1,25 @@
 <template>
-  <div
+  <ACVTGrid
     :class="[
       $style.container,
       {
         [$style.isLarger]: isLarger
       }
     ]"
+    justify-content="center"
   >
     <slot />
-  </div>
+  </ACVTGrid>
 </template>
 
 <script>
+import ACVTGrid from '~/components/Grid.vue'
+
 export default {
   name: 'Container',
+  components: {
+    ACVTGrid,
+  },
   props: {
     isLarger: {
       type: Boolean,
@@ -25,10 +31,8 @@ export default {
 
 <style lang="scss" module>
 .container {
-  display: grid;
   grid-gap: space(sm);
   grid-template-columns: repeat(12, 80px);
-  justify-content: center;
 
   @include bp(lg) {
     grid-template-columns: repeat(8, 80px);
