@@ -67,20 +67,20 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
-import ACVTArea from '~/components/Area.vue'
+import ACVTArea from '~/modules/Area.vue'
+import ACVTCredit from '~/modules/Credit.vue'
+import ACVTDocument from '~/modules/Document.vue'
+import ACVTJumbotron from '~/modules/Jumbotron.vue'
+import ACVTTitle from '~/modules/Title.vue'
 import ACVTBreaker from '~/components/Breaker.vue'
 import ACVTButton from '~/components/Button.vue'
 import ACVTContainer from '~/components/Container.vue'
-import ACVTCredit from '~/components/Credit.vue'
-import ACVTDocument from '~/components/Document.vue'
 import ACVTField from '~/components/Field.vue'
 import ACVTHero from '~/components/Hero.vue'
-import ACVTJumbotron from '~/components/Jumbotron.vue'
 import ACVTLink from '~/components/Link.vue'
 import ACVTPage from '~/components/Page.vue'
 import ACVTSection from '~/components/Section.vue'
 import ACVTScroll from '~/components/Scroll.vue'
-import ACVTTitle from '~/components/Title.vue'
 import ACVTWrapper from '~/components/Wrapper.vue'
 
 export default {

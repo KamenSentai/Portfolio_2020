@@ -76,15 +76,15 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
+import ACVTGallery from '~/modules/Gallery.vue'
+import ACVTJumbotron from '~/modules/Jumbotron.vue'
+import ACVTParallax from '~/modules/Parallax.vue'
 import ACVTBreaker from '~/components/Breaker.vue'
 import ACVTButton from '~/components/Button.vue'
 import ACVTContainer from '~/components/Container.vue'
 import ACVTField from '~/components/Field.vue'
-import ACVTGallery from '~/components/Gallery.vue'
 import ACVTHero from '~/components/Hero.vue'
-import ACVTJumbotron from '~/components/Jumbotron.vue'
 import ACVTPage from '~/components/Page.vue'
-import ACVTParallax from '~/components/Parallax.vue'
 import ACVTScroll from '~/components/Scroll.vue'
 import ACVTSection from '~/components/Section.vue'
 import ACVTWrapper from '~/components/Wrapper.vue'
