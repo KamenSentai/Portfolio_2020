@@ -159,18 +159,6 @@ export default () => ({
           items: [
             'Super Sentai',
             'Kamen Rider',
-            'Criminal Minds',
-            'Breaking Bad',
-          ],
-        },
-        {
-          subtitle: 'Movies',
-          items: [
-            'Ip Man',
-            'Enter the Dragon',
-            'Fist of Legend',
-            'Drunken Master',
-            'Once Upon a Time in China',
           ],
         },
         {
