@@ -4,6 +4,15 @@ const title = `${author.name} | Junior full-stack developer`
 const description = 'My name is Alain CAO VAN TRUONG. I am a full-stack web developer student and I currently study at HÉTIC, a web school based in Montreuil.'
 const color = '#FF4000'
 
+const projects = [
+  'assoie-louvart',
+  'meerodrop',
+  'offit',
+  'scaneat',
+  'gaetan-lefebvre',
+  'chatmean',
+].map((name) => `/project/${name}`)
+
 const BASE_URL = process.env.NODE_ENV === 'production'
   ? author.url
   : `http://localhost:${config.nuxt.port}`
@@ -96,17 +105,24 @@ export default {
     ],
   },
   generate: {
-    routes: [
-      '/project/assoie-louvart',
-      '/project/meerodrop',
-      '/project/offit',
-      '/project/scaneat',
-      '/project/gaetan-lefebvre',
-      '/project/chatmean',
-    ],
+    routes: projects,
   },
   sitemap: {
     hostname: author.url,
+    routes: [
+      {
+        url: '/',
+        priority: 1,
+      },
+      {
+        url: '/about',
+        priority: 0.8,
+      },
+      ...projects.map((project) => ({
+        url: project,
+        priority: 0.6,
+      })),
+    ],
     defaults: {
       changefreq: 'monthly',
       priority: 1,
