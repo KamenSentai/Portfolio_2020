@@ -128,6 +128,10 @@ export default {
     .text::after {
       border-left-color: color(dark);
     }
+
+    .dot {
+      background-color: color(dark);
+    }
   }
 
   &.isLoading {
