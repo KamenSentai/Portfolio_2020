@@ -57,10 +57,8 @@ export default {
     bottom: -8px;
     width: 0;
     height: 0;
-    border-top: 8px solid color(light);
-    border-right: 8px solid transparent;
-    border-bottom: 8px solid transparent;
-    border-left: 8px solid transparent;
+    border: 8px solid transparent;
+    border-top-color: color(light);
     transition: transform $smooth time(short);
     content: "";
   }

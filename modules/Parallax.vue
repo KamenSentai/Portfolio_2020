@@ -95,7 +95,7 @@ export default {
   position: relative;
   overflow: hidden;
   font-size: 0;
-  background-color: color(primary);
+  background-color: color(light);
   @include centralizer;
 }
 
@@ -103,6 +103,7 @@ export default {
   position: absolute;
   width: 100%;
   transform-origin: center;
+  filter: drop-shadow(0 5px 10px rgba(color(dark), .125));
   will-change: transform;
 }
 </style>

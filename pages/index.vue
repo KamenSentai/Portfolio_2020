@@ -24,13 +24,14 @@
           is-expandable
           :tag="`${index.tag} ${project.formattedIndex}`"
           :title="project.name"
+          @charged="isLoading = false"
           @mount="isAnimating = false"
         />
         <ACVTButton
           v-show="isCurrent(i)"
           :key="`button-${project.slug}`"
+          :is-loading="isAnimating && isLoading"
           :is-required="isRequiring"
-          :is-unclickable="isAnimating"
           :to="{ name: 'project-slug', params: { slug: project.slug } }"
           :text="index.button"
           :title="project.name"
@@ -71,6 +72,7 @@ export default {
       isAnimating: false,
       isChanging: false,
       isFading: false,
+      isLoading: false,
       isRequiring: true,
       pageDelay: 2000,
       touchPosition: 0,
@@ -117,6 +119,7 @@ export default {
   },
   beforeRouteLeave(to, _, next) {
     this.isAnimating = true
+    this.isLoading = true
 
     if (to.name === 'about') {
       this.pageChange()
@@ -152,11 +155,12 @@ export default {
       if (index >= 0 && index < this.totalProjects) {
         this.isAnimating = true
         this.isChanging = true
+        this.isLoading = true
         this.navigateIndex(index)
       }
     },
     wheel({ deltaY }) {
-      if (!this.isAnimating && !this.isChanging && !this.isInactive) {
+      if (!(this.isAnimating || this.isChanging || this.isInactive || this.isLoading)) {
         if (deltaY > 0) {
           this.updateProject(this.currentIndex + 1)
         } else if (deltaY < 0) {
