@@ -4,16 +4,25 @@
     :class="[
       $style.container,
       {
-        [$style.isInactive]: isInactive || !isRequired,
+        [$style.isInactive]: isUnavailable,
         [$style.isLighten]: isLighten,
-        [$style.isUnclickable]: isUnclickable,
+        [$style.isLoading]: !isUnavailable && isLoading,
       }
     ]"
     v-bind="$attrs"
     v-on="$listeners"
   >
     <div :class="$style.circle" />
-    <span :class="$style.text">{{ text }}</span>
+    <div :class="$style.wrapper">
+      <span :class="$style.text">{{ text }}</span>
+      <div :class="$style.dots">
+        <div
+          v-for="i in 3"
+          :key="`dot-${i}`"
+          :class="$style.dot"
+        />
+      </div>
+    </div>
   </component>
 </template>
 
@@ -31,7 +40,7 @@ export default {
       type: Boolean,
       default: true,
     },
-    isUnclickable: {
+    isLoading: {
       type: Boolean,
       default: false,
     },
@@ -40,7 +49,12 @@ export default {
       required: true,
     },
   },
-  computed: mapGetters('site', ['isInactive', 'isLighten']),
+  computed: {
+    ...mapGetters('site', ['isInactive', 'isLighten']),
+    isUnavailable() {
+      return this.isInactive || !this.isRequired
+    },
+  },
 }
 </script>
 
@@ -106,7 +120,8 @@ export default {
 
     &::after,
     .circle::after,
-    .text::before {
+    .wrapper::before,
+    .dots {
       background-color: color(light);
     }
 
@@ -115,9 +130,25 @@ export default {
     }
   }
 
-  &.isUnclickable {
+  &.isLoading {
     cursor: default;
     pointer-events: none;
+
+    .circle::before {
+      transform: scale(.875);
+    }
+
+    .wrapper {
+      justify-content: flex-start;
+    }
+
+    .dots {
+      width: 100%;
+    }
+
+    .dot {
+      transform: translateX(0);
+    }
   }
 }
 
@@ -154,34 +185,58 @@ export default {
   }
 }
 
-.text {
+.wrapper {
   position: relative;
   z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: .125em 0;
+
+  &::before {
+    z-index: -1;
+    background-color: color(dark);
+    content: "";
+    @include overlay;
+  }
+}
+
+.text {
   display: grid;
   grid-auto-flow: column;
   grid-gap: space(xs);
   align-items: center;
-  padding: .125em 0;
-
-  &::before,
-  &::after {
-    z-index: -1;
-    content: "";
-  }
-
-  &::before {
-    background-color: color(dark);
-    @include overlay;
-  }
 
   &::after {
     width: 0;
     height: 0;
-    border-top: 4px solid transparent;
-    border-right: 4px solid transparent;
-    border-bottom: 4px solid transparent;
-    border-left: 4px solid color(light);
+    border: 4px solid transparent;
+    border-left-color: color(light);
     transition: transform $smooth;
+    content: "";
   }
+}
+
+.dots {
+  position: absolute;
+  display: grid;
+  grid-auto-flow: column;
+  grid-gap: space(xs);
+  align-items: center;
+  justify-content: center;
+  width: 0;
+  height: 100%;
+  overflow: hidden;
+  background-color: color(dark);
+  transition: width $smooth;
+}
+
+.dot {
+  width: size(regular) * .375;
+  height: size(regular) * .375;
+  background-color: color(light);
+  border-radius: 100%;
+  transform: translateX(-500%);
+  transition: transform $smooth;
 }
 </style>

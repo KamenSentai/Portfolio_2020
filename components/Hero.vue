@@ -56,6 +56,10 @@ export default {
       if (value) {
         setTimeout(() => {
           this.$emit('mount')
+        }, 500)
+
+        setTimeout(() => {
+          this.$emit('charged')
         }, 1000)
       }
     },
