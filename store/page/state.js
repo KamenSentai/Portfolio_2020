@@ -6,7 +6,7 @@ export default () => ({
       title: 'Experiences',
       fields: [
         {
-          subtitle: 'Intership',
+          subtitle: 'Internship',
           tag: 'Jun. 2019 — Nov. 2019',
           name: 'Meero',
           section: {
@@ -31,7 +31,7 @@ export default () => ({
           },
         },
         {
-          subtitle: 'Intership',
+          subtitle: 'Internship',
           tag: 'Jul. 2018 — Sep. 2018',
           name: 'Wait and See agency',
           section: {
